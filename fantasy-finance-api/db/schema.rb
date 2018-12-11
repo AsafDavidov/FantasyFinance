@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_152149) do
   create_table "leagues", force: :cascade do |t|
     t.string "name"
     t.float "start_balance"
-    t.datetime "duration"
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
