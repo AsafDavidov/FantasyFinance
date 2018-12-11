@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :portfolios
       resources :leagues
       resources :holdings
+      resources :stocks, only: [:index]
     end
   end
 end
