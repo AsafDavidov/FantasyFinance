@@ -9,14 +9,11 @@ import {
 } from "react-router-dom";
 import Login from './components/login'
 class App extends Component {
-  state = {
-    user:{}
-  }
+
   render() {
     return (
       <Router>
         <Login />
-        <PrivateRoute path="/home" component={<h1>Maincontainer</h1>} />
       </Router>
     );
   }
@@ -24,25 +21,6 @@ class App extends Component {
 
 export default App;
 
-function PrivateRoute({ component: Component, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        fakeAuth.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
 //===========================================BASIC STOCK POLLING =======================================
 /*  state = {
     stocks:[],
