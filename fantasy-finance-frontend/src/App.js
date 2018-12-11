@@ -1,14 +1,54 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
+import Login from './components/login'
 class App extends Component {
   state = {
+    user:{}
+  }
+  render() {
+    return (
+      <Router>
+        <Login />
+        <PrivateRoute path="/home" component={<h1>Maincontainer</h1>} />
+      </Router>
+    );
+  }
+}
+
+export default App;
+
+function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        fakeAuth.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+//===========================================BASIC STOCK POLLING =======================================
+/*  state = {
     stocks:[],
     intervalID:null
   }
   componentDidMount(){
-    // this.fetchStocks()
-    // .then(data=>console.log(data))
     let i = setInterval(()=>{
       this.fetchStocks()
       .then(data=>this.setState({stocks:data})
@@ -32,17 +72,4 @@ class App extends Component {
     }else{
       return null
     }
-  }
-  render() {
-    return (
-      <div className="App">
-        <div>
-          {this.handleStocks()}
-        </div>
-        <button onClick={this.handleStop}>stop</button>
-      </div>
-    );
-  }
-}
-
-export default App;
+  }*/
