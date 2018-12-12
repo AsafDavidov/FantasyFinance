@@ -3,21 +3,27 @@ import { Form, Input, Button } from 'semantic-ui-react'
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux"
 
-const Login = (props)=>{
-  return(
-    <Form size={"massive"}>
-    <Form.Field required>
-      <label>Username</label>
-      <Input placeholder='Username' />
-      <label>Password</label>
-      <Input placeholder='Password' />
-    </Form.Field >
-      <Button type='submit'>Submit</Button>
-    </Form>
-  )
+ class Login extends Component{
+  state = {
+    username:"",
+    login:""
+  }
+  render(){
+    return(
+      <Form size={"massive"}>
+      <Form.Field required>
+        <label>Username</label>
+        <Input placeholder='Username' />
+        <label>Password</label>
+        <Input placeholder='Password' />
+      </Form.Field >
+        <Button type='submit'>Submit</Button>
+      </Form>
+    )
+  }
 }
 
-export default connect()(Login)
+export default Login
 //===========SIGN UP FORM
 // <Form size={"massive"}>
 // <Form.Field required>

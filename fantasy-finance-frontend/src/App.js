@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
-import Login from './components/login'
-import {Provider} from 'react-redux'
+import {Route,Redirect,withRouter} from "react-router-dom";
+import Login from './components/Login'
+import Home from './containers/Home'
+import {connect} from 'react-redux'
+
 class App extends Component {
 
+  handleUser = ()=>{
+    
+    if (this.props.user.id){
+      console.log("here2");
+      return <Route to="/home" component={Home}/>
+    }else{
+      return <Route to="/login" component={Login}/>
+    }
+  }
   render() {
+    console.log(this.props);
     return (
-        <Login />
+        <div>
+          {this.handleUser()}
+        </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state=>{
+  return {
+    user: state.user
+  }
+}
+export default connect(mapStateToProps)(App);
 
+//
+// <Route path='/home' component={Login}/>
+// <Route path='/login' component={Login}/>
 //===========================================BASIC STOCK POLLING =======================================
 /*  state = {
     stocks:[],
