@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react'
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux"
+import {Route,Redirect,withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import userAdapter from '../store/adapters/userAdapter';
+import * as actions from '../store/actions/user';
+import App from '../App'
 
  class Login extends Component{
   state = {
@@ -10,9 +13,10 @@ import {connect} from "react-redux"
   }
   handleLoginUser = (event) => {
     event.preventDefault()
-    console.log("woop");
+    this.props.fetchUser()
   }
   render(){
+    console.log(this.props.userId);
     return(
       <center>
         <Form size={"massive"} onSubmit={this.handleLoginUser}>
@@ -29,7 +33,12 @@ import {connect} from "react-redux"
   }
 }
 
-export default Login
+function mapStateToProps(state) {
+  return {
+    userId: state.user.userId
+  }
+}
+export default withRouter(connect(mapStateToProps,actions)(Login))
 //===========SIGN UP FORM
 // <Form size={"massive"}>
 // <Form.Field required>
