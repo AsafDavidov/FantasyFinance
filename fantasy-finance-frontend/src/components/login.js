@@ -6,19 +6,25 @@ import {connect} from "react-redux"
  class Login extends Component{
   state = {
     username:"",
-    login:""
+    password:""
+  }
+  handleLoginUser = (event) => {
+    event.preventDefault()
+    console.log("woop");
   }
   render(){
     return(
-      <Form size={"massive"}>
-      <Form.Field required>
-        <label>Username</label>
-        <Input placeholder='Username' />
-        <label>Password</label>
-        <Input placeholder='Password' />
-      </Form.Field >
-        <Button type='submit'>Submit</Button>
-      </Form>
+      <center>
+        <Form size={"massive"} onSubmit={this.handleLoginUser}>
+        <Form.Field required>
+          <label>Username</label>
+          <Input placeholder='Username' />
+          <label>Password</label>
+          <Input placeholder='Password' />
+        </Form.Field >
+          <Button type='submit'>Submit</Button>
+        </Form>
+      </center>
     )
   }
 }

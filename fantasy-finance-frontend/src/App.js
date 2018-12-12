@@ -8,16 +8,13 @@ import {connect} from 'react-redux'
 class App extends Component {
 
   handleUser = ()=>{
-    
     if (this.props.user.id){
-      console.log("here2");
-      return <Route to="/home" component={Home}/>
+      return <Redirect to="/home" component={Home}/>
     }else{
-      return <Route to="/login" component={Login}/>
+      return <Redirect to="/login" component={Login}/>
     }
   }
   render() {
-    console.log(this.props);
     return (
         <div>
           {this.handleUser()}
@@ -31,11 +28,9 @@ const mapStateToProps = state=>{
     user: state.user
   }
 }
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
 
-//
-// <Route path='/home' component={Login}/>
-// <Route path='/login' component={Login}/>
+
 //===========================================BASIC STOCK POLLING =======================================
 /*  state = {
     stocks:[],
