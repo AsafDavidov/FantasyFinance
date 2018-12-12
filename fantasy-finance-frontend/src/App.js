@@ -8,13 +8,12 @@ import {
   withRouter
 } from "react-router-dom";
 import Login from './components/login'
+import {Provider} from 'react-redux'
 class App extends Component {
 
   render() {
     return (
-      <Router>
         <Login />
-      </Router>
     );
   }
 }

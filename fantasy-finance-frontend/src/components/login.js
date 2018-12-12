@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react'
 import {withRouter} from "react-router-dom";
+import {connect} from "react-redux"
+
 const Login = (props)=>{
   return(
     <Form size={"massive"}>
@@ -15,7 +17,7 @@ const Login = (props)=>{
   )
 }
 
-export default withRouter(Login)
+export default connect()(Login)
 //===========SIGN UP FORM
 // <Form size={"massive"}>
 // <Form.Field required>
