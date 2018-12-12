@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Route,Redirect,withRouter} from "react-router-dom";
+import {Redirect,withRouter} from "react-router-dom";
 import Login from './components/Login'
 import Home from './containers/Home'
 import {connect} from 'react-redux'

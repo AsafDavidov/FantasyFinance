@@ -17,3 +17,13 @@ export function fetchUser(){
     })
   }
 }
+export function createUser(user){
+  console.log(user);
+  return (dispatch) => {
+    userAdapter.postUser(user)
+    .then(payload => {
+      dispatch(setUser(payload));
+
+    })
+  }
+}

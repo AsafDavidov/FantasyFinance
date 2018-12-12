@@ -1,34 +1,87 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react'
-import {Route,Redirect,withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import userAdapter from '../store/adapters/userAdapter';
 import * as actions from '../store/actions/user';
-import App from '../App'
+
 
  class Login extends Component{
   state = {
-    username:"",
-    password:""
+    login:{
+      Username:"",
+      Password:""
+    },
+    signUp:{
+      first_name:"",
+      last_Name:"",
+      username:"",
+      password:"",
+    }
   }
   handleLoginUser = (event) => {
     event.preventDefault()
     this.props.fetchUser()
   }
+  handleNewUser = (event)=> {
+    event.preventDefault()
+    this.props.createUser(this.state.signUp)
+  }
+  handleChange = ({name,value})=>{
+    switch (name) {
+      case "lUsername":
+        this.setState(()=>({...this.state,login:{...this.state.login,Username:value}}))
+        break;
+      case "lPassword":
+        this.setState(()=>({...this.state,login:{...this.state.login,Password:value}}))
+        break;
+      case "sFirstName":
+        this.setState(()=>({...this.state,signUp:{...this.state.signUp,first_name:value}}))
+        break;
+      case "sLastName":
+        this.setState(()=>({...this.state,signUp:{...this.state.signUp,last_name:value}}))
+        break;
+      case "sUsername":
+        this.setState(()=>({...this.state,signUp:{...this.state.signUp,username:value}}))
+        break;
+      case "sPassword":
+        this.setState(()=>({...this.state,signUp:{...this.state.signUp,password:value}}))
+        break;
+    }
+  }
   render(){
-    console.log(this.props.userId);
     return(
-      <center>
-        <Form size={"massive"} onSubmit={this.handleLoginUser}>
-        <Form.Field required>
-          <label>Username</label>
-          <Input placeholder='Username' />
-          <label>Password</label>
-          <Input placeholder='Password' />
-        </Form.Field >
-          <Button type='submit'>Submit</Button>
-        </Form>
-      </center>
+      <div>
+        <center>
+          <h1>Login</h1>
+          <Form size={"massive"} onSubmit={this.handleLoginUser}>
+          <Form.Field required>
+            <label>Username</label>
+            <Input name={"lUsername"} placeholder='Username' onChange={(e)=>this.handleChange(e.target)}/>
+            <label>Password</label>
+            <Input name={"lPassword"} placeholder='Password' onChange={(e)=>this.handleChange(e.target)}/>
+          </Form.Field >
+            <Button type='submit'>Submit</Button>
+          </Form>
+        </center>
+        <center>
+          <br></br>
+          <h1>Sign-Up</h1>
+          <Form size={"massive"} onSubmit={this.handleNewUser}>
+          <Form.Field >
+            <label>First Name</label>
+            <Input name={"sFirstName"} placeholder='First Name' onChange={(e)=>this.handleChange(e.target)}/>
+            <label>Last Name</label>
+            <Input name={"sLastName"} placeholder='Last Name' onChange={(e)=>this.handleChange(e.target)}/>
+            <label>Username</label>
+            <Input name={"sUsername"} placeholder='Username must be unique!' onChange={(e)=>this.handleChange(e.target)}/>
+            <label>Password</label>
+            <Input name={"sPassword"} placeholder='Password' onChange={(e)=>this.handleChange(e.target)}/>
+            <label>Profile Picture</label>
+            <Input type="file" placeholder='Get link' />
+          </Form.Field>
+          <Button type='submit'>Sign Up</Button>
+          </Form>
+        </center>
+      </div>
     )
   }
 }
@@ -38,24 +91,4 @@ function mapStateToProps(state) {
     userId: state.user.userId
   }
 }
-export default withRouter(connect(mapStateToProps,actions)(Login))
-//===========SIGN UP FORM
-// <Form size={"massive"}>
-// <Form.Field required>
-//   <label>First Name</label>
-//   <Input placeholder='First name' />
-//   <label>Last Name</label>
-//   <Input placeholder='Last name' />
-//   <label>Username</label>
-//   <Input placeholder='Username must be unique!' />
-//   <label>Password</label>
-//   <Input placeholder='Password' />
-//   <label>Password Confirmation</label>
-//   <Input placeholder='Password Confirmation' />
-// </Form.Field>
-// <Form.Field>
-//   <label>Profile Picture</label>
-//   <Input placeholder='Get link' />
-// </Form.Field>
-// <Button type='submit'>Submit</Button>
-// </Form>
+export default connect(mapStateToProps,actions)(Login)
