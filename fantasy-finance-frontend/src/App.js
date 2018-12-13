@@ -8,7 +8,6 @@ import {connect} from 'react-redux'
 class App extends Component {
 
   handleUser = ()=>{
-    console.log("Handling user");
     if (this.props.userId){
       return <Redirect to="/home" component={Home}/>
     }else{
@@ -26,7 +25,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    userId: state.user.userId
+    userId: state.user.userId,
+    username: state.user.username
   }
 }
 export default withRouter(connect(mapStateToProps)(App));

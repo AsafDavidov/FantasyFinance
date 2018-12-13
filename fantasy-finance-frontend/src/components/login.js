@@ -12,9 +12,10 @@ import * as actions from '../store/actions/user';
     },
     signUp:{
       first_name:"",
-      last_Name:"",
+      last_name:"",
       username:"",
       password:"",
+      avatar:null
     }
   }
   handleLoginUser = (event) => {
@@ -44,6 +45,9 @@ import * as actions from '../store/actions/user';
         break;
       case "sPassword":
         this.setState(()=>({...this.state,signUp:{...this.state.signUp,password:value}}))
+        break;
+      case "Avatar":
+        this.setState(()=>({...this.state,signUp:{...this.state.signUp,avatar:value}}))
         break;
     }
   }
@@ -76,7 +80,7 @@ import * as actions from '../store/actions/user';
             <label>Password</label>
             <Input name={"sPassword"} placeholder='Password' onChange={(e)=>this.handleChange(e.target)}/>
             <label>Profile Picture</label>
-            <Input type="file" placeholder='Get link' />
+            <Input name={"Avatar"} type="file" placeholder='Get link' onChange={(e)=>this.handleChange(e.target)}/>
           </Form.Field>
           <Button type='submit'>Sign Up</Button>
           </Form>

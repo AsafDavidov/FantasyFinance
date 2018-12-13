@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import NavBar from '../components/NavBar'
+import MainContainer from './MainContainer'
 class Home extends Component{
  render(){
    return(
-     <div>
-      <p>We home snitches</p>
-     </div>
+     <Fragment>
+      <NavBar />
+      <MainContainer />
+     </Fragment>
    )
  }
 }
