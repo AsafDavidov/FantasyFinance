@@ -7,6 +7,8 @@ import App from "./App"
 import PageNotFound from './components/PageNotFound'
 import Login from './components/Login'
 import Home from './containers/Home'
+import ProfileContainer from './containers/ProfileContainer'
+import MainContainer from './containers/MainContainer'
 import * as serviceWorker from './serviceWorker';
 import store from "./store"
 import createBrowserHistory from 'history/createBrowserHistory'
@@ -20,7 +22,8 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={App}/>
         <Route path="/login" component={Login}/>
-        <Route path="/home" component={Home}/>
+        <Route path="/home" component={MainContainer}/>
+        <Route path="/profile" component={MainContainer}/>
         <Route path="/*" component={PageNotFound} />
         </Switch>
       </Router>

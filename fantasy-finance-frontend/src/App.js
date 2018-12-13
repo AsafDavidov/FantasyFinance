@@ -3,6 +3,7 @@ import './App.css';
 import {Redirect,withRouter} from "react-router-dom";
 import Login from './components/Login'
 import Home from './containers/Home'
+import NavBar from './components/NavBar'
 import {connect} from 'react-redux'
 
 class App extends Component {
