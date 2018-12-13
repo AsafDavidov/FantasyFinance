@@ -7,11 +7,7 @@ const initialState = {
 const userReducer = (state =initialState, action) => {
   switch (action.type) {
     case SET_USER:
-      if (action.payload.error){
-        return {...state, error: action.payload};
-      }else{
-        return {...state, userId: action.payload.id, username:action.payload.username};
-      }
+      return {...state, userId: action.payload.user.id, username:action.payload.user.username, jwt:action.payload.jwt};
     default:
       return state;
   }

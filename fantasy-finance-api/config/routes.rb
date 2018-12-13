@@ -6,7 +6,9 @@ Rails.application.routes.draw do
       resources :portfolios
       resources :leagues
       resources :holdings
+      resources :auth, only: [:create]
       resources :stocks, only: [:index]
+      get '/news/recent', to: 'stocks#recent_news'
     end
   end
 end

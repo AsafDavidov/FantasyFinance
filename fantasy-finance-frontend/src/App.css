@@ -30,3 +30,20 @@
     transform: rotate(360deg);
   }
 }
+
+.strip{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-left: 100px;
+
+}
+.newsblock{
+  text-align: center;
+  float: left;
+  margin: 23px;
+}
+
+#main-container{
+  text-align: center;
+  border: 2px solid black;
+}

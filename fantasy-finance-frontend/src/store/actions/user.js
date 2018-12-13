@@ -8,12 +8,16 @@ export function setUser(payload){
   }
 };
 
-export function fetchUser(){
+export function fetchUser(credentials){
   return (dispatch) => {
-    userAdapter.getUser(1)
+    userAdapter.loginUser(credentials)
     .then(payload => {
-      dispatch(setUser(payload));
-      history.push('/')
+      if (payload.message){
+        window.alert(payload.message)
+      }else{
+        dispatch(setUser(payload));
+        history.push('/')
+      }
     })
   }
 }

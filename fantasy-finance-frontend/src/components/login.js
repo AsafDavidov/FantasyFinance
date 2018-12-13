@@ -7,8 +7,8 @@ import * as actions from '../store/actions/user';
  class Login extends Component{
   state = {
     login:{
-      Username:"",
-      Password:""
+      username:"",
+      password:""
     },
     signUp:{
       first_name:"",
@@ -20,7 +20,7 @@ import * as actions from '../store/actions/user';
   }
   handleLoginUser = (event) => {
     event.preventDefault()
-    this.props.fetchUser()
+    this.props.fetchUser(this.state.login)
   }
   handleNewUser = (event)=> {
     event.preventDefault()
@@ -29,10 +29,10 @@ import * as actions from '../store/actions/user';
   handleChange = ({name,value})=>{
     switch (name) {
       case "lUsername":
-        this.setState(()=>({...this.state,login:{...this.state.login,Username:value}}))
+        this.setState(()=>({...this.state,login:{...this.state.login,username:value}}))
         break;
       case "lPassword":
-        this.setState(()=>({...this.state,login:{...this.state.login,Password:value}}))
+        this.setState(()=>({...this.state,login:{...this.state.login,password:value}}))
         break;
       case "sFirstName":
         this.setState(()=>({...this.state,signUp:{...this.state.signUp,first_name:value}}))
@@ -90,9 +90,4 @@ import * as actions from '../store/actions/user';
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userId: state.user.userId
-  }
-}
-export default connect(mapStateToProps,actions)(Login)
+export default connect(null,actions)(Login)
