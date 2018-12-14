@@ -16,6 +16,10 @@ class Api::V1::UsersController < ApplicationController
       end
     end
 
+  def leagues
+    user_leagues = User.find(@user.id).leagues
+    render json: user_leagues, status: :ok
+  end
     private
 
     def user_params

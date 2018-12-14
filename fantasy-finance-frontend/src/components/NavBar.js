@@ -1,7 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import {connect} from "react-redux";
-import * as actions from '../store/actions/user';
 
 const NavBar = () => {
 

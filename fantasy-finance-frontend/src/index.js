@@ -6,8 +6,6 @@ import { Router, Route, Switch } from 'react-router-dom'
 import App from "./App"
 import PageNotFound from './components/PageNotFound'
 import Login from './components/Login'
-import Home from './containers/Home'
-import ProfileContainer from './containers/ProfileContainer'
 import MainContainer from './containers/MainContainer'
 import * as serviceWorker from './serviceWorker';
 import store from "./store"

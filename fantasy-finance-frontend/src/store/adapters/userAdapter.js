@@ -15,7 +15,6 @@ export default class UserAdapter {
       .then(json => json)
   }
   static postUser(user) {
-    console.log(user);
     return fetch(`${USER_URL}`,{
     method: 'POST',
     headers: {
@@ -29,5 +28,15 @@ export default class UserAdapter {
    .then(r => r.json())
    .then(json => json)
 
+  }
+  static getUserLeagues(token){
+    return fetch(`${USER_URL}/leagues`,{
+    method: "GET",
+    headers:{
+      Authorization: `Bearer ${token}`
+    }
+    })
+      .then(res => res.json())
+      .then(json => json)
   }
 }

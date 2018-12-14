@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import NewsStrip from "../components/NewsStrip"
 import StockAdapter from "../store/adapters/stockAdapter"
 import {connect} from "react-redux"

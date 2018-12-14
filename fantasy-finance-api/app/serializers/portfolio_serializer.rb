@@ -1,5 +1,3 @@
 class PortfolioSerializer < ActiveModel::Serializer
-
-  attributes :id, :ticker, :price_bought, :num_shares 
-  has_many :holdings
+  attributes :id, :current_balance, :user_id 
 end
