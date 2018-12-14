@@ -10,4 +10,14 @@ export default class StockAdapter {
       .then(res => res.json())
       .then(json => json)
   }
+  static getSearchTickers(token) {
+    return fetch(`${STOCK_URL}stocks/tickers`,{
+    method: "GET",
+    headers:{
+      Authorization: `Bearer ${token}`
+    }
+    })
+      .then(res => res.json())
+      .then(json => json)
+  }
 }

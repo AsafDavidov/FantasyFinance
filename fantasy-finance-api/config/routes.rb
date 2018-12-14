@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/users/leagues', to: 'users#leagues'
       get '/news/recent', to: 'stocks#recent_news'
+      get '/stocks/tickers', to: 'stocks#tickers'
       resources :users
       resources :portfolios
       resources :leagues
