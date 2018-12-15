@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NewsStrip from "../components/NewsStrip"
+
 import StockAdapter from "../store/adapters/stockAdapter"
 import {connect} from "react-redux"
 import SearchComponent from "../components/SearchComponent"
@@ -28,10 +28,9 @@ class StockContainer extends Component{
     this.setState({chosenStock:result.symbol})
   }
  render(){
-   console.log(this.state.chosenStock);
    return(
      <div>
-        <SearchComponent handleChosenStock={this.handleChosenStock} size={"large"} resultRenderer={resultRenderer} stocks={this.state.stocks}/>
+        <SearchComponent handleChosenStock={this.handleChosenStock} resultRenderer={resultRenderer} stocks={this.state.stocks}/>
         {this.state.chosenStock ? <StockComponent stock={this.state.chosenStock}/> : null}
      </div>
    )

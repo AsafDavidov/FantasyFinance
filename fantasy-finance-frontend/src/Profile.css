@@ -5,3 +5,8 @@
 .ui.secondary.pointing.menu a:last-child {
   margin-right: auto;
 }
+
+.ui.search > .results.visible {
+  position: relative;
+  margin: 0 auto;
+}

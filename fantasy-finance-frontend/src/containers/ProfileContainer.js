@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Tab } from 'semantic-ui-react'
 import Leagues from "../components/Leagues"
+import EditForm from "../components/EditForm"
+import {Route, Switch, Redirect } from "react-router-dom"
+import { RoutedTabs, NavTab } from 'react-router-tabs';
 import '../Profile.css'
 import {connect} from "react-redux"
 import UserAdapter from "../store/adapters/userAdapter"
+//import 'styles/react-router-tabs.css';
 
 class ProfileContainer extends Component{
   state = {
@@ -21,17 +24,20 @@ class ProfileContainer extends Component{
   fetchUserHoldings = ()=>{
 
   }
-  panes = [
-    { menuItem: 'Your Leagues', render: () => <Tab.Pane><Leagues leagues={this.state.leagues}/></Tab.Pane> },
-    { menuItem: 'Edit Profile', render: () => <Tab.Pane>Edit Profile Options</Tab.Pane> },
-  ]
- render(){
-   return(
-     <div>
-       <Tab panes={this.panes} />
-     </div>
-   )
- }
+  render(){
+  return (
+    <div>
+      <NavTab to="/profile/leagues">Admins</NavTab>
+      <NavTab to="/profile/edit">Moderators</NavTab>
+
+      <Switch>
+        <Route exact path={`${this.props.match.path}`} render={() => <Redirect replace to={`${this.props.match.path}/leagues`} />} />
+        <Route path={`${this.props.match.path}/leagues`} render={() => <Leagues leagues={this.state.leagues}/>} />
+        <Route path={`${this.props.match.path}/edit`} component={EditForm} />
+      </Switch>
+    </div>
+  );
+};
 }
 function mapStateToProps(state) {
   return {

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { Search, Grid, Header, Segment } from 'semantic-ui-react'
-import {connect} from "react-redux"
-
+import { Search} from 'semantic-ui-react'
+import "../Profile.css"
 class SearchComponent extends Component {
   componentWillMount() {
     this.resetComponent()
@@ -34,13 +33,14 @@ class SearchComponent extends Component {
     const { isLoading, value, results } = this.state
 
     return (
-      <Search
-        loading={isLoading}
-        onResultSelect={this.handleResultSelect}
-        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-        results={results.slice(0,8)}
-        value={value}
-      />
+        <Search
+          size="huge"
+          loading={isLoading}
+          onResultSelect={this.handleResultSelect}
+          onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+          results={results.slice(0,8)}
+          value={value}
+        />
     )
   }
 }
