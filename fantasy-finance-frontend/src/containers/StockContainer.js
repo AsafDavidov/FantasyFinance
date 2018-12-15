@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
 import StockAdapter from "../store/adapters/stockAdapter"
 import {connect} from "react-redux"
 import SearchComponent from "../components/SearchComponent"
 import StockComponent from "../components/StockComponent"
 import PropTypes from 'prop-types'
+import {Switch, Route, Redirect} from "react-router-dom"
 import { Label } from 'semantic-ui-react'
 
 const resultRenderer = ({ id, title }) => <Label content={title} />
@@ -27,11 +27,23 @@ class StockContainer extends Component{
   handleChosenStock = (result) =>{
     this.setState({chosenStock:result.symbol})
   }
+  wasStockChosen = () => {
+    if(this.state.chosenStock){
+      return(
+        <Switch>
+          <Route exact path={`${this.props.match.path}/${this.state.chosenStock}`} render = {()=><StockComponent stock={this.state.chosenStock}/>}/>
+          <Redirect to={`${this.props.match.path}/${this.state.chosenStock}`}/>
+        </Switch>
+      )
+    }else{
+      return null
+    }
+  }
  render(){
    return(
      <div>
         <SearchComponent handleChosenStock={this.handleChosenStock} resultRenderer={resultRenderer} stocks={this.state.stocks}/>
-        {this.state.chosenStock ? <StockComponent stock={this.state.chosenStock}/> : null}
+        {this.wasStockChosen()}
      </div>
    )
  }
