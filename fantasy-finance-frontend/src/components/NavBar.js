@@ -1,8 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+import {connect} from "react-redux"
+import {logoutUser} from '../store/actions/user'
 
-const NavBar = () => {
-
+const NavBar = (props) => {
   return (
   <div>
       <center>
@@ -13,10 +14,14 @@ const NavBar = () => {
         <NavLink to={"/profile"}>Profile</NavLink>
         <NavLink to={"/leagues"}>Explore Leagues</NavLink>
         <NavLink to={"/stocks"}>Search Stocks</NavLink>
-        <NavLink to={"/"}>Logout</NavLink>
+        <NavLink onClick={()=>props.logoutUser()}to={"/"}>Logout</NavLink>
       </center>
   </div>
   )
 }
-
-export default NavBar
+function mapDispatchToProps(dispatch){
+  return {
+    logoutUser: ()=> {dispatch(logoutUser())}
+  }
+}
+export default connect(null,mapDispatchToProps)(NavBar)

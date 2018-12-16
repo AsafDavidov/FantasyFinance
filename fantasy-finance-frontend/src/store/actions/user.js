@@ -1,10 +1,15 @@
-import { SET_USER } from "../types";
+import { SET_USER, LOGOUT_USER } from "../types";
 import userAdapter from '../adapters/userAdapter';
 import {history} from "../../index"
 export function setUser(payload){
   return {
     type: SET_USER,
     payload
+  }
+};
+export function logoutUser(){
+  return {
+    type: LOGOUT_USER
   }
 };
 

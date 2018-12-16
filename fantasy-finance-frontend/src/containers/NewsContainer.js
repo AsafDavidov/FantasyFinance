@@ -30,6 +30,7 @@ class NewsContainer extends Component{
  }
 }
 function mapStateToProps(state) {
+  console.log(state);
   return {
     token: state.user.jwt
   }

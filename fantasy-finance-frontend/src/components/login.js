@@ -69,7 +69,7 @@ import * as actions from '../store/actions/user';
         <center>
           <br></br>
           <h1>Sign-Up</h1>
-          <Form size={"massive"} onSubmit={this.handleNewUser}>
+          <Form size={"large"} onSubmit={this.handleNewUser}>
           <Form.Field >
             <label>First Name</label>
             <Input name={"sFirstName"} placeholder='First Name' onChange={(e)=>this.handleChange(e.target)}/>

@@ -28,5 +28,9 @@ class Api::V1::StocksController < ApplicationController
     end
     render json: formatted, status: :ok
   end
-
+  def chart
+    new_url = "#{@url}/stock/#{params[:id]}/chart/5y?filter=date,close"
+    results = JSON.parse(RestClient.get(new_url))
+    render json: results, status: :ok
+  end
 end

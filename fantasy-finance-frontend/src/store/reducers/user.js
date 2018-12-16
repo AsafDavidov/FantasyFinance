@@ -1,18 +1,25 @@
-import { SET_USER } from "../types";
+import { SET_USER, LOGOUT_USER } from "../types";
 
 const initialState = {
-
-  userId: localStorage.getItem("userId") || null,
-  username: localStorage.getItem("username") || "",
-  jwt: localStorage.getItem("jwt") || null
+  username: localStorage.getItem("username") || null,
+  jwt: localStorage.getItem("jwt") || null,
+  portfolios: localStorage.getItem("portfolios") || [],
+  leagues: localStorage.getItem("leagues") || [],
 };
 const userReducer = (state =initialState, action) => {
   switch (action.type) {
     case SET_USER:
-      localStorage.setItem("userId",action.payload.user.id)
       localStorage.setItem("username",action.payload.user.username)
       localStorage.setItem("jwt",action.payload.jwt)
-      return {...state, userId: action.payload.user.id, username:action.payload.user.username, jwt:action.payload.jwt};
+      return {
+        username:action.payload.user.username,
+        jwt:action.payload.jwt,
+        portfolios:[...action.payload.user.portfolios],
+        leagues:[...action.payload.user.leagues]};
+    case LOGOUT_USER:
+      localStorage.removeItem("username")
+      localStorage.removeItem("jwt")
+      return {username:null, jwt:null, portfolios:[],leagues:[]}
     default:
       return state;
   }

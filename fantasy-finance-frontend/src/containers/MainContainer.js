@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import NewsContainer from "./NewsContainer"
 import ProfileContainer from "./ProfileContainer"
 import StockContainer from "./StockContainer"
-import Leagues from "../components/Leagues"
-import EditForm from "../components/EditForm"
 import NavBar from "../components/NavBar"
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'

@@ -1,5 +1,6 @@
 import React from 'react';
 import League from './League'
+import {connect} from 'react-redux'
 const Leagues = (props) => {
   return (
     <div>
@@ -7,4 +8,9 @@ const Leagues = (props) => {
     </div>
   )
 };
-export default Leagues
+function mapStateToProps(state){
+  return {
+    leagues: state.user.leagues
+  }
+}
+export default connect(mapStateToProps)(Leagues)

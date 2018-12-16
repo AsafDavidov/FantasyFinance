@@ -20,4 +20,14 @@ export default class StockAdapter {
       .then(res => res.json())
       .then(json => json)
   }
+  static getChartData(token,symbol) {
+    return fetch(`${STOCK_URL}stocks/chart/${symbol}`,{
+    method: "GET",
+    headers:{
+      Authorization: `Bearer ${token}`
+    }
+    })
+      .then(res => res.json())
+      .then(json => json)
+  }
 }

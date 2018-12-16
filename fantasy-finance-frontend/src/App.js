@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 class App extends Component {
 
   handleUser = ()=>{
-    if (this.props.userId){
+    if (this.props.username){
       return <Redirect to="/home" component={Home}/>
     }else{
       return <Redirect to="/login" component={Login}/>
@@ -25,7 +25,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    userId: state.user.userId,
     username: state.user.username
   }
 }
