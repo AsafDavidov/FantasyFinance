@@ -11,6 +11,11 @@ class Purchase extends Component{
   state = {
     currentPrice: null
   }
+  formatPortfoliosForDropdown = () =>{
+    return props.portfolios.map(portfolio=>{
+      return {key: `${portfolio.id}`, text:}
+    })
+  }
   render(){
     return (
       <div>
@@ -31,7 +36,8 @@ class Purchase extends Component{
 
 function mapStateToProps(state) {
   return {
-    token: state.user.jwt
+    token: state.user.jwt,
+    portfolios: state.user.portfolios
   }
 }
 export default connect(mapStateToProps)(Purchase)
