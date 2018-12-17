@@ -10,6 +10,7 @@ import { createVerticalLinearGradient, hexToRGBA } from "react-stockcharts/lib/u
 import { timeParse,timeFormat } from "d3-time-format";
 import { format } from "d3-format";
 import {CrossHairCursor,MouseCoordinateX,MouseCoordinateY} from "react-stockcharts/lib/coordinates";
+import {Loader} from 'semantic-ui-react'
 
 const canvasGradient = createVerticalLinearGradient([
 	{ stop: 0, color: hexToRGBA("#b5d0ff", 0.2) },
@@ -78,7 +79,7 @@ class StockChart extends Component{
         <CrossHairCursor />
       </ChartCanvas>)
     }else{
-      return <h1>Loading</h1>
+      return <Loader />
     }
   }
   render(){

@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar"
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'
 import {history} from "../index"
-
+import withAuth from '../components/withAuth'
 class MainContainer extends Component{
  render(){
    return(
@@ -25,4 +25,4 @@ class MainContainer extends Component{
    )
  }
 }
-export default withRouter(MainContainer)
+export default withAuth(withRouter(MainContainer))

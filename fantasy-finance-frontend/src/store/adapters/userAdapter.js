@@ -14,6 +14,16 @@ export default class UserAdapter {
       .then(res => res.json())
       .then(json => json)
   }
+  static getUser(token) {
+    return fetch(`${USER_URL}/profile`,{
+      method: "GET",
+      headers: {
+       Authorization: `Bearer ${token}`
+     },
+    })
+      .then(res => res.json())
+      .then(json => json)
+  }
   static postUser(user) {
     return fetch(`${USER_URL}`,{
     method: 'POST',

@@ -3,7 +3,7 @@ import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from "react-redux"
 import {logoutUser} from '../store/actions/user'
 import '../Profile.css'
-
+import withAuth from './withAuth'
 const NavBar = (props) => {
   return (
   <div className="navbar">
@@ -24,4 +24,4 @@ function mapDispatchToProps(dispatch){
     logoutUser: ()=> {dispatch(logoutUser())}
   }
 }
-export default withRouter(connect(null,mapDispatchToProps)(NavBar))
+export default withAuth(withRouter(connect(null,mapDispatchToProps)(NavBar)))

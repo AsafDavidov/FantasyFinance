@@ -15,11 +15,11 @@ import * as actions from '../store/actions/user';
   }
   handleLoginUser = (event) => {
     event.preventDefault()
-    this.props.fetchUser(this.state.login)
+    this.props.loginUser({username:this.state.loginUsername, password:this.state.loginPassword})
   }
   handleNewUser = (event)=> {
     event.preventDefault()
-    this.props.createUser(this.state.signUp)
+    this.props.createUser({first_name:this.state.first_name, last_name:this.state.last_name, username:this.state.username, password:this.state.password})
   }
   handleChange = (e, semanticInputData)=>{
     this.setState({[semanticInputData.name]:e.target.value})

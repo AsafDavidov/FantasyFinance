@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-const League = ({league,portfolios}) => {
+const League = ({name,id,portfolios,balance}) => {
+  // console.log(id);
+  //console.log(portfolios.find((portfolio)=>{return portfolio.league_id==league.id}));
   return (
     <div>
-      <h1>League Name: {league.name}</h1>
-      <h2>League Start Balance: {league.start_balance}</h2>
-      <h2>Your Balance: {portfolios.find((portfolio)=>{return portfolio.league_id==league.id}).current_balance}</h2>
+      <h1>League Name: {name}</h1>
+      <h2>League Start Balance: {balance}</h2>
+      <h2>Your Balance: {portfolios.find((portfolio)=>{return portfolio.league_id==id}).current_balance}</h2>
     </div>
   )
 };
