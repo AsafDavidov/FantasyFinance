@@ -15,6 +15,7 @@ class App extends Component {
     }
   }
   render() {
+
     return (
         <div>
           {this.handleUser()}
@@ -23,9 +24,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({user}) {
   return {
-    username: state.user.username
+    username: user.username
   }
 }
 export default withRouter(connect(mapStateToProps)(App));

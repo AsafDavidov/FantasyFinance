@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/users/leagues', to: 'users#leagues'
-      get '/news/recent', to: 'stocks#recent_news'
+      get '/stocks/news', to: 'stocks#recent_news'
       get '/stocks/tickers', to: 'stocks#tickers'
       get '/stocks/chart/:id', to: 'stocks#chart'
       get '/stocks/price/:id', to: 'stocks#price'

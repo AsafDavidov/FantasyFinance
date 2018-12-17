@@ -8,10 +8,12 @@ User.create(first_name:"Warren",last_name:"Buffet",username:"wbuf", password:"pa
 
 puts "Seeding Leagues"
 l = League.create(name:"League of Champions", start_balance: 100000, end_date: DateTime.strptime('01/14/2019 8:00', "%m/%d/%Y %H:%M"))
+l2 = League.create(name:"Just Asaf", start_balance: 50000, end_date: DateTime.strptime('01/14/2019 8:00', "%m/%d/%Y %H:%M"))
 
 puts "Seeding Portfolios"
 
 Portfolio.create(user_id: 1, league_id: l["id"], current_balance: l["start_balance"], name:"Asaf Portfolio")
+Portfolio.create(user_id: 1, league_id: l2["id"], current_balance: l2["start_balance"], name:"Asaf Portfolio2")
 Portfolio.create(user_id: 2, league_id: l["id"], current_balance: l["start_balance"], name:"Bernie Portfolio")
 Portfolio.create(user_id: 3, league_id: l["id"], current_balance: l["start_balance"], name:"Jordan Portfolio")
 Portfolio.create(user_id: 4, league_id: l["id"], current_balance: l["start_balance"], name:"Warren Portfolio")

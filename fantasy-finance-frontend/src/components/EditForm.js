@@ -8,9 +8,9 @@ const EditForm = ({league,userId}) => {
     </div>
   )
 };
-function mapStateToProps(state) {
+function mapStateToProps({user}) {
   return {
-    userId: state.user.userId,
+    userId: user.userId,
   }
 }
 export default connect(mapStateToProps)(EditForm)

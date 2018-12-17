@@ -25,9 +25,9 @@ class ProfileContainer extends Component{
   );
 };
 }
-function mapStateToProps(state) {
+function mapStateToProps({user}) {
   return {
-    token: state.user.jwt
+    token: user.jwt
   }
 }
 export default connect(mapStateToProps)(ProfileContainer)

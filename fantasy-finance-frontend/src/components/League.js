@@ -10,9 +10,9 @@ const League = ({league,portfolios}) => {
     </div>
   )
 };
-function mapStateToProps(state) {
+function mapStateToProps({portfolios}) {
   return {
-    portfolios: state.user.portfolios,
+    portfolios: portfolios.portfolios
   }
 }
 export default connect(mapStateToProps)(League)

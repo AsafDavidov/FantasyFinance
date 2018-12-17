@@ -29,10 +29,9 @@ class NewsContainer extends Component{
    )
  }
 }
-function mapStateToProps(state) {
-  console.log(state);
+function mapStateToProps({user}) {
   return {
-    token: state.user.jwt
+    token: user.jwt
   }
 }
 export default connect(mapStateToProps)(NewsContainer)

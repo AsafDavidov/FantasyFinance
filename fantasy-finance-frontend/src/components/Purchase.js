@@ -2,16 +2,22 @@ import React, {Component} from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react'
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
+import UserAdapter from "../store/adapters/userAdapter"
+import * as actions from "../store/actions/holding"
+
 class Purchase extends Component{
   state = {
     currentPrice: null,
+    currentBalance:null,
+    numShares:null,
     chosenPortfolio: null
   }
   componentDidMount(){
-    this.timer = setInterval(()=>this.fetchPricing(), 1000)
+    this.stockTimer = setInterval(()=>this.fetchPricing(), 1000)
   }
   componentWillUnmount(){
-    clearInterval(this.timer)
+    clearInterval(this.stockTimer)
+    clearInterval(this.balanceTimer)
   }
   fetchPricing = ()=>{
     StockAdapter.getPricing(this.props.token, this.props.stock)
@@ -19,22 +25,36 @@ class Purchase extends Component{
       this.setState({currentPrice:parseFloat(data.price)})
     })
   }
+  buyStocks = ()=>{
+    let data = {holding:{ticker:this.props.stock,price_bought: this.state.currentPrice, num_shares: this.state.numShares, portfolio_id:this.state.chosenPortfolio.id}}
+    this.props.postHolding(this.props.token,data)
+  }
+
   formatPortfoliosForDropdown = () =>{
     return this.props.portfolios.map(portfolio=>{
       return {key: portfolio.name, text:portfolio.name, value:portfolio.name}
     })
   }
-  changePortfolio = ()=>{
-    debugger
+  changePortfolio = (event)=>{
+    // if (this.balanceTimer){
+    //   clearInterval(this.balanceTimer)
+    // }
+    let chosenPortfolio = this.props.portfolios.find(p=>p.name===event.target.querySelector(".text").innerText)
+    //this.balanceTimer = setInterval(()=>this.fetchBalance(), 1000)
+    this.setState({chosenPortfolio:chosenPortfolio})
+  }
+  changeNumShares = (event)=>{
+    this.setState({numShares:event.target.value})
   }
   render(){
     return (
       <div>
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
-        <Form size={"small"} onSubmit={this.handleNewUser}>
+        <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.name : "Select a portfolio"}</h1>
+        <Form size={"small"} onSubmit={this.buyStocks}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
-          <Input name={"numShares"}  type='number' />
+          <Input name={"numShares"} onChange={this.changeNumShares} type='number' />
           <label>Choose a portfolio:</label>
           <Select onChange={this.changePortfolio}options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
         </Form.Field>
@@ -45,40 +65,10 @@ class Purchase extends Component{
   }
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({user,portfolios}) {
   return {
-    token: state.user.jwt,
-    portfolios: state.user.portfolios
+    token: user.jwt,
+    portfolios: portfolios.portfolios
   }
 }
-export default connect(mapStateToProps)(Purchase)
-//===========================================BASIC STOCK POLLING =======================================
-/*  state = {
-    stocks:[],
-    intervalID:null
-  }
-  componentDidMount(){
-    let i = setInterval(()=>{
-      this.fetchStocks()
-      .then(data=>this.setState({stocks:data})
-      )
-    },1000)
-    this.setState({intervalID:i})
-  }
-  fetchStocks = ()=>{
-    return fetch("http://localhost:4000/api/v1/stocks")
-    .then(r=>r.json())
-  }
-  handleStop = ()=>{
-    clearInterval(this.state.intervalID)
-    this.setState({intervalID:null})
-  }
-  handleStocks = ()=>{
-    if (this.state.stocks.length>0){
-      return this.state.stocks.map(s=>{
-        return <p key={s.symbol}> Stock:{s.symbol} Price:{s.price}</p>
-      })
-    }else{
-      return null
-    }
-  }*/
+export default connect(mapStateToProps,actions)(Purchase)

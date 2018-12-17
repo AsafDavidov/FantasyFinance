@@ -1,7 +1,7 @@
-const STOCK_URL = "http://localhost:4000/api/v1/"
+const STOCK_URL = "http://localhost:4000/api/v1/stocks/"
 export default class StockAdapter {
   static getRecentNews(token) {
-    return fetch(`${STOCK_URL}news/recent`,{
+    return fetch(`${STOCK_URL}news`,{
     method: "GET",
     headers:{
       Authorization: `Bearer ${token}`
@@ -11,7 +11,7 @@ export default class StockAdapter {
       .then(json => json)
   }
   static getSearchTickers(token) {
-    return fetch(`${STOCK_URL}stocks/tickers`,{
+    return fetch(`${STOCK_URL}tickers`,{
     method: "GET",
     headers:{
       Authorization: `Bearer ${token}`
@@ -21,7 +21,7 @@ export default class StockAdapter {
       .then(json => json)
   }
   static getChartData(token,symbol) {
-    return fetch(`${STOCK_URL}stocks/chart/${symbol}`,{
+    return fetch(`${STOCK_URL}chart/${symbol}`,{
     method: "GET",
     headers:{
       Authorization: `Bearer ${token}`
@@ -31,7 +31,7 @@ export default class StockAdapter {
       .then(json => json)
   }
   static getPricing(token,symbol) {
-    return fetch(`${STOCK_URL}stocks/price/${symbol}`,{
+    return fetch(`${STOCK_URL}price/${symbol}`,{
     method: "GET",
     headers:{
       Authorization: `Bearer ${token}`
