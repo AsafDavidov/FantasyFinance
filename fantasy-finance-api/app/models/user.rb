@@ -7,6 +7,5 @@ class User < ApplicationRecord
   ## RELATIONSHIPS
   has_many :portfolios
   has_many :leagues, through: :portfolios
-  ##IMAGE STORAGE
-  has_one_attached :user_img
+  
 end

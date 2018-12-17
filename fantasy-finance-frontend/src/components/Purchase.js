@@ -1,31 +1,42 @@
 import React, {Component} from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react'
 import {connect} from "react-redux"
-
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-]
-
+import StockAdapter from "../store/adapters/stockAdapter"
 class Purchase extends Component{
   state = {
-    currentPrice: null
+    currentPrice: null,
+    chosenPortfolio: null
+  }
+  componentDidMount(){
+    this.timer = setInterval(()=>this.fetchPricing(), 1000)
+  }
+  componentWillUnmount(){
+    clearInterval(this.timer)
+  }
+  fetchPricing = ()=>{
+    StockAdapter.getPricing(this.props.token, this.props.stock)
+    .then(data=>{
+      this.setState({currentPrice:parseFloat(data.price)})
+    })
   }
   formatPortfoliosForDropdown = () =>{
-    return props.portfolios.map(portfolio=>{
-      return {key: `${portfolio.id}`, text:}
+    return this.props.portfolios.map(portfolio=>{
+      return {key: portfolio.name, text:portfolio.name, value:portfolio.name}
     })
+  }
+  changePortfolio = ()=>{
+    debugger
   }
   render(){
     return (
       <div>
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
-        <Form size={"medium"} onSubmit={this.handleNewUser}>
+        <Form size={"small"} onSubmit={this.handleNewUser}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
-          <Input name={"numShares"} place onChange={(e)=>this.handleChange(e.target)}/>
+          <Input name={"numShares"}  type='number' />
           <label>Choose a portfolio:</label>
-          <Form.Select options={options} placeholder='Portfolio' />
+          <Select onChange={this.changePortfolio}options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
         </Form.Field>
         <Button type='submit'>Buy Shares</Button>
         </Form>

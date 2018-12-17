@@ -12,8 +12,8 @@ l = League.create(name:"League of Champions", start_balance: 100000, end_date: D
 puts "Seeding Portfolios"
 
 Portfolio.create(user_id: 1, league_id: l["id"], current_balance: l["start_balance"], name:"Asaf Portfolio")
-Portfolio.create(user_id: 2, league_id: l["id"], current_balance: l["start_balance"],name:"Bernie Portfolio")
-Portfolio.create(user_id: 3, league_id: l["id"], current_balance: l["start_balance"],name:"Jordan Portfolio")
-Portfolio.create(user_id: 4, league_id: l["id"], current_balance: l["start_balance"],name:"Warren Portfolio")
+Portfolio.create(user_id: 2, league_id: l["id"], current_balance: l["start_balance"], name:"Bernie Portfolio")
+Portfolio.create(user_id: 3, league_id: l["id"], current_balance: l["start_balance"], name:"Jordan Portfolio")
+Portfolio.create(user_id: 4, league_id: l["id"], current_balance: l["start_balance"], name:"Warren Portfolio")
 
 puts "Seeding complete"

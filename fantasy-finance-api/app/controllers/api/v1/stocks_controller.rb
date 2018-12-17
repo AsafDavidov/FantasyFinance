@@ -13,7 +13,7 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def recent_news
-    new_url = "#{@url}/stock/market/news/last/5"
+    new_url = "#{@url}stock/market/news/last/5"
     results = JSON.parse(RestClient.get(new_url))
     formatted = results.map do |result|
       {"headline":result["headline"], "source":result["source"], "url":result["url"]}
@@ -29,8 +29,13 @@ class Api::V1::StocksController < ApplicationController
     render json: formatted, status: :ok
   end
   def chart
-    new_url = "#{@url}/stock/#{params[:id]}/chart/5y?filter=date,close"
+    new_url = "#{@url}stock/#{params[:id]}/chart/5y?filter=date,close"
     results = JSON.parse(RestClient.get(new_url))
     render json: results, status: :ok
+  end
+  def price
+    new_url = "#{@url}stock/#{params[:id]}/price"
+    result = RestClient.get(new_url)
+    render json: {"price":result}, status: :ok
   end
 end

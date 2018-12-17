@@ -82,7 +82,6 @@ class StockChart extends Component{
     }
   }
   render(){
-    console.log(this.state.data);
     return (
       this.loading()
     )

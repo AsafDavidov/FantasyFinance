@@ -1,21 +1,21 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from "react-redux"
 import {logoutUser} from '../store/actions/user'
+import '../Profile.css'
 
 const NavBar = (props) => {
   return (
-  <div>
-      <center>
-        <h1>Logo</h1>
-      </center>
-      <center>
-        <NavLink to={"/home"}>Home</NavLink>
-        <NavLink to={"/profile"}>Profile</NavLink>
-        <NavLink to={"/leagues"}>Explore Leagues</NavLink>
-        <NavLink to={"/stocks"}>Search Stocks</NavLink>
-        <NavLink onClick={()=>props.logoutUser()}to={"/"}>Logout</NavLink>
-      </center>
+  <div className="navbar">
+      <h1 style={{textAlign:"center"}}>FantasyFinance</h1>
+
+      <ul className="navlinks">
+        <li><NavLink to={"/home"} exact activeClassName="active">Home</NavLink></li>
+        <li><NavLink to={"/profile"} activeClassName="active">Profile</NavLink></li>
+        <li><NavLink to={"/leagues"} exact activeClassName="active">Explore Leagues</NavLink></li>
+        <li><NavLink to={"/stocks"} activeClassName="active">Search Stocks</NavLink></li>
+        <li style={{float:"right"}}><NavLink exact onClick={()=>props.logoutUser()}to={"/"} exact activeClassName="active">Logout</NavLink></li>
+      </ul>
   </div>
   )
 }
@@ -24,4 +24,4 @@ function mapDispatchToProps(dispatch){
     logoutUser: ()=> {dispatch(logoutUser())}
   }
 }
-export default connect(null,mapDispatchToProps)(NavBar)
+export default withRouter(connect(null,mapDispatchToProps)(NavBar))

@@ -8,9 +8,6 @@ class League < ApplicationRecord
   has_many :portfolios
   has_many :users, through: :portfolios
 
-  ##IMAGE
-  has_one_attached :league_img
-
   def end_date_cannot_be_in_the_past
     if end_date.present? && end_date < Date.today
       errors.add(:expiration_date, "can't be in the past")

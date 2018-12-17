@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get '/news/recent', to: 'stocks#recent_news'
       get '/stocks/tickers', to: 'stocks#tickers'
       get '/stocks/chart/:id', to: 'stocks#chart'
+      get '/stocks/price/:id', to: 'stocks#price'
       resources :users
       resources :portfolios
       resources :leagues

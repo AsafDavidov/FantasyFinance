@@ -30,4 +30,14 @@ export default class StockAdapter {
       .then(res => res.json())
       .then(json => json)
   }
+  static getPricing(token,symbol) {
+    return fetch(`${STOCK_URL}stocks/price/${symbol}`,{
+    method: "GET",
+    headers:{
+      Authorization: `Bearer ${token}`
+    }
+    })
+      .then(res => res.json())
+      .then(json => json)
+  }
 }
