@@ -1,8 +1,10 @@
-import { SET_USER, LOGOUT_USER, LOGIN_USER } from "../types";
+import { SET_USER, LOGOUT_USER, LOGIN_USER, FAILED_LOGIN } from "../types";
 
 const initialState = {
   username: null,
-  loggedIn: false
+  loggedIn: false,
+  failedLogin:false,
+  message: ""
 };
 
 const userReducer = (state =initialState, action) => {
@@ -20,8 +22,8 @@ const userReducer = (state =initialState, action) => {
     case LOGOUT_USER:
       localStorage.removeItem("jwt")
       return {username:null,loggedIn:false}
-    case 'FAILED_LOGIN':
-      return {...state}
+    case FAILED_LOGIN:
+      return {...state, failedLogin:true, message:action.payload}
     default:
       return state;
   }
