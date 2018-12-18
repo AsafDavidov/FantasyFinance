@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import NewsContainer from "./NewsContainer"
 import ProfileContainer from "./ProfileContainer"
 import StockContainer from "./StockContainer"
-import NavBar from "../components/NavBar"
+
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'
 import {history} from "../index"
@@ -18,7 +18,7 @@ class MainContainer extends Component{
             <Route path="/stocks" component={StockContainer}/>
           </Switch>
         </Router>
-       </div>  
+       </div>
    )
  }
 }

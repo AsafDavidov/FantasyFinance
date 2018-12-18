@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import * as actions from '../store/actions/user'
 import { fetchUser } from '../store/actions/user'
 import { Loader } from 'semantic-ui-react'
 

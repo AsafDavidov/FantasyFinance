@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, Input, Button, Select } from 'semantic-ui-react'
+import { Message,Form, Input, Button, Select } from 'semantic-ui-react'
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
 import UserAdapter from "../store/adapters/userAdapter"
@@ -27,7 +27,7 @@ class Purchase extends Component{
   }
   buyStocks = ()=>{
     let data = {holding:{ticker:this.props.stock,price_bought: this.state.currentPrice, num_shares: this.state.numShares, portfolio_id:this.state.chosenPortfolio.id}}
-    this.props.postHolding(this.props.token,data)
+    this.props.postHolding(data)
   }
 
   formatPortfoliosForDropdown = () =>{
@@ -51,6 +51,7 @@ class Purchase extends Component{
       <div>
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
         <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.name : "Select a portfolio"}</h1>
+        {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
@@ -65,9 +66,10 @@ class Purchase extends Component{
   }
 };
 
-function mapStateToProps({user,portfolios}) {
+function mapStateToProps({portfolios}) {
   return {
-    token: user.jwt,
+    failedPurchase: portfolios.failedPurchase,
+    message: portfolios.message,
     portfolios: portfolios.portfolios
   }
 }

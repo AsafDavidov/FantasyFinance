@@ -9,8 +9,13 @@ export default class HoldingAdapter {
     },
     body: JSON.stringify(data)
     })
-      .then(res => res.json())
-      .then(json => json)
+    .then(res => {
+      if(res.ok){
+        return res.json()
+      }else{
+        throw res
+      }
+    })
   }
 
 }

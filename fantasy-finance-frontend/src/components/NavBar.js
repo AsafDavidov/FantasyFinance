@@ -14,7 +14,7 @@ const NavBar = (props) => {
         <li><NavLink to={"/profile"} activeClassName="active">Profile</NavLink></li>
         <li><NavLink to={"/leagues"} exact activeClassName="active">Explore Leagues</NavLink></li>
         <li><NavLink to={"/stocks"} activeClassName="active">Search Stocks</NavLink></li>
-        <li style={{float:"right"}}><NavLink exact onClick={()=>props.logoutUser()}to={"/login"} exact activeClassName="active">Logout</NavLink></li>
+        <li style={{float:"right"}}><NavLink onClick={()=>props.logoutUser()}to={"/login"} exact activeClassName="active">Logout</NavLink></li>
       </ul>
   </div>
   )

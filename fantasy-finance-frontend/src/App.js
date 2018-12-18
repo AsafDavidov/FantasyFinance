@@ -4,10 +4,9 @@ import {Redirect,withRouter,Route,Switch} from "react-router-dom";
 import Login from './components/Login'
 import Home from './containers/Home'
 import {connect} from 'react-redux'
-import MainContainer from './containers/MainContainer'
 import PageNotFound from './components/PageNotFound'
-class App extends Component {
 
+class App extends Component {
   render() {
     return (
       <Switch>

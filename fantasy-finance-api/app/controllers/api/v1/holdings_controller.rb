@@ -4,11 +4,13 @@ class Api::V1::HoldingsController < ApplicationController
     total_value = holding.price_bought * holding.num_shares
     found_portfolio = Portfolio.find(holding.portfolio_id)
     ##Real time grab of portfolio current balance
-    if (found_portfolio.current_balance > total_value) do
+    if (found_portfolio.current_balance > total_value)
+      found_portfolio.current_balance = found_portfolio.current_balance - total_value
       holding.save
-      render json: holding, status: :ok
+      render json: @user.portfolios, status: :ok
     else
-      render json: { error: 'Not enough cash boi' }, status: :not_acceptable
+      byebug
+      render json: { message: 'Not enough cash boi' }, status: :not_acceptable
     end
   end
 

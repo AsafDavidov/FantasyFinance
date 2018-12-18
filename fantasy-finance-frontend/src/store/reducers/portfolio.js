@@ -1,7 +1,14 @@
-import { SET_USER, LOGOUT_USER,LOGIN_USER } from "../types";
+import { SET_USER,
+        LOGOUT_USER,
+        LOGIN_USER,
+        PURCHASE_STOCK,
+        FAILED_PURCHASE } from "../types";
 
 const initialState = {
-  portfolios:[]
+  portfolios:[],
+  failedPurchase:false,
+  message:""
+
 };
 
 const portfolioReducer = (state =initialState, action) => {
@@ -12,6 +19,9 @@ const portfolioReducer = (state =initialState, action) => {
       return {...state, portfolios:action.payload.user.portfolios};
     case LOGOUT_USER:
       return {...state,portfolios:[]}
+    case FAILED_PURCHASE:
+      debugger
+      return{...state,failedPurchase:true,message:action.payload }
     default:
       return state;
   }
