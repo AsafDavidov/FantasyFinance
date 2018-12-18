@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
 import StockChart from "./StockChart.js"
@@ -10,10 +10,12 @@ class StockComponent extends Component{
  render(){
    return(
      <div>
-      <div>
-        <StockChart key = {this.props.stock} stock={this.props.stock}/>
-      </div>
-        <Purchase stock={this.props.stock}/>
+          <div style={{float:"left"}}>
+            <StockChart key = {this.props.stock} stock={this.props.stock}/>
+          </div>
+          <div style={{float:"right", marginRight:"20%"}}>
+            <Purchase stock={this.props.stock}/>
+          </div>
      </div>
    )
  }

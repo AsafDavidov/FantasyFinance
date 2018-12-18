@@ -48,16 +48,17 @@ class Purchase extends Component{
   }
   render(){
     return (
-      <div>
+      <div >
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
         <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.name : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
+        {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
-          <Input name={"numShares"} onChange={this.changeNumShares} type='number' />
+          <Input style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
           <label>Choose a portfolio:</label>
-          <Select onChange={this.changePortfolio}options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
+          <Select style={{width:"400px"}} onChange={this.changePortfolio}options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
         </Form.Field>
         <Button type='submit'>Buy Shares</Button>
         </Form>

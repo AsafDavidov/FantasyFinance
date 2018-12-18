@@ -38,7 +38,7 @@ class StockChart extends Component{
   }
   loading = ()=>{
     if (this.state.data){
-      return(<ChartCanvas ratio={1} width={800} height={400}
+      return(<ChartCanvas ratio={1} width={1000} height={600}
         margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
         seriesName={this.props.stock}
         data={this.state.data}

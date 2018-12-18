@@ -7,8 +7,8 @@ import { SET_USER,
 const initialState = {
   portfolios:[],
   failedPurchase:false,
-  message:""
-
+  message:"",
+  successfulPurchase:false
 };
 
 const portfolioReducer = (state =initialState, action) => {
@@ -20,8 +20,10 @@ const portfolioReducer = (state =initialState, action) => {
     case LOGOUT_USER:
       return {...state,portfolios:[]}
     case FAILED_PURCHASE:
-      debugger
       return{...state,failedPurchase:true,message:action.payload }
+    case PURCHASE_STOCK:
+      debugger
+      return{...state, portfolios:action.payload,successfulPurchase:true,message:"woohoo got those stocks"}
     default:
       return state;
   }

@@ -12,12 +12,9 @@ export function postHolding(token,data){
   return (dispatch) => {
     holdingAdapter.postNewHolding(token,data)
     .then(jsonresponse => {
-      console.log(jsonresponse);
-      //dispatch(purchaseHolding(jsonresponse))
+      dispatch(purchaseHolding(jsonresponse))
     })
     .catch(response=>response.json().then(e=>{
-      console.log(e);
-      debugger
       dispatch({type:FAILED_PURCHASE, payload: e.message})
     }))
   }
