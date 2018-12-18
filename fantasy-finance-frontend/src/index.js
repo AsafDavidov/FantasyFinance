@@ -17,15 +17,8 @@ export const history = createBrowserHistory()
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Switch>
-        <Route path="/" exact component={App}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/home" component={MainContainer}/>
-        <Route path="/profile" component={MainContainer}/>
-        <Route path="/stocks" component={MainContainer}/>
-        <Route path="/*" component={PageNotFound} />
-        </Switch>
-      </Router>
+        <App />
+    </Router>
   </Provider>
   , document.getElementById('root'));
 

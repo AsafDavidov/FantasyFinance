@@ -1,40 +1,40 @@
 const STOCK_URL = "http://localhost:4000/api/v1/stocks/"
 export default class StockAdapter {
-  static getRecentNews(token) {
+  static getRecentNews() {
     return fetch(`${STOCK_URL}news`,{
     method: "GET",
     headers:{
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
     })
       .then(res => res.json())
       .then(json => json)
   }
-  static getSearchTickers(token) {
+  static getSearchTickers() {
     return fetch(`${STOCK_URL}tickers`,{
     method: "GET",
     headers:{
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
     })
       .then(res => res.json())
       .then(json => json)
   }
-  static getChartData(token,symbol) {
+  static getChartData(symbol) {
     return fetch(`${STOCK_URL}chart/${symbol}`,{
     method: "GET",
     headers:{
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
     })
       .then(res => res.json())
       .then(json => json)
   }
-  static getPricing(token,symbol) {
+  static getPricing(symbol) {
     return fetch(`${STOCK_URL}price/${symbol}`,{
     method: "GET",
     headers:{
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
     })
       .then(res => res.json())

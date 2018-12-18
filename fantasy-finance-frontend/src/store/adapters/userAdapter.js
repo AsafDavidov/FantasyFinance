@@ -11,18 +11,22 @@ export default class UserAdapter {
        user:credentials
      })
     })
-      .then(res => res.json())
-      .then(json => json)
+      .then(res => {
+        if(res.ok){
+          return res.json()
+        }else{
+          throw res
+        }
+      })
   }
-  static getUser(token) {
+  static getUser() {
     return fetch(`${USER_URL}/profile`,{
       method: "GET",
       headers: {
-       Authorization: `Bearer ${token}`
+       Authorization: `Bearer ${localStorage.getItem("jwt")}`
      },
     })
       .then(res => res.json())
-      .then(json => json)
   }
   static postUser(user) {
     return fetch(`${USER_URL}`,{
@@ -35,18 +39,16 @@ export default class UserAdapter {
      user: user
      })
     })
-   .then(r => r.json())
-   .then(json => json)
+   .then(res => res.json())
 
   }
   static getUserLeagues(token){
     return fetch(`${USER_URL}/leagues`,{
     method: "GET",
     headers:{
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
     })
       .then(res => res.json())
-      .then(json => json)
   }
 }

@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Redirect,withRouter} from "react-router-dom";
+import {Redirect,withRouter,Route,Switch} from "react-router-dom";
 import Login from './components/Login'
 import Home from './containers/Home'
 import {connect} from 'react-redux'
-
+import MainContainer from './containers/MainContainer'
+import PageNotFound from './components/PageNotFound'
 class App extends Component {
 
-  handleUser = ()=>{
-    if (this.props.username){
-      return <Redirect to="/home" component={Home}/>
-    }else{
-      return <Redirect to="/login" component={Login}/>
-    }
-  }
   render() {
-
     return (
-        <div>
-          {this.handleUser()}
-        </div>
+      <Switch>
+        <Route exact path="/" render={()=><Redirect to="/home"/>}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/home" component={Home}/>
+        <Route path="/profile" component={Home}/>
+        <Route path="/stocks" component={Home}/>
+        <Route component={PageNotFound} />
+      </Switch>
     );
   }
 }

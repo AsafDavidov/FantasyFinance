@@ -17,10 +17,10 @@ class Purchase extends Component{
   }
   componentWillUnmount(){
     clearInterval(this.stockTimer)
-    clearInterval(this.balanceTimer)
+    //clearInterval(this.balanceTimer)
   }
   fetchPricing = ()=>{
-    StockAdapter.getPricing(this.props.token, this.props.stock)
+    StockAdapter.getPricing(this.props.stock)
     .then(data=>{
       this.setState({currentPrice:parseFloat(data.price)})
     })

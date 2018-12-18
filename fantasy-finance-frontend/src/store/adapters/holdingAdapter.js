@@ -1,11 +1,11 @@
 const HOLDING_URL = "http://localhost:4000/api/v1/holdings"
 export default class HoldingAdapter {
-  static postNewHolding(token,data) {
+  static postNewHolding(data) {
     return fetch(`${HOLDING_URL}`,{
     method: "POST",
     headers:{
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
     },
     body: JSON.stringify(data)
     })

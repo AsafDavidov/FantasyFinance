@@ -22,14 +22,11 @@ export function logoutUser(){
 export function loginUser(credentials){
   return (dispatch) => {
     userAdapter.loginUser(credentials)
-    .then(payload => {
-      if (payload.message){
-        window.alert(payload.message)
-      }else{
-        dispatch(loginRUser(payload));
-        history.push('/')
-      }
+    .then(jsonresponse => {
+        dispatch(loginRUser(jsonresponse));
+        history.push('/home')
     })
+    .catch(response=>response.json().then(e=>dispatch({type:'FAILED_LOGIN', payload: e.message})))
   }
 }
 export function fetchUser(credentials){
@@ -41,7 +38,7 @@ export function fetchUser(credentials){
       }else{
         console.log(payload);
         dispatch(setUser(payload));
-        history.push('/')
+        history.push('/home')
       }
     })
   }
@@ -51,7 +48,7 @@ export function createUser(user){
     userAdapter.postUser(user)
     .then(payload => {
       dispatch(setUser(payload));
-      history.push('/')
+      history.push('/home')
     })
   }
 }

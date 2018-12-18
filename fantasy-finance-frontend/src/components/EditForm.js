@@ -1,16 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-const EditForm = ({league,userId}) => {
+const EditForm = (props) => {
   return (
     <div>
       edit your stuff
     </div>
   )
 };
-function mapStateToProps({user}) {
-  return {
-    userId: user.userId,
-  }
-}
-export default connect(mapStateToProps)(EditForm)
+// function mapStateToProps({user}) {
+//   return {
+//     userId: user.userId,
+//   }
+// }
+export default connect(null)(EditForm)

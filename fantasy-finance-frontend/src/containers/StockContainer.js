@@ -21,7 +21,7 @@ class StockContainer extends Component{
     this.fetchTickers()
   }
   fetchTickers = () =>{
-    StockAdapter.getSearchTickers(this.props.token)
+    StockAdapter.getSearchTickers()
     .then(data=>this.setState({stocks:data}))
   }
   handleChosenStock = (result) =>{

@@ -34,7 +34,7 @@ class SearchComponent extends Component {
 
     return (
         <Search
-          size="huge"
+          size="large"
           loading={isLoading}
           onResultSelect={this.handleResultSelect}
           onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}

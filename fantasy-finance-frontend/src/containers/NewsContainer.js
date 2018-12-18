@@ -13,7 +13,7 @@ class NewsContainer extends Component{
 
   }
   fetchRecentNews = () =>{
-    StockAdapter.getRecentNews(this.props.token)
+    StockAdapter.getRecentNews()
     .then(data=>this.setState({recentNews:data}))
 
   }

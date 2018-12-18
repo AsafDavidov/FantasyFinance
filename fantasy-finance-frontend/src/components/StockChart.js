@@ -34,7 +34,7 @@ class StockChart extends Component{
     })
   }
   fetchChartData = ()=>{
-    return StockAdapter.getChartData(this.props.token,this.props.stock)
+    return StockAdapter.getChartData(this.props.stock)
   }
   loading = ()=>{
     if (this.state.data){
@@ -79,7 +79,7 @@ class StockChart extends Component{
         <CrossHairCursor />
       </ChartCanvas>)
     }else{
-      return <Loader />
+      return <Loader active />
     }
   }
   render(){

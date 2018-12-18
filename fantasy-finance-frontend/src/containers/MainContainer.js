@@ -10,8 +10,6 @@ import withAuth from '../components/withAuth'
 class MainContainer extends Component{
  render(){
    return(
-     <Fragment>
-       <NavBar />
        <div id="main-container">
        <Router history={history}>
           <Switch>
@@ -20,8 +18,7 @@ class MainContainer extends Component{
             <Route path="/stocks" component={StockContainer}/>
           </Switch>
         </Router>
-       </div>
-    </Fragment>
+       </div>  
    )
  }
 }
