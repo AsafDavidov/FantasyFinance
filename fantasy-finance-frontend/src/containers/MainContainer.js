@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewsContainer from "./NewsContainer"
 import ProfileContainer from "./ProfileContainer"
 import StockContainer from "./StockContainer"
+import LeaguesContainer from "./LeaguesContainer"
 
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'
@@ -16,6 +17,7 @@ class MainContainer extends Component{
             <Route path="/home" component={NewsContainer}/>
             <Route path="/profile" component={ProfileContainer}/>
             <Route path="/stocks" component={StockContainer}/>
+            <Route path="/leagues" component={LeaguesContainer}/>
           </Switch>
         </Router>
        </div>
