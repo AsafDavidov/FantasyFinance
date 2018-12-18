@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StockAdapter from "../store/adapters/stockAdapter"
-import {connect} from "react-redux"
 import SearchComponent from "../components/SearchComponent"
 import StockComponent from "../components/StockComponent"
 import PropTypes from 'prop-types'
@@ -48,9 +47,5 @@ class StockContainer extends Component{
    )
  }
 }
-function mapStateToProps({user}) {
-  return {
-    token: user.jwt
-  }
-}
-export default connect(mapStateToProps)(StockContainer)
+
+export default StockContainer

@@ -28,7 +28,7 @@ const withAuth = /*FUNCTION*/ (WrappedComponent) => {
     }
   }
 
-  const mapDispatchToProps = /*FUNCTION*/ (dispatch) => {
+  const mapDispatchToProps = (dispatch) => {
     return {
       fetchUser: () => dispatch(fetchUser()),
     }

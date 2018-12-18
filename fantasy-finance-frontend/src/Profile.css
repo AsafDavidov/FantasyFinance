@@ -9,8 +9,6 @@
 .ui.search > .results.visible {
   position: relative;
   margin: 0 auto;
-  background-color: red;
-  z-index: 903;
 }
 
 

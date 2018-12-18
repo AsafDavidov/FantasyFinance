@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import StockAdapter from "../store/adapters/stockAdapter"
-import {connect} from "react-redux"
 import { scaleTime } from "d3-scale";
 import { curveMonotoneX } from "d3-shape";
 import { ChartCanvas, Chart } from "react-stockcharts";
@@ -88,9 +87,4 @@ class StockChart extends Component{
     )
   }
 };
-function mapStateToProps({user}) {
-  return {
-    token: user.jwt
-  }
-}
-export default connect(mapStateToProps)(StockChart)
+export default StockChart

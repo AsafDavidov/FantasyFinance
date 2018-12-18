@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import user from "./user";
-import leagues from "./league";
-import portfolios from "./portfolio";
+import league from "./league";
+import portfolio from "./portfolio";
 
 const rootReducer = combineReducers({
   user,
-  leagues,
-  portfolios
+  league,
+  portfolio
 });
 
 export default rootReducer;

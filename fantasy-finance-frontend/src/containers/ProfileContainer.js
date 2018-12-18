@@ -4,8 +4,8 @@ import EditForm from "../components/EditForm"
 import {Route, Switch, Redirect } from "react-router-dom"
 import { NavTab } from 'react-router-tabs';
 import '../Profile.css'
-import {connect} from "react-redux"
-import UserAdapter from "../store/adapters/userAdapter"
+
+//import UserAdapter from "../store/adapters/userAdapter"
 
 
 class ProfileContainer extends Component{
@@ -25,9 +25,5 @@ class ProfileContainer extends Component{
   );
 };
 }
-function mapStateToProps({user}) {
-  return {
-    token: user.jwt
-  }
-}
-export default connect(mapStateToProps)(ProfileContainer)
+
+export default ProfileContainer

@@ -67,11 +67,11 @@ class Purchase extends Component{
   }
 };
 
-function mapStateToProps({portfolios}) {
+function mapStateToProps({portfolio}) {
   return {
-    failedPurchase: portfolios.failedPurchase,
-    message: portfolios.message,
-    portfolios: portfolios.portfolios
+    failedPurchase: portfolio.failedPurchase,
+    message: portfolio.message,
+    portfolios: portfolio.portfolios
   }
 }
 export default connect(mapStateToProps,actions)(Purchase)
