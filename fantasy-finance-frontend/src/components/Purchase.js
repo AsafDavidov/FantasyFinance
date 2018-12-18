@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { Message,Form, Input, Button, Select } from 'semantic-ui-react'
+import { Loader, Image,Message,Form, Input, Button, Select } from 'semantic-ui-react'
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
 import UserAdapter from "../store/adapters/userAdapter"
+
 import * as actions from "../store/actions/holding"
 
 class Purchase extends Component{
@@ -10,10 +11,12 @@ class Purchase extends Component{
     currentPrice: null,
     currentBalance:null,
     numShares:null,
+    imgSource:null,
     chosenPortfolio: null
   }
   componentDidMount(){
     this.stockTimer = setInterval(()=>this.fetchPricing(), 1000)
+    this.fetchLogo()
   }
   componentWillUnmount(){
     clearInterval(this.stockTimer)
@@ -23,6 +26,12 @@ class Purchase extends Component{
     StockAdapter.getPricing(this.props.stock)
     .then(data=>{
       this.setState({currentPrice:parseFloat(data.price)})
+    })
+  }
+  fetchLogo = ()=>{
+    StockAdapter.getLogo(this.props.stock)
+    .then(data=>{
+      this.setState({imgSource:data.url})
     })
   }
   buyStocks = ()=>{
@@ -49,8 +58,9 @@ class Purchase extends Component{
   render(){
     return (
       <div >
+        {this.state.imgSource ? <Image src={this.state.imgSource} size='small' centered /> : <Loader size="small"/>}
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
-        <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.name : "Select a portfolio"}</h1>
+        <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
         {this.props.successfulPurchase ? <Message positive header={"Shares Acquired!"}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>

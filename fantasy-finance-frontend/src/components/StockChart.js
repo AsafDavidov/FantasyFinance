@@ -78,7 +78,7 @@ class StockChart extends Component{
         <CrossHairCursor />
       </ChartCanvas>)
     }else{
-      return <Loader active />
+      return <Loader active size='large'>Loading Chart</Loader>
     }
   }
   render(){

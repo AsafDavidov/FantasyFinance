@@ -8,7 +8,7 @@ export default class StockAdapter {
     }
     })
       .then(res => res.json())
-      .then(json => json)
+
   }
   static getSearchTickers() {
     return fetch(`${STOCK_URL}tickers`,{
@@ -18,7 +18,7 @@ export default class StockAdapter {
     }
     })
       .then(res => res.json())
-      .then(json => json)
+
   }
   static getChartData(symbol) {
     return fetch(`${STOCK_URL}chart/${symbol}`,{
@@ -28,7 +28,7 @@ export default class StockAdapter {
     }
     })
       .then(res => res.json())
-      .then(json => json)
+
   }
   static getPricing(symbol) {
     return fetch(`${STOCK_URL}price/${symbol}`,{
@@ -38,6 +38,16 @@ export default class StockAdapter {
     }
     })
       .then(res => res.json())
-      .then(json => json)
+
+  }
+  static getLogo(symbol) {
+    return fetch(`${STOCK_URL}logo/${symbol}`,{
+    method: "GET",
+    headers:{
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    }
+    })
+      .then(res => res.json())
+
   }
 }

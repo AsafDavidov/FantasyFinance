@@ -38,4 +38,9 @@ class Api::V1::StocksController < ApplicationController
     result = RestClient.get(new_url)
     render json: {"price":result}, status: :ok
   end
+  def logo
+    new_url = "#{@url}stock/#{params[:id]}/logo"
+    result = JSON.parse(RestClient.get(new_url))
+    render json: result, status: :ok
+  end
 end

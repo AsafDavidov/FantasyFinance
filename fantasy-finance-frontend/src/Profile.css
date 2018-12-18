@@ -38,3 +38,6 @@
 .navlinks .active {
   background-color: #158db8;
 }
+.react-stockchart svg{
+  margin-right: 10%;
+}

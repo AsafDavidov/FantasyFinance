@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get '/stocks/tickers', to: 'stocks#tickers'
       get '/stocks/chart/:id', to: 'stocks#chart'
       get '/stocks/price/:id', to: 'stocks#price'
+      get '/stocks/logo/:id', to: 'stocks#logo'
       resources :users
       resources :portfolios
       resources :leagues

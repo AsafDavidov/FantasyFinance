@@ -10,10 +10,10 @@ class StockComponent extends Component{
  render(){
    return(
      <div>
-          <div style={{float:"left"}}>
+          <div style={{marginLeft: "-15%",float:"left"}}>
             <StockChart key = {this.props.stock} stock={this.props.stock}/>
           </div>
-          <div style={{float:"right", marginRight:"20%"}}>
+          <div style={{float:"right",marginRight:"15%"}}>
             <Purchase stock={this.props.stock}/>
           </div>
      </div>

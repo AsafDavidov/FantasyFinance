@@ -20,7 +20,7 @@ const portfolioReducer = (state =initialState, action) => {
     case LOGOUT_USER:
       return {...state,portfolios:[]}
     case FAILED_PURCHASE:
-      return{...state,failedPurchase:true,message:action.payload }
+      return{...state,failedPurchase:true,message:action.payload,successfulPurchase:false, }
     case PURCHASE_STOCK:
       return{...state,failedPurchase:false, portfolios:action.payload,successfulPurchase:true}
     default:
