@@ -22,8 +22,7 @@ const portfolioReducer = (state =initialState, action) => {
     case FAILED_PURCHASE:
       return{...state,failedPurchase:true,message:action.payload }
     case PURCHASE_STOCK:
-      debugger
-      return{...state, portfolios:action.payload,successfulPurchase:true,message:"woohoo got those stocks"}
+      return{...state,failedPurchase:false, portfolios:action.payload,successfulPurchase:true}
     default:
       return state;
   }

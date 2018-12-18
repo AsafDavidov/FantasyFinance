@@ -52,7 +52,7 @@ class Purchase extends Component{
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
         <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.name : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
-        {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
+        {this.props.successfulPurchase ? <Message positive header={"Shares Acquired!"}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
@@ -70,6 +70,7 @@ class Purchase extends Component{
 function mapStateToProps({portfolio}) {
   return {
     failedPurchase: portfolio.failedPurchase,
+    successfulPurchase: portfolio.successfulPurchase,
     message: portfolio.message,
     portfolios: portfolio.portfolios
   }
