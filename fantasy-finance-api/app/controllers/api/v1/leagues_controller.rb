@@ -9,7 +9,7 @@ class Api::V1::LeaguesController < ApplicationController
     league = League.new(league_params)
     if (league.valid?)
       league.save
-      portfolio = Portfolio.new({league_id: league.id,current_balance: league.start_balance, name: portfolio_params, user_id: @user.id})
+      portfolio = Portfolio.new({league_id: league.id,current_balance: league.start_balance, name: portfolio_params[:name], user_id: @user.id})
       if(portfolio.valid?)
         portfolio.save
         render json: {portfolios:@user.portfolios,leagues:@user.leagues}, status: :ok

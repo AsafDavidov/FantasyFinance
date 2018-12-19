@@ -33,13 +33,7 @@ export function fetchUser(credentials){
   return (dispatch) => {
     userAdapter.getUser(localStorage.getItem('jwt'))
     .then(payload => {
-      if (payload.message){
-        window.alert(payload.message)
-      }else{
-        console.log(payload);
         dispatch(setUser(payload));
-        history.push('/home')
-      }
     })
   }
 }
@@ -48,6 +42,7 @@ export function createUser(user){
     userAdapter.postUser(user)
     .then(payload => {
       dispatch(setUser(payload));
+      localStorage.setItem("jwt",payload.jwt)
       history.push('/home')
     })
   }

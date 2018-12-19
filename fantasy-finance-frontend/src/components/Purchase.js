@@ -48,6 +48,7 @@ class Purchase extends Component{
     // if (this.balanceTimer){
     //   clearInterval(this.balanceTimer)
     // }
+    debugger
     let chosenPortfolio = this.props.portfolios.find(p=>p.name===event.target.querySelector(".text").innerText)
     //this.balanceTimer = setInterval(()=>this.fetchBalance(), 1000)
     this.setState({chosenPortfolio:chosenPortfolio})
@@ -58,7 +59,7 @@ class Purchase extends Component{
   render(){
     return (
       <div >
-        {this.state.imgSource ? <Image src={this.state.imgSource} size='small' centered /> : <Loader size="small"/>}
+        {this.state.imgSource ? <Image alt="" src={this.state.imgSource} size='small' centered /> : <Loader size="small"/>}
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
         <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
@@ -68,7 +69,7 @@ class Purchase extends Component{
           <label>Number of Shares to Purchase:</label>
           <Input style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
           <label>Choose a portfolio:</label>
-          <Select style={{width:"400px"}} onChange={this.changePortfolio}options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
+          <Select style={{width:"400px"}} onChange={this.changePortfolio} options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
         </Form.Field>
         <Button type='submit'>Buy Shares</Button>
         </Form>

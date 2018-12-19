@@ -18,7 +18,6 @@ const userReducer = (state =initialState, action) => {
       return {
         username:action.payload.user.username,
         loggedIn:true}
-
     case LOGOUT_USER:
       localStorage.removeItem("jwt")
       return {username:null,loggedIn:false}
