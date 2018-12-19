@@ -11,7 +11,7 @@ const leagueReducer = (state =initialState, action) => {
     case CREATE_LEAGUE:
       return {...state,leagues:action.payload.leagues,failedCreateLeague:false, message:""}
     case FAILED_LEAGUE:
-      debugger
+
       return {...state, failedCreateLeague:true, message:action.payload}
     case SET_USER:
       return {...state,leagues:action.payload.user.leagues};

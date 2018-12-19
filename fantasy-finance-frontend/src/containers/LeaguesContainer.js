@@ -21,7 +21,7 @@ class LeaguesContainer extends Component{
   handleNewLeague=()=>{
     let data = {league:{name:this.state.leagueName, start_balance:this.state.leagueBalance, end_date:this.state.date},portfolio:{name:this.state.portfolioName}}
     this.props.attemptPostLeague(data)
-    this.setState({leagues:null, selectLeague:null,leagueName:null,leagueBalance:null, date:""})
+    this.setState({...this.state, selectLeague:null,leagueName:null,leagueBalance:null, date:""})
   }
   handleChange= (e, semanticInputData)=>{
     if (semanticInputData.name === "date"){
