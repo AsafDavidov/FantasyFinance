@@ -11,3 +11,4 @@ export const FAILED_PURCHASE = "FAILED_PURCHASE";
 //League
 export const CREATE_LEAGUE = "CREATE_LEAGUE"
 export const FAILED_LEAGUE = "FAILED_LEAGUE"
+export const JOIN_LEAGUE = "JOIN_LEAGUE"

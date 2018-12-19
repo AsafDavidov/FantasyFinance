@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NewsStrip from "../components/NewsStrip"
 import StockAdapter from "../store/adapters/stockAdapter"
-import {connect} from "react-redux"
 
 class NewsContainer extends Component{
   state = {
@@ -10,16 +9,12 @@ class NewsContainer extends Component{
   }
   componentDidMount(){
     this.fetchRecentNews()
-
   }
   fetchRecentNews = () =>{
     StockAdapter.getRecentNews()
     .then(data=>this.setState({recentNews:data}))
-
   }
-  fetchYourNews = () =>{
-
-  }
+  fetchYourNews = () =>{}
  render(){
    return(
      <div>
@@ -29,9 +24,5 @@ class NewsContainer extends Component{
    )
  }
 }
-function mapStateToProps({user}) {
-  return {
-    token: user.jwt
-  }
-}
-export default connect(mapStateToProps)(NewsContainer)
+
+export default NewsContainer

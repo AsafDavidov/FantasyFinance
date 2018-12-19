@@ -21,6 +21,11 @@ class Api::V1::LeaguesController < ApplicationController
     end
   end
 
+  def show
+    league = League.find(params[:id])
+    portfolios = league.portfolios
+    render json: {league:league, portfolios:portfolios}, status: :ok
+  end
   private
 
   def league_params

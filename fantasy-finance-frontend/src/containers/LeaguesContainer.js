@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Leagues from "../components/Leagues"
 import LeagueAdapter from "../store/adapters/leagueAdapter"
 import {Loader, Button, Modal,Message, Form, Input} from 'semantic-ui-react'
-import {DateInput,TimeInput,DateTimeInput,DatesRangeInput} from 'semantic-ui-calendar-react';
+import {DateInput} from 'semantic-ui-calendar-react';
 import * as actions from "../store/actions/league"
 import {connect} from "react-redux"
 class LeaguesContainer extends Component{

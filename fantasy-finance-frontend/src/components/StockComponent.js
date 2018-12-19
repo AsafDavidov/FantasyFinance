@@ -1,12 +1,8 @@
-import React, { Component, Fragment } from 'react'
-import {connect} from "react-redux"
-import StockAdapter from "../store/adapters/stockAdapter"
+import React, { Component } from 'react'
 import StockChart from "./StockChart.js"
 import Purchase from "./Purchase.js"
 
-
 class StockComponent extends Component{
-
  render(){
    return(
      <div>

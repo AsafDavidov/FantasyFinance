@@ -48,7 +48,6 @@ class Purchase extends Component{
     // if (this.balanceTimer){
     //   clearInterval(this.balanceTimer)
     // }
-    debugger
     let chosenPortfolio = this.props.portfolios.find(p=>p.name===event.target.querySelector(".text").innerText)
     //this.balanceTimer = setInterval(()=>this.fetchBalance(), 1000)
     this.setState({chosenPortfolio:chosenPortfolio})

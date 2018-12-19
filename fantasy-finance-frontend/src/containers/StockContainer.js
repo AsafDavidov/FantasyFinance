@@ -5,7 +5,6 @@ import StockComponent from "../components/StockComponent"
 import PropTypes from 'prop-types'
 import {Switch, Route, Redirect} from "react-router-dom"
 import { Label } from 'semantic-ui-react'
-
 const resultRenderer = ({ id, title }) => <Label content={title} />
 resultRenderer.propTypes = {
   title: PropTypes.string

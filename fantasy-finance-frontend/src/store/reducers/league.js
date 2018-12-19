@@ -1,4 +1,9 @@
-import { SET_USER, LOGOUT_USER,LOGIN_USER, CREATE_LEAGUE, FAILED_LEAGUE } from "../types";
+import { SET_USER,
+        LOGOUT_USER,
+        LOGIN_USER,
+        CREATE_LEAGUE,
+        FAILED_LEAGUE,
+        JOIN_LEAGUE} from "../types";
 
 const initialState = {
     leagues: [],

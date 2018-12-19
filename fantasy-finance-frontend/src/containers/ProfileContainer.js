@@ -5,7 +5,6 @@ import {Route, Switch, Redirect } from "react-router-dom"
 import { NavTab } from 'react-router-tabs';
 import {connect} from 'react-redux'
 import '../Profile.css'
-
 //import UserAdapter from "../store/adapters/userAdapter"
 
 

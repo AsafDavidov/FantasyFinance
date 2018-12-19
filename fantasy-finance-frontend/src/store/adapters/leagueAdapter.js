@@ -10,6 +10,16 @@ export default class LeagueAdapter {
     })
     .then(res => res.json())
   }
+  static getOneLeague(id) {
+    return fetch(`${LEAGUE_URL}/${id}`,{
+    method: "GET",
+    headers:{
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    }
+    })
+    .then(res => res.json())
+  }
   static postNewLeague(data) {
     return fetch(`${LEAGUE_URL}`,{
     method: "POST",

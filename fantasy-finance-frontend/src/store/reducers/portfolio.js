@@ -3,7 +3,8 @@ import { SET_USER,
         LOGIN_USER,
         PURCHASE_STOCK,
         FAILED_PURCHASE,
-        CREATE_LEAGUE } from "../types";
+        CREATE_LEAGUE,
+        JOIN_LEAGUE } from "../types";
 
 const initialState = {
   portfolios:[],
