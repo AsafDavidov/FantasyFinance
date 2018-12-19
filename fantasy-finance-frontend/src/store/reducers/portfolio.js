@@ -2,7 +2,8 @@ import { SET_USER,
         LOGOUT_USER,
         LOGIN_USER,
         PURCHASE_STOCK,
-        FAILED_PURCHASE } from "../types";
+        FAILED_PURCHASE,
+        CREATE_LEAGUE } from "../types";
 
 const initialState = {
   portfolios:[],
@@ -13,6 +14,8 @@ const initialState = {
 
 const portfolioReducer = (state =initialState, action) => {
   switch (action.type) {
+    case CREATE_LEAGUE:
+    return {...state,portfolios:action.payload.portfolios}
     case SET_USER:
       return {...state, portfolios:action.payload.user.portfolios};
     case LOGIN_USER:

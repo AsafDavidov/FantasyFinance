@@ -10,5 +10,21 @@ export default class LeagueAdapter {
     })
     .then(res => res.json())
   }
-
+  static postNewLeague(data) {
+    return fetch(`${LEAGUE_URL}`,{
+    method: "POST",
+    headers:{
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    },
+    body: JSON.stringify(data)
+    })
+    .then(res => {
+      if(res.ok){
+        return res.json()
+      }else{
+        throw res
+      }
+    })
+  }
 }

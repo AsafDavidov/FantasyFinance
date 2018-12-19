@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { Search} from 'semantic-ui-react'
 import "../Profile.css"
 class SearchComponent extends Component {
+  
   componentWillMount() {
     this.resetComponent()
   }

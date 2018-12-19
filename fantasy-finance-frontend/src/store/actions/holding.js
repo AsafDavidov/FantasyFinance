@@ -8,9 +8,9 @@ export function purchaseHolding(payload){
   }
 }
 
-export function postHolding(token,data){
+export function postHolding(data){
   return (dispatch) => {
-    holdingAdapter.postNewHolding(token,data)
+    holdingAdapter.postNewHolding(data)
     .then(jsonresponse => {
       dispatch(purchaseHolding(jsonresponse))
     })

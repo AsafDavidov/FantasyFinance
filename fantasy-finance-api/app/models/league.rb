@@ -1,8 +1,10 @@
 class League < ApplicationRecord
   ##VALIDATIONS
-  validates :name, uniqueness: { case_sensitive: false }, presence:true
+  validates :name, presence:true
   validates :end_date, presence:true
+  validates :start_balance, numericality: {greater_than: 10000}
   validate :end_date_cannot_be_in_the_past
+
 
   ##RELATIONSHIPS
   has_many :portfolios
