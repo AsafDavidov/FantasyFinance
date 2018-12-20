@@ -20,7 +20,6 @@ class Purchase extends Component{
   }
   componentWillUnmount(){
     clearInterval(this.stockTimer)
-    //clearInterval(this.balanceTimer)
   }
   fetchPricing = ()=>{
     StockAdapter.getPricing(this.props.stock)
@@ -44,14 +43,9 @@ class Purchase extends Component{
       return {key: portfolio.name, text:portfolio.name, value:portfolio.name}
     })
   }
-  changePortfolio = (event)=>{
-    // if (this.balanceTimer){
-    //   clearInterval(this.balanceTimer)
-    // }
+  changePortfolio = (event, {value})=>{
     this.props.resetPurchaseError()
-    debugger
-    let chosenPortfolio = this.props.portfolios.find(p=>p.name===event.target.querySelector(".text").innerText)
-    //this.balanceTimer = setInterval(()=>this.fetchBalance(), 1000)
+    let chosenPortfolio = this.props.portfolios.find(p=>p.name===value)
     this.setState({chosenPortfolio:chosenPortfolio})
   }
   changeNumShares = (event)=>{
@@ -62,7 +56,7 @@ class Purchase extends Component{
       <div >
         {this.state.imgSource ? <Image alt="" src={this.state.imgSource} size='small' centered /> : <Loader size="small"/>}
         <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
-        <h1>Current Balance: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
+        <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
         {this.props.successfulPurchase ? <Message positive header={"Shares Acquired!"}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>

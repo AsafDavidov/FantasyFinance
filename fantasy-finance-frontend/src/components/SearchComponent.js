@@ -39,7 +39,7 @@ class SearchComponent extends Component {
           loading={isLoading}
           onResultSelect={this.handleResultSelect}
           onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-          results={results.slice(0,8)}
+          results={results.slice(0,5)}
           value={value}
         />
     )
