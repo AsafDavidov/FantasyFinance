@@ -7,6 +7,7 @@ export const LOGIN_USER = "LOGIN_USER";
 export const PURCHASE_STOCK = "PURCHASE_STOCK";
 export const FAILED_LOGIN = "FAILED_LOGIN";
 export const FAILED_PURCHASE = "FAILED_PURCHASE";
+export const RESET_PURCHASE_ERROR = "RESET_PURCHASE_ERROR"
 
 //League
 export const CREATE_LEAGUE = "CREATE_LEAGUE"

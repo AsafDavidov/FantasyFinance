@@ -1,9 +1,10 @@
 import React from 'react';
 import League from './League'
+import {Card,Loader} from "semantic-ui-react"
 const Leagues = (props) => {
   return (
-    <div>
-      {props.leagues ? props.leagues.map(league=><League key={league.id} balance={league.start_balance} name={league.name} id={league.id} />):<h1>not</h1>}
+    <div style={{marginTop:"10px"}}>
+      {props.leagues ? <Card.Group centered itemsPerRow={5}>{props.leagues.map(league=>(<Card key={league.id} color='blue'><League balance={league.start_balance} name={league.name} id={league.id}/></Card>))}</Card.Group>:<Loader active/>}
     </div>
   )
 };

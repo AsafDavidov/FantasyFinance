@@ -1,4 +1,4 @@
-import { PURCHASE_STOCK, FAILED_PURCHASE} from "../types";
+import { PURCHASE_STOCK, FAILED_PURCHASE, RESET_PURCHASE_ERROR} from "../types";
 import holdingAdapter from '../adapters/holdingAdapter';
 //import {history} from "../../index"
 export function purchaseHolding(payload){
@@ -7,7 +7,9 @@ export function purchaseHolding(payload){
     payload
   }
 }
-
+export function resetPurchaseError(){
+  return (dispatch)=>dispatch({type: RESET_PURCHASE_ERROR})
+}
 export function postHolding(data){
   return (dispatch) => {
     holdingAdapter.postNewHolding(data)

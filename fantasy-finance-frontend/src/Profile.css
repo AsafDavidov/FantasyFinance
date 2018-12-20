@@ -7,10 +7,10 @@
 }
 
 .ui.search > .results.visible {
-  position: relative;
-  margin: 0 auto;
+  position: absolute;
+  margin-left: 43%;
+  z-index: 1;
 }
-
 
 .navbar {
 
@@ -40,4 +40,20 @@
 }
 .react-stockchart svg{
   margin-right: 10%;
+}
+.profile-nav-bar{
+  margin-top: 13px;
+  padding-top: 5px;
+}
+.profile-nav-tabs{
+  font-family: "Alike Angular";
+	font-size:1.65em;
+	font-weight:300;
+  transition:.2s;
+  margin-left: 20px;
+}
+.ui.five.cards>.card {
+    width: calc(15% - 1.5em);
+    margin-left: .75em;
+    margin-right: .75em;
 }

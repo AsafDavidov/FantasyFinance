@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { Search} from 'semantic-ui-react'
 import "../Profile.css"
 class SearchComponent extends Component {
-  
+
   componentWillMount() {
     this.resetComponent()
   }
@@ -35,7 +35,7 @@ class SearchComponent extends Component {
 
     return (
         <Search
-          size="large"
+          size="huge"
           loading={isLoading}
           onResultSelect={this.handleResultSelect}
           onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}

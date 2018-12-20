@@ -3,7 +3,6 @@ import { Loader, Image,Message,Form, Input, Button, Select } from 'semantic-ui-r
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
 import UserAdapter from "../store/adapters/userAdapter"
-
 import * as actions from "../store/actions/holding"
 
 class Purchase extends Component{
@@ -16,6 +15,7 @@ class Purchase extends Component{
   }
   componentDidMount(){
     this.stockTimer = setInterval(()=>this.fetchPricing(), 1000)
+    this.props.resetPurchaseError()
     this.fetchLogo()
   }
   componentWillUnmount(){
@@ -48,6 +48,8 @@ class Purchase extends Component{
     // if (this.balanceTimer){
     //   clearInterval(this.balanceTimer)
     // }
+    this.props.resetPurchaseError()
+    debugger
     let chosenPortfolio = this.props.portfolios.find(p=>p.name===event.target.querySelector(".text").innerText)
     //this.balanceTimer = setInterval(()=>this.fetchBalance(), 1000)
     this.setState({chosenPortfolio:chosenPortfolio})
