@@ -1,4 +1,9 @@
-import { CREATE_LEAGUE, FAILED_LEAGUE, JOIN_LEAGUE} from "../types";
+import { CREATE_LEAGUE,
+         FAILED_LEAGUE,
+         JOIN_LEAGUE,
+         FAILED_JOIN_LEAGUE,
+         RESET_ERROR_JOIN_LEAGUE} from "../types";
+
 import leagueAdapter from '../adapters/leagueAdapter';
 import portfolioAdapter from '../adapters/portfolioAdapter';
 import {history} from "../../index"
@@ -13,6 +18,9 @@ export function joinLeague(payload){
     type: JOIN_LEAGUE,
     payload
   }
+}
+export function resetJoinLeagueError(){
+  return (dispatch)=>dispatch({type: RESET_ERROR_JOIN_LEAGUE})
 }
 
 export function attemptPostLeague(data){
@@ -30,10 +38,13 @@ export function attemptPostLeague(data){
 
 export function attemptJoinLeague(data){
   return (dispatch) => {
-    portfolioAdapter.newPortfolio(data)
+    portfolioAdapter.postPortfolio(data)
     .then(jsonresponse => {
-      dispatch(postLeague(jsonresponse))
+      dispatch(joinLeague(jsonresponse))
       history.push('/profile')
     })
+    .catch(response=>response.json().then(e=>{
+      dispatch({type:FAILED_JOIN_LEAGUE, payload: e.message})
+    }))
   }
 }

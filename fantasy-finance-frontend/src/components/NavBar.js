@@ -8,7 +8,7 @@ const NavBar = (props) => {
 
   return (
   <div className="navbar">
-      <h1 style={{textAlign:"center",fontFamily:"Alike Angular"}}>FantasyFinance</h1>
+      <h1 style={{textAlign:"center",fontFamily:"Alike Angular"}}>FantasyTrader</h1>
 
       <ul className="navlinks">
         <li><NavLink to={"/home"} exact activeClassName="active">Home</NavLink></li>

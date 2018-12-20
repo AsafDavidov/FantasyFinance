@@ -1,12 +1,28 @@
 class Api::V1::PortfoliosController < ApplicationController
   def create
-    byebug
     portfolio = Portfolio.new(portfolio_params)
+    portfolio.user_id = @user.id
+    found_league=League.find(portfolio.league_id)
+    unqiue_name=true
+
+    found_league.portfolios.each do |i_portfolio|
+      if (i_portfolio.name == portfolio.name)
+        unqiue_name=false
+      end
+    end
+
+    if unqiue_name
+      portfolio.save
+      render json:{portfolios:@user.portfolios,leagues:@user.leagues}, status: :ok
+    else
+      render json: { message: 'This portfolio name has been taken in this League' }, status: :not_acceptable
+    end
+
   end
 
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name)
+    params.require(:portfolio).permit(:name, :league_id, :current_balance)
   end
 end

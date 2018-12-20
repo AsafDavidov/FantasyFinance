@@ -1,6 +1,6 @@
 const PORTFOLIO_URL = "http://localhost:4000/api/v1/portfolios"
 export default class LeagueAdapter {
-  static postNewPortfolio(data) {
+  static postPortfolio(data) {
     return fetch(`${PORTFOLIO_URL}`,{
     method: "POST",
     headers:{
@@ -9,6 +9,12 @@ export default class LeagueAdapter {
     },
     body: JSON.stringify(data)
     })
-    .then(res => res.json())
+    .then(res => {
+      if(res.ok){
+        return res.json()
+      }else{
+        throw res
+      }
+    })
   }
 }

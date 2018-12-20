@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form,Modal,Input,Button } from 'semantic-ui-react'
+import { Message, Form,Modal,Input,Button } from 'semantic-ui-react'
 import {withRouter} from "react-router-dom"
 import {connect} from 'react-redux'
 import * as actions from "../store/actions/league"
@@ -7,34 +7,40 @@ import * as actions from "../store/actions/league"
 
 class League extends Component{
   state = {
-    portfolioNameJoin:null
+    portfolioNameJoin:null,
+    modalOpen:false
   }
   handleJoin=()=>{
-    console.log(this.props.attemptJoinLeague);
+    let data = {portfolio: {league_id:this.props.id,name:this.state.portfolioNameJoin,current_balance:this.props.balance}}
+    this.props.attemptJoinLeague(data)
   }
 
   handleViewLeague=()=>{
     this.props.history.push(`/leagues/${this.props.id}`)
   }
-  handleChange=()=>{
-    console.log("chocho");
+  handleChange=(e, semanticInputData)=>{
+    this.setState({[semanticInputData.name]:e.target.value})
   }
-
+  handleClose=()=>{
+    this.setState({ modalOpen: false })
+    this.props.resetJoinLeagueError()
+  }
   triggerModal=()=>{
-    console.log("modal trigger");
+    this.setState({ modalOpen: true })
   }
   renderModal=()=>{
     if (!this.props.history.location.pathname.includes("profile")){
       return (
-      <Modal>
+      <Modal open={this.state.modalOpen} onClose={this.handleClose}>
         <Modal.Header>Create A New Portfolio for {this.props.name}</Modal.Header>
           <Modal.Content>
+            {this.props.failedJoinLeague ? <Message error header={this.props.message}/> : null}
             <Form onSubmit={this.handleJoin}>
               <Form.Field>
                 <label>Your Portfolio Name</label>
-                <Input name="portfolioName" placeholder='Your Portfolio Name' onChange={this.handleChange}/>
+                <Input name="portfolioNameJoin" placeholder='Your Portfolio Name' onChange={this.handleChange}/>
               </Form.Field>
-              <Button type='submit'>Create a New League</Button>
+              <Button type='submit'>Create Portfolio</Button>
             </Form>
         </Modal.Content>
       </Modal>)
@@ -53,19 +59,20 @@ class League extends Component{
   render(){
     return (
       <div>
-        {this.renderModal}
+        {this.renderModal()}
         <h1>League Name: {this.props.name}</h1>
         <h2>League Start Balance: {this.props.balance}</h2>
-        {this.handleBalance}
+        {this.handleBalance()}
         <Button onClick={this.handleViewLeague}>View League</Button>
       </div>
     )
   }
 };
-function mapStateToProps({portfolio}) {
+function mapStateToProps({portfolio,league}) {
   return {
-    portfolios: portfolio.portfolios
+    portfolios: portfolio.portfolios,
+    failedJoinLeague: league.failedJoinLeague,
+    message: league.message
   }
 }
 export default withRouter(connect(mapStateToProps,actions)(League))
-//{this.props.failedCreateLeague ? <Message error header={this.props.message}/> : null}
