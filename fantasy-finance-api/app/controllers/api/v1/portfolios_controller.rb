@@ -4,13 +4,11 @@ class Api::V1::PortfoliosController < ApplicationController
     portfolio.user_id = @user.id
     found_league=League.find(portfolio.league_id)
     unqiue_name=true
-
     found_league.portfolios.each do |i_portfolio|
       if (i_portfolio.name == portfolio.name)
         unqiue_name=false
       end
     end
-
     if unqiue_name
       portfolio.save
       render json:{portfolios:@user.portfolios,leagues:@user.leagues}, status: :ok
@@ -20,6 +18,10 @@ class Api::V1::PortfoliosController < ApplicationController
 
   end
 
+  def value
+    current_portfolio_value = Portfolio.find(params[:id]).total_portfolio_value
+    render json: {total_value: current_portfolio_value}, status: :ok
+  end
   private
 
   def portfolio_params

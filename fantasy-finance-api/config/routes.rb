@@ -9,10 +9,11 @@ Rails.application.routes.draw do
       get '/stocks/chart/:id', to: 'stocks#chart'
       get '/stocks/price/:id', to: 'stocks#price'
       get '/stocks/logo/:id', to: 'stocks#logo'
-      resources :users
-      resources :portfolios
-      resources :leagues
-      resources :holdings
+      get '/portfolios/value/:id', to: 'portfolios#value'
+      resources :users, only: [:create]
+      resources :portfolios, only: [:create]
+      resources :leagues, only: [:index,:create,:show]
+      resources :holdings, only: [:create]
       resources :auth, only: [:create]
       resources :stocks, only: [:index]
 
