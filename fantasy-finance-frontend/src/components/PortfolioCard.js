@@ -17,9 +17,9 @@ class PortfolioCard extends Component{
    render(){
      return(
        <div>
-        <p>Portfolio Name: {this.props.portfolio.name}</p>
-        <p>Portfolio Cash: {this.props.portfolio.current_balance}</p>
-        <p>Portfolio Value: </p> {this.state.currentPortfolioValue ? <p>{this.state.currentPortfolioValue}</p>:<Loader active />}
+          <p>Portfolio Name: {this.props.portfolio.name}</p>
+          <p>Portfolio Cash: {this.props.portfolio.current_balance}</p>
+          <p>Portfolio Value: </p> {this.state.currentPortfolioValue ? <p>{this.state.currentPortfolioValue}</p>:<Loader active />}
        </div>
    )
   }

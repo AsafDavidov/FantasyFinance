@@ -19,7 +19,7 @@ class MainContainer extends Component{
             <Route path="/profile" component={ProfileContainer}/>
             <Route path="/stocks" component={StockContainer}/>
             <Route exact path="/leagues" component={LeaguesContainer}/>
-            <Route path="/leagues/:id" component={LeagueShow}/>
+            <Route path="/league/:id" component={LeagueShow}/>
           </Switch>
         </Router>
        </div>

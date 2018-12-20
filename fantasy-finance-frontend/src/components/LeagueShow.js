@@ -21,7 +21,6 @@ class LeagueShow extends Component{
     return (
       <div>
         {this.state.league ? <h1>{this.state.league.name}</h1> : <Loader active/> }
-        Number of ports: {this.state.portfolios ? this.state.portfolios.length: "wait"}
         {this.state.portfolios ? this.state.portfolios.map(p=><PortfolioCard key={p.name} portfolio={p} />):null}
       </div>
     )

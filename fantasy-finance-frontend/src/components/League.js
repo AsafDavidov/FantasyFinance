@@ -16,7 +16,7 @@ class League extends Component{
   }
 
   handleViewLeague=()=>{
-    this.props.history.push(`/leagues/${this.props.id}`)
+    this.props.history.push(`/league/${this.props.id}`)
   }
   handleChange=(e, semanticInputData)=>{
     this.setState({[semanticInputData.name]:e.target.value})
@@ -51,7 +51,7 @@ class League extends Component{
   handleBalance = () => {
     let foundPortfolio = this.props.portfolios.find((portfolio)=>{return portfolio.league_id==this.props.id})
     if(foundPortfolio){
-      return <Card.Header>Your Balance: {foundPortfolio.current_balance}</Card.Header>
+      return <Card.Header>Your Cash Left: {foundPortfolio.current_balance}</Card.Header>
     }else{
       return <Button onClick={this.triggerModal}>Sign Up</Button>
     }
@@ -61,7 +61,7 @@ class League extends Component{
       <Card.Content>
         {this.renderModal()}
         <Card.Header>League Name: {this.props.name}</Card.Header>
-        <Card.Description>League Start Balance: {this.props.balance}</Card.Description>
+        <Card.Header>League Start Balance: {this.props.balance}</Card.Header>
         {this.handleBalance()}
         <Button onClick={this.handleViewLeague}>View League</Button>
       </Card.Content>

@@ -11,7 +11,8 @@ class Purchase extends Component{
     currentBalance:null,
     numShares:null,
     imgSource:null,
-    chosenPortfolio: null
+    chosenPortfolio: null,
+    color:""
   }
   componentDidMount(){
     this.stockTimer = setInterval(()=>this.fetchPricing(), 1000)
@@ -20,6 +21,10 @@ class Purchase extends Component{
   }
   componentWillUnmount(){
     clearInterval(this.stockTimer)
+  }
+  componentDidUpdate(prevProps,prevState){
+    //PRICE STYLING
+    //if(this.state.currentPrice<prevState.currentPrice) console.log("lol");
   }
   fetchPricing = ()=>{
     StockAdapter.getPricing(this.props.stock)

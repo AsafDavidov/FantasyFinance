@@ -10,7 +10,13 @@ class Api::V1::HoldingsController < ApplicationController
       holding.save
       render json: @user.portfolios, status: :ok
     else
-      render json: { message: 'Invalid request' }, status: :not_acceptable
+      if(!holding.valid?)
+        render json: { message: 'Invalid Parameters' }, status: :not_acceptable
+      elsif(!(found_portfolio.current_balance > total_value))
+        render json: { message: 'Insufficient Funds' }, status: :not_acceptable
+      else
+        render json: { message: 'Incorrect' }, status: :not_acceptable
+      end
     end
   end
 
