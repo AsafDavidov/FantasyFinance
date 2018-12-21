@@ -4,11 +4,11 @@ import Purchase from "./Purchase.js"
 
 const StockComponent = (props)=> {
    return(
-     <div>
-          <div style={{marginLeft: "-15%",float:"left"}}>
+     <div style={{marginTop:"10px", textAlign:"center"}}>
+          <div style={{float:"left", marginRight:"10%"}}>
             <StockChart key = {props.stock} stock={props.stock}/>
           </div>
-          <div style={{float:"right",marginRight:"15%"}}>
+          <div style={{float:"right",marginRight:"18%"}}>
             <Purchase stock={props.stock}/>
           </div>
      </div>
@@ -16,3 +16,5 @@ const StockComponent = (props)=> {
  }
 
 export default StockComponent
+//<div style={{float:"left", width:"60%"}}>
+// <div style={{float:"right",marginRight:"18%"}}>

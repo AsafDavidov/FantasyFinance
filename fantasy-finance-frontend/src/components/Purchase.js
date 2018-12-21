@@ -64,9 +64,9 @@ class Purchase extends Component{
   }
   render(){
     return (
-      <div >
-        {this.state.imgSource ? <Image alt="" src={this.state.imgSource} size='small' centered /> : <Loader size="small"/>}
-        <h1 style={{color:this.state.color}}>Current Price: {this.state.currentPrice ? this.state.currentPrice : <Loader size="small"/>}</h1>
+      <div>
+        <div><Image alt="" src={this.state.imgSource} size='small' centered /></div>
+        <div>{this.state.currentPrice ? <h1 style={{color:this.state.color}}>Current Price:{this.state.currentPrice} </h1> : <Loader active size="large">Getting Price Data...</Loader>}</div>
         <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
         {this.props.successfulPurchase ? <Message positive header={"Shares Acquired!"}/> : null}

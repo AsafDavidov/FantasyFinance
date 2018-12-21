@@ -10,6 +10,8 @@ import { timeParse,timeFormat } from "d3-time-format";
 import { format } from "d3-format";
 import {CrossHairCursor,MouseCoordinateX,MouseCoordinateY} from "react-stockcharts/lib/coordinates";
 import {Loader} from 'semantic-ui-react'
+import { fitWidth } from "react-stockcharts/lib/helper";
+import "../Profile.css"
 
 const canvasGradient = createVerticalLinearGradient([
 	{ stop: 0, color: hexToRGBA("#b5d0ff", 0.2) },
@@ -19,9 +21,9 @@ const canvasGradient = createVerticalLinearGradient([
 let parseDate = timeParse("%Y-%m-%d");
 
 class StockChart extends Component{
-  state = {
-    data:null
-  }
+	state={
+	  data:null
+	}
   componentDidMount(){
     this.fetchChartData()
     .then(data=>{
@@ -31,6 +33,7 @@ class StockChart extends Component{
       })
       this.setState({data:newD})
     })
+
   }
   fetchChartData = ()=>{
     return StockAdapter.getChartData(this.props.stock)
@@ -78,7 +81,7 @@ class StockChart extends Component{
         <CrossHairCursor />
       </ChartCanvas>)
     }else{
-      return <Loader active size='large'>Loading Chart</Loader>
+      return null
     }
   }
   render(){
@@ -87,4 +90,5 @@ class StockChart extends Component{
     )
   }
 };
+StockChart = fitWidth(StockChart)
 export default StockChart
