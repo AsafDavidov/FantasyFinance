@@ -12,10 +12,11 @@ class Purchase extends Component{
     numShares:null,
     imgSource:null,
     chosenPortfolio: null,
-    color:""
+    startPrice:null,
+    color:"black"
   }
   componentDidMount(){
-    this.stockTimer = setInterval(()=>this.fetchPricing(), 1000)
+    this.stockTimer = setInterval(()=>this.fetchPricing(), 3000)
     this.props.resetPurchaseError()
     this.fetchLogo()
   }
@@ -23,13 +24,18 @@ class Purchase extends Component{
     clearInterval(this.stockTimer)
   }
   componentDidUpdate(prevProps,prevState){
-    //PRICE STYLING
-    //if(this.state.currentPrice<prevState.currentPrice) console.log("lol");
+    if(this.state.currentPrice && this.state.startPrice){
+      if(this.state.currentPrice<this.state.startPrice && this.state.color !="red"){
+        this.setState({color:"red"})
+      }else if (this.state.currentPrice>this.state.startPrice&& this.state.color !="green"){
+        this.setState({color:"green"})
+      }
+    }
   }
   fetchPricing = ()=>{
     StockAdapter.getPricing(this.props.stock)
     .then(data=>{
-      this.setState({currentPrice:parseFloat(data.price)})
+      this.setState({currentPrice:parseFloat(data.price),startPrice:parseFloat(data.start)})
     })
   }
   fetchLogo = ()=>{
@@ -60,7 +66,7 @@ class Purchase extends Component{
     return (
       <div >
         {this.state.imgSource ? <Image alt="" src={this.state.imgSource} size='small' centered /> : <Loader size="small"/>}
-        <h1>Current Price: {this.state.currentPrice ? this.state.currentPrice : null}</h1>
+        <h1 style={{color:this.state.color}}>Current Price: {this.state.currentPrice ? this.state.currentPrice : <Loader size="small"/>}</h1>
         <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
         {this.props.successfulPurchase ? <Message positive header={"Shares Acquired!"}/> : null}

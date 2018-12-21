@@ -6,10 +6,14 @@ import {Loader} from "semantic-ui-react"
 
 class PortfolioCard extends Component{
   state = {
-    currentPortfolioValue: null
+    currentPortfolioValue: null,
+    holdings: []
   }
   componentDidMount(){
-    this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(this.props.portfolio.id).then(data=>this.setState({currentPortfolioValue:data.total_value})),1000)
+    this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(this.props.portfolio.id)
+    .then(data=> {
+      this.setState({currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})}
+    ),1000)
   }
   componentWillUnmount(){
     clearInterval(this.timer)

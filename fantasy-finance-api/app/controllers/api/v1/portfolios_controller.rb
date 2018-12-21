@@ -19,8 +19,8 @@ class Api::V1::PortfoliosController < ApplicationController
   end
 
   def value
-    current_portfolio_value = Portfolio.find(params[:id]).total_portfolio_value
-    render json: {total_value: current_portfolio_value}, status: :ok
+    current_portfolio_value_and_changes = Portfolio.find(params[:id]).total_portfolio_value_and_changes
+    render json: {total_value: current_portfolio_value_and_changes["total_value"], holdings_with_changes: current_portfolio_value_and_changes["holdings_with_changes"]}, status: :ok
   end
   private
 
