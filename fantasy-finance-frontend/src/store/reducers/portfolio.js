@@ -34,7 +34,7 @@ const portfolioReducer = (state =initialState, action) => {
     case JOIN_LEAGUE:
       return {...state,portfolios:action.payload.portfolios}
     case DELETE_STOCK:
-      return {...state,portfolios:action.payload.portfolios}
+      return {...state,portfolios:action.payload}
     default:
       return state;
   }

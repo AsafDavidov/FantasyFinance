@@ -31,6 +31,7 @@ export function sellHolding(data){
   return (dispatch) => {
     holdingAdapter.deleteHolding(data)
     .then(jsonresponse => {
+      console.log(jsonresponse);
       dispatch(removeHolding(jsonresponse))
     })
   }
