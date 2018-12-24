@@ -64,7 +64,6 @@ class Purchase extends Component{
     this.setState({numShares:event.target.value})
   }
   render(){
-    // console.log(this.chosenPortfolio ? this.chosenPortfolio : null);
     return (
       <div>
         <div><Image alt="" src={this.state.imgSource} size='small' centered /></div>

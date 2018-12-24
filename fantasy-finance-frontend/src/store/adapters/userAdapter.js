@@ -39,7 +39,13 @@ export default class UserAdapter {
      user: user
      })
     })
-   .then(res => res.json())
+   .then(res => {
+     if(res.ok){
+       return res.json()
+     }else{
+       throw res
+     }
+   })
 
   }
   static getUserLeagues(token){

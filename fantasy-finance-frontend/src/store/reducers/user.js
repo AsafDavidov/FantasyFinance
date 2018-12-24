@@ -1,9 +1,10 @@
-import { SET_USER, LOGOUT_USER, LOGIN_USER, FAILED_LOGIN } from "../types";
+import { SET_USER, LOGOUT_USER, LOGIN_USER, FAILED_LOGIN, FAILED_SIGNUP } from "../types";
 
 const initialState = {
   username: null,
   loggedIn: false,
   failedLogin:false,
+  failedSignup:false,
   message: ""
 };
 
@@ -23,6 +24,9 @@ const userReducer = (state =initialState, action) => {
       return {username:null,loggedIn:false}
     case FAILED_LOGIN:
       return {...state, failedLogin:true, message:action.payload}
+    case FAILED_SIGNUP:
+      debugger
+      return {...state, failedSignup:true, message:action.payload}
     default:
       return state;
   }

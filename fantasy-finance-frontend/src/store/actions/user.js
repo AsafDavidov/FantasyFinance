@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT_USER, LOGIN_USER, FAILED_LOGIN } from "../types";
+import { SET_USER, LOGOUT_USER, LOGIN_USER, FAILED_LOGIN, FAILED_SIGNUP } from "../types";
 import userAdapter from '../adapters/userAdapter';
 import {history} from "../../index"
 export function loginRUser(payload){
@@ -45,5 +45,6 @@ export function createUser(user){
       localStorage.setItem("jwt",payload.jwt)
       history.push('/home')
     })
+    .catch(response=>response.json().then(e=>dispatch({type:FAILED_SIGNUP, payload: e.message})))
   }
 }

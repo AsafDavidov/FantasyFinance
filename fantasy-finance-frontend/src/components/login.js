@@ -22,6 +22,7 @@ import "../Profile.css"
   handleNewUser = (event)=> {
     event.preventDefault()
     this.props.createUser({first_name:this.state.first_name, last_name:this.state.last_name, username:this.state.username, password:this.state.password})
+    this.setState({loginUsername:"",loginPassword:"",first_name:"",last_name:"",username:"",password:"",passwordConfirmation:""})
   }
   handleChange = (e, semanticInputData)=>{
     this.setState({[semanticInputData.name]:e.target.value})
@@ -52,6 +53,7 @@ import "../Profile.css"
         <br></br>
         <h1>Sign-Up</h1>
         {this.checkPasswords()}
+        {this.props.failedSignup ? <Message error style={{width:"70%"}} header={this.props.message}/> : null}
         <Form size={"huge"} onSubmit={this.handleNewUser}>
         <Form.Field style={{width:"70%"}}>
           <label>First Name</label>
@@ -75,7 +77,8 @@ import "../Profile.css"
 function mapStateToProps({user}){
   return {
     failedLogin: user.failedLogin,
-    message: user.message
+    message: user.message,
+    failedSignup: user.failedSignup
   }
 }
 export default connect(mapStateToProps,actions)(Login)
