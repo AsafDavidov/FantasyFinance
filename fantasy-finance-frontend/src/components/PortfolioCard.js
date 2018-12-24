@@ -18,19 +18,22 @@ class PortfolioCard extends Component{
     clearInterval(this.timer)
   }
   handleViewPortfolio=()=>{
-
     this.props.history.push(`/portfolios/${this.props.portfolio.id}`)
   }
 
    render(){
-     return(
-       <div>
-          <p>Portfolio Name: {this.props.portfolio.name}</p>
-          <p>Portfolio Cash: {this.props.portfolio.current_balance}</p>
-          <p>Portfolio Value: </p> {this.state.currentPortfolioValue ? <p>{this.state.currentPortfolioValue}</p>:<Loader active />}
-          <Button onClick={this.handleViewPortfolio}>Show portfolio</Button>
-       </div>
-   )
+     if (!!this.state.currentPortfolioValue){
+       return(
+         <div>
+         <p>Portfolio Name: {this.props.portfolio.name}</p>
+         <p>Portfolio Cash: {this.props.portfolio.current_balance}</p>
+         <p>Portfolio Value: {this.state.currentPortfolioValue} </p>
+         <Button onClick={this.handleViewPortfolio}>Show portfolio</Button>
+         </div>
+       )
+     }else{
+       return(<Loader active size="Large">Loading portfolios</Loader>)
+     }
   }
  }
 

@@ -18,12 +18,16 @@ class LeagueShow extends Component{
     return LeagueAdapter.getOneLeague(parseInt(this.props.match.params.id))
   }
   render(){
-    return (
-      <div>
-        {this.state.league ? <h1>{this.state.league.name}</h1> : <Loader active/> }
-        {this.state.portfolios ? this.state.portfolios.map(p=><PortfolioCard key={p.name} portfolio={p} />):null}
-      </div>
-    )
+    if (!!this.state.league){
+      return(
+        <div>
+          <h1>{this.state.league.name}</h1>
+          {this.state.portfolios.map(p=><PortfolioCard key={p.name} portfolio={p} />)}
+          </div>
+      )
+    }else{
+      return <Loader active size="large">Finding League</Loader>
+    }
   }
 };
 

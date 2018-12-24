@@ -4,6 +4,7 @@ import {Loader, Table} from "semantic-ui-react"
 import {withRouter} from "react-router-dom"
 import Holding from "./Holding.js"
 import {connect} from "react-redux"
+import _ from 'lodash'
 
 class PortfolioShow extends Component{
   state = {
@@ -25,6 +26,37 @@ class PortfolioShow extends Component{
   componentWillUnmount(){
     clearInterval(this.timer)
   }
+
+  handleClick = (e)=>{
+    console.log(this.state.holdings);
+    let sortedArray = this.state.holdings;
+    switch (e.id) {
+      case "name":
+        sortedArray = _.sortBy(this.state.holdings,"name")
+        this.setState({holdings:sortedArray})
+        break;
+      case "symbol":
+        sortedArray = _.sortBy(this.state.holdings,"ticker")
+        this.setState({holdings:sortedArray})
+        break;
+      case "numshares":
+        sortedArray = _.sortBy(this.state.holdings,"num_shares")
+        this.setState({holdings:sortedArray})
+        break;
+      case "pricebought":
+        sortedArray = _.sortBy(this.state.holdings,"price_bought")
+        this.setState({holdings:sortedArray})
+        break;
+      case "gainloss":
+        sortedArray = _.sortBy(this.state.holdings,"changes")
+        this.setState({holdings:sortedArray})
+        break;
+      case "totalvalue":
+        sortedArray = _.sortBy(this.state.holdings,"value")
+        this.setState({holdings:sortedArray})
+        break;
+    }
+  }
    render(){
      if (!!this.state.currentPortfolioValue && this.state.holdings.length===0){
        return(
@@ -37,13 +69,13 @@ class PortfolioShow extends Component{
          <div>
             <Table celled>
               <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>Company Name</Table.HeaderCell>
-                  <Table.HeaderCell>Symbol</Table.HeaderCell>
-                  <Table.HeaderCell>Number of Shares</Table.HeaderCell>
-                  <Table.HeaderCell>Price Bought</Table.HeaderCell>
-                  <Table.HeaderCell>Gain/Loss (%)</Table.HeaderCell>
-                  <Table.HeaderCell>Total Value</Table.HeaderCell>
+                <Table.Row onClick={(event)=>this.handleClick(event.target)}>
+                  <Table.HeaderCell id="name">Company Name</Table.HeaderCell>
+                  <Table.HeaderCell id="symbol">Symbol</Table.HeaderCell>
+                  <Table.HeaderCell id="numshares">Number of Shares</Table.HeaderCell>
+                  <Table.HeaderCell id="pricebought">Price Bought</Table.HeaderCell>
+                  <Table.HeaderCell id="gainloss">Gain/Loss (%)</Table.HeaderCell>
+                  <Table.HeaderCell id="totalvalue">Total Value</Table.HeaderCell>
                   {this.state.loggedInUsersPortfolio ? <Table.HeaderCell>Sell Holding</Table.HeaderCell> : null}
                 </Table.Row>
              </Table.Header>
