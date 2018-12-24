@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import { Search} from 'semantic-ui-react'
 import "../Profile.css"
-class SearchComponent extends Component {
 
+class SearchComponent extends Component {
   componentWillMount() {
     this.resetComponent()
   }
-
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
   handleResultSelect = (e, { result }) => {

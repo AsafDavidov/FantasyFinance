@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import StockChart from "./StockChart.js"
 import Purchase from "./Purchase.js"
 import portfolioAdapter from "../store/adapters/portfolioAdapter"
-import {Loader} from "semantic-ui-react"
+import {Loader,Button} from "semantic-ui-react"
+import {withRouter} from "react-router-dom"
 
 class PortfolioCard extends Component{
   state = {
@@ -18,15 +19,21 @@ class PortfolioCard extends Component{
   componentWillUnmount(){
     clearInterval(this.timer)
   }
+  handleViewPortfolio=()=>{
+
+    this.props.history.push(`/portfolios/${this.props.portfolio.id}`)
+  }
+
    render(){
      return(
        <div>
           <p>Portfolio Name: {this.props.portfolio.name}</p>
           <p>Portfolio Cash: {this.props.portfolio.current_balance}</p>
           <p>Portfolio Value: </p> {this.state.currentPortfolioValue ? <p>{this.state.currentPortfolioValue}</p>:<Loader active />}
+          <Button onClick={this.handleViewPortfolio}>Show portfolio</Button>
        </div>
    )
   }
  }
 
-export default PortfolioCard
+export default withRouter(PortfolioCard)

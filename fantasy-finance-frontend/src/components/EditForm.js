@@ -8,9 +8,5 @@ const EditForm = (props) => {
     </div>
   )
 };
-// function mapStateToProps({user}) {
-//   return {
-//     userId: user.userId,
-//   }
-// }
+
 export default connect(null)(EditForm)
