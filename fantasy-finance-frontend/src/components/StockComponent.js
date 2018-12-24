@@ -8,7 +8,7 @@ const StockComponent = (props)=> {
           <div style={{float:"left", marginRight:"10%"}}>
             <StockChart key = {props.stock} stock={props.stock}/>
           </div>
-          <div style={{float:"right",marginRight:"18%"}}>
+          <div style={{float:"right",marginRight:"14%"}}>
             <Purchase stock={props.stock}/>
           </div>
      </div>

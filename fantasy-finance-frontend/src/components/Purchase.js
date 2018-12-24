@@ -11,7 +11,7 @@ class Purchase extends Component{
     currentBalance:null,
     numShares:null,
     imgSource:null,
-    chosenPortfolio: null,
+    chosenPortfolio: "",
     startPrice:null,
     color:"black"
   }
@@ -64,6 +64,7 @@ class Purchase extends Component{
     this.setState({numShares:event.target.value})
   }
   render(){
+    // console.log(this.chosenPortfolio ? this.chosenPortfolio : null);
     return (
       <div>
         <div><Image alt="" src={this.state.imgSource} size='small' centered /></div>
@@ -74,9 +75,9 @@ class Purchase extends Component{
         <Form size={"small"} onSubmit={this.buyStocks}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
-          <Input style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
+          <Input value={this.state.numShares ? this.state.numShares : ""} style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
           <label>Choose a portfolio:</label>
-          <Select style={{width:"400px"}} onChange={this.changePortfolio} options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
+          <Select value={this.state.chosenPortfolio ? this.state.chosenPortfolio.name : null} style={{width:"400px"}} onChange={this.changePortfolio} options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
         </Form.Field>
         <Button type='submit'>Buy Shares</Button>
         </Form>

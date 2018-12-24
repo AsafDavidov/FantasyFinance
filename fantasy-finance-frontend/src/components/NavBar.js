@@ -7,7 +7,7 @@ import withAuth from './withAuth'
 const NavBar = (props) => {
   return (
   <div className="navbar">
-      <h1 style={{textAlign:"center",fontFamily:"Alike Angular"}}>FantasyTrader</h1>
+      <h1 style={{ color: "#FF5722",fontSize: "38px",textAlign:"center",fontFamily:"Alike Angular"}}>FantasyTrader</h1>
 
       <ul className="navlinks">
         <li><NavLink to={"/home"} exact activeClassName="active">Home</NavLink></li>

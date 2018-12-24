@@ -33,7 +33,7 @@ class LeaguesContainer extends Component{
   render(){
     return (
       <Fragment>
-        <Modal trigger={<Button>Create a new League</Button>}>
+        <Modal trigger={<Button size="large" color="blue" >Create a new League</Button>}>
           <Modal.Header>Create A New League</Modal.Header>
             <Modal.Content>
               {this.props.failedCreateLeague ? <Message error header={this.props.message}/> : null}

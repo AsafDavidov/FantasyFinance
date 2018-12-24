@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-const EditForm = (props) => {
+const Breakdown = (props) => {
   return (
     <div>
       edit your stuff
@@ -9,4 +9,4 @@ const EditForm = (props) => {
   )
 };
 
-export default connect(null)(EditForm)
+export default connect(null)(Breakdown)

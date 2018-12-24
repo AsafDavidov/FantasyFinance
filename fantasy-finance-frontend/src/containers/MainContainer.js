@@ -13,7 +13,7 @@ import withAuth from '../components/withAuth'
 class MainContainer extends Component{
  render(){
    return(
-       <div style={{position:"relative",overflow:"auto", overflowX: "hidden", paddingBottom: "10px", minHeight: "600px"}}id="main-container">
+       <div id="main-container">
        <Router history={history}>
           <Switch>
             <Route path="/home" component={NewsContainer}/>

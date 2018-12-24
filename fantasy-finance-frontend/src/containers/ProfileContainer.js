@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Leagues from "../components/Leagues"
-import EditForm from "../components/EditForm"
+import Breakdown from "../components/Breakdown"
 import {Route, Switch, Redirect } from "react-router-dom"
 import { NavTab } from 'react-router-tabs';
 import {connect} from 'react-redux'
@@ -17,7 +17,7 @@ class ProfileContainer extends Component{
       <Switch>
         <Route exact path={`${this.props.match.path}`} render={() => <Redirect replace to={`${this.props.match.path}/leagues`} />} />
         <Route path={`${this.props.match.path}/leagues`} render={() => <Leagues leagues={this.props.leagues}/>}/>
-        <Route path={`${this.props.match.path}/edit`} component={EditForm} />
+        <Route path={`${this.props.match.path}/breakdown`} component={Breakdown} />
       </Switch>
     </div>
   );

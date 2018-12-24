@@ -45,5 +45,12 @@
 
 #main-container{
   text-align: center;
-  border: 2px solid black;
+  background-color: gainsboro;
+  overflow: auto;
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 10px;
+  min-height: 700px;
+  color:blue;
+
 }

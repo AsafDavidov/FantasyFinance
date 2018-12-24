@@ -6,6 +6,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url("https://asociacionsolphoenix.org/wp-content/uploads/2018/02/Blockchain-technology-1.jpg"), no-repeat center center fixed;
+  background-size: cover;
+  color:white;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

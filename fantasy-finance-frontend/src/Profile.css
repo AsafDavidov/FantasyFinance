@@ -14,6 +14,7 @@
 
 .navbar {
   margin-bottom: 15px;
+  margin-top: 2%;
 }
 
 .navlinks {
@@ -25,6 +26,7 @@
 }
 .navlinks li{
   float: left;
+  font-size: 18px;
 }
 .navlinks li a{
   display: block;
@@ -60,4 +62,7 @@
 }
 .react-stockchart svg{
   margin-left: 20%;
+}
+.ui.form .field>label {
+  color:white;
 }
