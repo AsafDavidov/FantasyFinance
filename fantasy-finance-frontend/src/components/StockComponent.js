@@ -4,7 +4,7 @@ import Purchase from "./Purchase.js"
 
 const StockComponent = (props)=> {
    return(
-     <div style={{marginTop:"10px", textAlign:"center"}}>
+     <div>
           <div style={{float:"left", marginRight:"10%"}}>
             <StockChart key = {props.stock} stock={props.stock}/>
           </div>

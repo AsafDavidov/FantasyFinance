@@ -7,10 +7,10 @@ class Home extends Component{
  render(){
    return(
      <Fragment>
-      <NavBar />
+      <NavBar activePath={this.props.history.location.pathname}/>
       <MainContainer />
      </Fragment>
    )
  }
 }
-export default withRouter(withAuth(Home))
+export default withAuth(withRouter(Home))

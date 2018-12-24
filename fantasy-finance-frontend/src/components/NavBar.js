@@ -5,7 +5,6 @@ import {logoutUser} from '../store/actions/user'
 import '../Profile.css'
 import withAuth from './withAuth'
 const NavBar = (props) => {
-
   return (
   <div className="navbar">
       <h1 style={{textAlign:"center",fontFamily:"Alike Angular"}}>FantasyTrader</h1>

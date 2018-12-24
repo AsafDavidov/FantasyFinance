@@ -5,11 +5,11 @@ import StockContainer from "./StockContainer"
 import LeaguesContainer from "./LeaguesContainer"
 import LeagueShow from "../components/LeagueShow"
 import PortfolioShow from "../components/PortfolioShow"
-
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'
 import {history} from "../index"
 import withAuth from '../components/withAuth'
+
 class MainContainer extends Component{
  render(){
    return(
