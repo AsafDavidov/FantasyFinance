@@ -15,23 +15,20 @@ class SearchComponent extends Component {
   }
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value })
-
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
-      this.setState({
-        isLoading: false,
-        results: _.filter(this.props.stocks, isMatch),
-      })
-    }, 300)
+      this.setState({ isLoading: true, value })
+      setTimeout(() => {
+        if (this.state.value.length < 1) return this.resetComponent()
+        const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+        const isMatch = result => re.test(result.title) || re.test(result.symbol)
+        this.setState({
+          isLoading: false,
+          results: _.filter(this.props.stocks, isMatch),
+        })
+      }, 300)
   }
 
   render() {
     const { isLoading, value, results } = this.state
-
     return (
         <Search
           size="huge"
