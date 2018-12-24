@@ -61,7 +61,9 @@ class League extends Component{
       <Card.Content>
         {this.renderModal()}
         <Card.Header>League Name: {this.props.name}</Card.Header>
+        <br></br>
         <Card.Header>League Start Balance: {this.props.balance}</Card.Header>
+        <br></br>
         {this.handleBalance()}
         <Button onClick={this.handleViewLeague}>View League</Button>
       </Card.Content>
