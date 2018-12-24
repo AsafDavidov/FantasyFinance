@@ -28,7 +28,7 @@ import "../Profile.css"
     this.setState({[semanticInputData.name]:e.target.value})
   }
   checkPasswords = () => {
-    if (this.state.password != ""){
+    if (this.state.password !== ""){
       if (this.state.password === this.state.passwordConfirmation){
         return null
       }else{

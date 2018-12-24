@@ -9,7 +9,6 @@ import { createVerticalLinearGradient, hexToRGBA } from "react-stockcharts/lib/u
 import { timeParse,timeFormat } from "d3-time-format";
 import { format } from "d3-format";
 import {CrossHairCursor,MouseCoordinateX,MouseCoordinateY} from "react-stockcharts/lib/coordinates";
-import {Loader} from 'semantic-ui-react'
 import { fitWidth } from "react-stockcharts/lib/helper";
 import "../Profile.css"
 

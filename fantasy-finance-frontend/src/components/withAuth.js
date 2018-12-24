@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import { fetchUser } from '../store/actions/user'
 import { Loader } from 'semantic-ui-react'
 
-const withAuth = /*FUNCTION*/ (WrappedComponent) => {
+const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
       if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchUser()
@@ -28,11 +28,6 @@ const withAuth = /*FUNCTION*/ (WrappedComponent) => {
     }
   }
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      fetchUser: () => dispatch(fetchUser()),
-    }
-  }
   return connect(mapStateToProps, { fetchUser })(AuthorizedComponent)
 }
 

@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import StockChart from "./StockChart.js"
-import Purchase from "./Purchase.js"
 import portfolioAdapter from "../store/adapters/portfolioAdapter"
 import {Loader,Button} from "semantic-ui-react"
 import {withRouter} from "react-router-dom"

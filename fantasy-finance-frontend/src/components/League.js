@@ -49,7 +49,7 @@ class League extends Component{
     }
   }
   handleBalance = () => {
-    let foundPortfolio = this.props.portfolios.find((portfolio)=>{return portfolio.league_id==this.props.id})
+    let foundPortfolio = this.props.portfolios.find((portfolio)=>{return portfolio.league_id===this.props.id})
     if(foundPortfolio){
       return <Card.Header>Your Cash Left: {foundPortfolio.current_balance}</Card.Header>
     }else{

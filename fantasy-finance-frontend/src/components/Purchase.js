@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Loader, Image,Message,Form, Input, Button, Select } from 'semantic-ui-react'
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
-import UserAdapter from "../store/adapters/userAdapter"
 import * as actions from "../store/actions/holding"
 
 class Purchase extends Component{
@@ -25,9 +24,9 @@ class Purchase extends Component{
   }
   componentDidUpdate(prevProps,prevState){
     if(this.state.currentPrice && this.state.startPrice){
-      if(this.state.currentPrice<this.state.startPrice && this.state.color !="red"){
+      if(this.state.currentPrice<this.state.startPrice && this.state.color !=="red"){
         this.setState({color:"red"})
-      }else if (this.state.currentPrice>this.state.startPrice&& this.state.color !="green"){
+      }else if (this.state.currentPrice>this.state.startPrice&& this.state.color !=="green"){
         this.setState({color:"green"})
       }
     }

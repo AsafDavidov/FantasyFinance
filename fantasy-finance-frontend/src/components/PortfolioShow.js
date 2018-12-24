@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import StockChart from "./StockChart.js"
-import Purchase from "./Purchase.js"
 import portfolioAdapter from "../store/adapters/portfolioAdapter"
 import {Loader, Table} from "semantic-ui-react"
 import {withRouter} from "react-router-dom"
@@ -16,7 +14,7 @@ class PortfolioShow extends Component{
   componentDidMount(){
     this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(parseInt(this.props.location.pathname.split("/").slice(-1)[0]))
     .then(data=> {
-      if(this.props.portfolios.find(portfolio=>portfolio.id == parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
+      if(this.props.portfolios.find(portfolio=>portfolio.id === parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
         this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
       }else{
         this.setState({loggedInUsersPortfolio:false,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
@@ -28,7 +26,7 @@ class PortfolioShow extends Component{
     clearInterval(this.timer)
   }
    render(){
-     if (!!this.state.currentPortfolioValue && this.state.holdings.length==0){
+     if (!!this.state.currentPortfolioValue && this.state.holdings.length===0){
        return(
          <div>
             <h1>Current portfolio has only cash</h1>
