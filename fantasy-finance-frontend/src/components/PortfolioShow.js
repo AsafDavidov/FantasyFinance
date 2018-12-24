@@ -16,7 +16,6 @@ class PortfolioShow extends Component{
   componentDidMount(){
     this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(parseInt(this.props.location.pathname.split("/").slice(-1)[0]))
     .then(data=> {
-      console.log(this.props.portfolios);
       if(this.props.portfolios.find(portfolio=>portfolio.id == parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
         this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
       }else{

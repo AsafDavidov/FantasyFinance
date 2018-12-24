@@ -28,9 +28,9 @@ const portfolioReducer = (state =initialState, action) => {
     case FAILED_PURCHASE:
       return{...state,failedPurchase:true,message:action.payload,successfulPurchase:false, }
     case PURCHASE_STOCK:
-      return{...state,failedPurchase:false, portfolios:action.payload,successfulPurchase:true}
+      return{...state,failedPurchase:false, portfolios:action.payload,successfulPurchase:true, message:"Shares Acquired!"}
     case RESET_PURCHASE_ERROR:
-      return {...state,failedPurchase:false, message:""}
+      return {...state,successfulPurchase:false, failedPurchase:false, message:""}
     case JOIN_LEAGUE:
       return {...state,portfolios:action.payload.portfolios}
     case DELETE_STOCK:

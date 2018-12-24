@@ -47,6 +47,7 @@ class Purchase extends Component{
   buyStocks = ()=>{
     let data = {holding:{ticker:this.props.stock,price_bought: this.state.currentPrice, num_shares: this.state.numShares, portfolio_id:this.state.chosenPortfolio.id}}
     this.props.postHolding(data)
+    this.setState({numShares:null,chosenPortfolio: null})
   }
 
   formatPortfoliosForDropdown = () =>{
@@ -69,7 +70,7 @@ class Purchase extends Component{
         <div>{this.state.currentPrice ? <h1 style={{color:this.state.color}}>Current Price:{this.state.currentPrice} </h1> : <Loader active size="large">Getting Price Data...</Loader>}</div>
         <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
-        {this.props.successfulPurchase ? <Message positive header={"Shares Acquired!"}/> : null}
+        {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>
         <Form.Field >
           <label>Number of Shares to Purchase:</label>
