@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       resources :portfolios, only: [:create]
       resources :leagues, only: [:index,:create,:show]
-      resources :holdings, only: [:create]
+      resources :holdings, only: [:create, :destroy]
       resources :auth, only: [:create]
       resources :stocks, only: [:index]
 

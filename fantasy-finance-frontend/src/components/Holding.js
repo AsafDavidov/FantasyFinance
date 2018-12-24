@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Table, Button} from "semantic-ui-react"
+import * as actions from "../store/actions/holding"
 
-const Holding = ({loggedInUser, value,ticker,priceBought,numShares,name,id,changes}) => {
+const Holding = ({sellHolding,loggedInUser, value,ticker,priceBought,numShares,name,id,changes}) => {
   const handleSellHolding = (givenId) => {
-    console.log(givenId);
-    console.log("hello");
+    sellHolding(givenId)
   }
   return (
     <Table.Row>
@@ -20,4 +20,4 @@ const Holding = ({loggedInUser, value,ticker,priceBought,numShares,name,id,chang
   )
 };
 
-export default Holding
+export default connect(null,actions)(Holding)

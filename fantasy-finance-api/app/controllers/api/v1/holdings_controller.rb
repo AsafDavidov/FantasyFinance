@@ -20,6 +20,21 @@ class Api::V1::HoldingsController < ApplicationController
     end
   end
 
+  def destroy
+    holding = Holding.find(params[:id])
+    portfolio = Portfolio.find(holding.portfolio_id)
+
+    url="https://api.iextrading.com/1.0/stock/#{holding.ticker}/price"
+    price = RestClient.get(url).to_f
+    total_value = (holding.num_shares * price).round(2)
+
+    portfolio.current_balance = portfolio.current_balance + total_value
+
+    holding.destroy
+    portfolio.save
+
+    render json: @user.portfolios, status: :ok
+  end
   private
 
   def holding_params

@@ -5,7 +5,8 @@ import { SET_USER,
         FAILED_PURCHASE,
         RESET_PURCHASE_ERROR,
         CREATE_LEAGUE,
-        JOIN_LEAGUE} from "../types";
+        JOIN_LEAGUE,
+        DELETE_STOCK} from "../types";
 
 const initialState = {
   portfolios:[],
@@ -31,6 +32,8 @@ const portfolioReducer = (state =initialState, action) => {
     case RESET_PURCHASE_ERROR:
       return {...state,failedPurchase:false, message:""}
     case JOIN_LEAGUE:
+      return {...state,portfolios:action.payload.portfolios}
+    case DELETE_STOCK:
       return {...state,portfolios:action.payload.portfolios}
     default:
       return state;

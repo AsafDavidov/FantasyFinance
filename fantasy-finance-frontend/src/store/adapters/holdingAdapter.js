@@ -17,5 +17,15 @@ export default class HoldingAdapter {
       }
     })
   }
+  static deleteHolding(data) {
+    return fetch(`${HOLDING_URL}/${data}`,{
+    method: "DELETE",
+    headers:{
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    }
+    })
+    .then(res => res.json())
+  }
 
 }

@@ -2,10 +2,11 @@
 export const SET_USER = "SET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const LOGIN_USER = "LOGIN_USER";
+export const FAILED_LOGIN = "FAILED_LOGIN";
 
 //STOCK
 export const PURCHASE_STOCK = "PURCHASE_STOCK";
-export const FAILED_LOGIN = "FAILED_LOGIN";
+export const DELETE_STOCK = "DELETE_STOCK";
 export const FAILED_PURCHASE = "FAILED_PURCHASE";
 export const RESET_PURCHASE_ERROR = "RESET_PURCHASE_ERROR"
 
