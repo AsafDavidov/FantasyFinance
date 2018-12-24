@@ -1,8 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Table, Button} from "semantic-ui-react"
-const Holding = ({value,ticker,priceBought,numShares,name,id,changes}) => {
-  
+
+const Holding = ({loggedInUser, value,ticker,priceBought,numShares,name,id,changes}) => {
+  const handleSellHolding = (givenId) => {
+    console.log(givenId);
+    console.log("hello");
+  }
   return (
     <Table.Row>
         <Table.Cell>{name}</Table.Cell>
@@ -11,7 +15,7 @@ const Holding = ({value,ticker,priceBought,numShares,name,id,changes}) => {
         <Table.Cell>{priceBought}</Table.Cell>
         <Table.Cell>{changes}</Table.Cell>
         <Table.Cell>{value}</Table.Cell>
-        <Table.Cell><Button>Sell holding</Button></Table.Cell>
+        {loggedInUser ? <Table.Cell><Button basic color='red' onClick={()=>handleSellHolding(id)}>Sell holding</Button></Table.Cell> : null}
     </Table.Row>
   )
 };

@@ -5,18 +5,23 @@ import portfolioAdapter from "../store/adapters/portfolioAdapter"
 import {Loader, Table} from "semantic-ui-react"
 import {withRouter} from "react-router-dom"
 import Holding from "./Holding.js"
+import {connect} from "react-redux"
 
 class PortfolioShow extends Component{
   state = {
     currentPortfolioValue: null,
-    holdings: []
+    holdings: [],
+    loggedInUsersPortfolio:false
   }
   componentDidMount(){
-    //grab portfolio id from file location
     this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(parseInt(this.props.location.pathname.split("/").slice(-1)[0]))
     .then(data=> {
-      this.setState({currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})}
-    ),3000)
+      if(this.props.portfolios.find(portfolio=>portfolio.id == parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
+        this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
+      }else{
+        this.setState({loggedInUsersPortfolio:false,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
+      }
+    }),3000)
 
   }
   componentWillUnmount(){
@@ -26,7 +31,7 @@ class PortfolioShow extends Component{
      if (!!this.state.currentPortfolioValue && this.state.holdings.length==0){
        return(
          <div>
-            <h1> go buy some stocks now</h1>
+            <h1>Current portfolio has only cash</h1>
          </div>
        )
      }else if (!!this.state.currentPortfolioValue && this.state.holdings.length>0){
@@ -41,12 +46,12 @@ class PortfolioShow extends Component{
                   <Table.HeaderCell>Price Bought</Table.HeaderCell>
                   <Table.HeaderCell>Gain/Loss (%)</Table.HeaderCell>
                   <Table.HeaderCell>Total Value</Table.HeaderCell>
-                  <Table.HeaderCell>Sell Holding</Table.HeaderCell>
+                  {this.state.loggedInUsersPortfolio ? <Table.HeaderCell>Sell Holding</Table.HeaderCell> : null}
                 </Table.Row>
              </Table.Header>
               <Table.Body>
               {this.state.holdings.map(holding=>{
-                return <Holding key={holding.id} value={holding.value} ticker={holding.ticker} priceBought={holding.price_bought}numShares={holding.num_shares} name={holding.name} id={holding.id} changes={holding.changes}/>
+                return <Holding key={holding.id} loggedInUser={this.state.loggedInUsersPortfolio} value={holding.value} ticker={holding.ticker} priceBought={holding.price_bought}numShares={holding.num_shares} name={holding.name} id={holding.id} changes={holding.changes}/>
               })}
               </Table.Body>
             </Table>
@@ -58,5 +63,9 @@ class PortfolioShow extends Component{
 
   }
  }
-
-export default withRouter(PortfolioShow)
+ function mapStateToProps({portfolio}) {
+   return {
+     portfolios: portfolio.portfolios
+   }
+ }
+export default withRouter(connect(mapStateToProps)(PortfolioShow))
