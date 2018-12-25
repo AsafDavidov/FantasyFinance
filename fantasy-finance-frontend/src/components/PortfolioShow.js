@@ -17,9 +17,7 @@ class PortfolioShow extends Component{
     this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(parseInt(this.props.location.pathname.split("/").slice(-1)[0]))
     .then(data=> {
       let formattedHoldings = data.holdings_with_changes
-      if (this.state.sortedBy !== ""){
-        formattedHoldings = _.sortBy(formattedHoldings,this.state.sortedBy)
-      }
+      if (this.state.sortedBy !== "") formattedHoldings = _.sortBy(formattedHoldings,this.state.sortedBy)
       if(this.props.portfolios.find(portfolio=>portfolio.id === parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
         this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:formattedHoldings})
       }else{
