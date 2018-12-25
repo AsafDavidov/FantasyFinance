@@ -1,7 +1,7 @@
 const STOCK_URL = "http://localhost:4000/api/v1/stocks/"
 export default class StockAdapter {
-  static getRecentNews() {
-    return fetch(`${STOCK_URL}news`,{
+  static getSectorPerformance() {
+    return fetch(`${STOCK_URL}sectors`,{
     method: "GET",
     headers:{
       Authorization: `Bearer ${localStorage.getItem("jwt")}`

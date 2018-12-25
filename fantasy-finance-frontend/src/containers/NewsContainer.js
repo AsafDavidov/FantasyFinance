@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import NewsStrip from "../components/NewsStrip"
 import StockAdapter from "../store/adapters/stockAdapter"
+import {Loader} from "semantic-ui-react"
 
 class NewsContainer extends Component{
   state = {
-    recentNews: [],
-    yourNews: []
+    sectorPerformance: [],
+    indexes: []
   }
   componentDidMount(){
     this.fetchRecentNews()
+    .then(data=>{
+      let indexArray = Object.keys(data.index).map(k=>({symbol: k, percentChange:data.index[k].quote.changePercent}))
+      this.setState({sectorPerformance:data.sector,indexes:indexArray})
+    })
   }
   fetchRecentNews = () =>{
-    StockAdapter.getRecentNews()
-    .then(data=>this.setState({recentNews:data}))
+    return StockAdapter.getSectorPerformance()
   }
-  fetchYourNews = () =>{}
  render(){
-   return(
-     <div>
-        <NewsStrip class = "strip" news = {this.state.recentNews} />
-        <NewsStrip class = "strip" news = {this.state.recentNews} />
-     </div>
-   )
+   if (this.state.sectorPerformance.length>0&&this.state.indexes.length>0){
+     return(
+       <div>
+       <h1>Loaded</h1>
+       </div>
+     )
+
+   }else{
+     return(
+       <Loader size="large" active>Loading</Loader>
+     )
+   }
  }
 }
 
