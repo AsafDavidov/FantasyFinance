@@ -2,9 +2,9 @@
 
 A React application using a Ruby on Rails backend to create a web application that mimics a fantasy sports functionality expect that users purchase and sell stock holdings. Currently only the stocks within the S&P 500 are available.
 
-##Setup instructions
+## Setup instructions
 
-###Frontend
+### Frontend
 * Change directory into the frontend folder
 * run npm install && npm start in the terminal
 * frontend server should be ready
