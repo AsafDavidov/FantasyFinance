@@ -23,8 +23,11 @@ class Api::V1::LeaguesController < ApplicationController
 
   def show
     league = League.find(params[:id])
-    portfolios = league.portfolios
-    render json: {league:league, portfolios:portfolios}, status: :ok
+    formatted_portfolios = league.portfolios.map do |portfolio|
+      portfolio_value_and_changes = portfolio.total_portfolio_value_and_changes
+      {name: portfolio.name, username: portfolio.user.username, value: portfolio_value_and_changes["total_value"], total_change: portfolio_value_and_changes["total_change"]}
+    end
+    render json: {league:league, portfolios:formatted_portfolios}, status: :ok
   end
   private
 
