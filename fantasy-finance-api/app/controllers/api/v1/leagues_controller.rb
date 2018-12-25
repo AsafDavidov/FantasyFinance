@@ -2,7 +2,10 @@ class Api::V1::LeaguesController < ApplicationController
 
   def index
     leagues = League.all - @user.leagues
-    render json: leagues, status: :ok
+    valid_leagues = leagues.select do |league|
+      league.end_date > Date.today()
+    end
+    render json: valid_leagues, status: :ok
   end
 
   def create

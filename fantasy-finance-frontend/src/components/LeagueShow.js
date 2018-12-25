@@ -38,7 +38,6 @@ class LeagueShow extends Component{
     return diffDays
   }
   render(){
-    console.log(this.state.league);
     if (!!this.state.league){
       return(
         <div>
