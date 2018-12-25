@@ -48,7 +48,14 @@ class Purchase extends Component{
     this.props.postHolding(data)
     this.setState({numShares:null,chosenPortfolio: null})
   }
+  handlePredictedCashLeft = () => {
+    if(!!this.state.chosenPortfolio && this.state.currentPrice && this.state.numShares && this.state.numShares>0){
+      return <h1>Cash Left After Purchase: {(this.state.chosenPortfolio.current_balance - this.state.currentPrice*this.state.numShares).toFixed(2)}</h1>
+    }else{
+      return null
+    }
 
+  }
   formatPortfoliosForDropdown = () =>{
     return this.props.portfolios.map(portfolio=>{
       return {key: portfolio.name, text:portfolio.name, value:portfolio.name}
@@ -62,12 +69,14 @@ class Purchase extends Component{
   changeNumShares = (event)=>{
     this.setState({numShares:event.target.value})
   }
+
   render(){
     return (
       <div>
         <div><Image alt="" src={this.state.imgSource} size='small' centered /></div>
         <div>{this.state.currentPrice ? <h1 style={{color:this.state.color}}>Current Price:{this.state.currentPrice} </h1> : <Loader active size="large">Getting Price Data...</Loader>}</div>
         <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
+        {this.handlePredictedCashLeft()}
         {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
         {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
         <Form size={"small"} onSubmit={this.buyStocks}>

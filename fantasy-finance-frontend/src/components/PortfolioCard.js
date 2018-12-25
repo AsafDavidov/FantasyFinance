@@ -32,7 +32,7 @@ class PortfolioCard extends Component{
          </div>
        )
      }else{
-       return(<Loader active size="Large">Loading portfolios</Loader>)
+       return(<Loader active size="large">Loading portfolios</Loader>)
      }
   }
  }

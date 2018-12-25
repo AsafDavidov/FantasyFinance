@@ -10,15 +10,20 @@ class PortfolioShow extends Component{
   state = {
     currentPortfolioValue: null,
     holdings: [],
-    loggedInUsersPortfolio:false
+    loggedInUsersPortfolio:false,
+    sortedBy:""
   }
   componentDidMount(){
     this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(parseInt(this.props.location.pathname.split("/").slice(-1)[0]))
     .then(data=> {
+      let formattedHoldings = data.holdings_with_changes
+      if (this.state.sortedBy !== ""){
+        formattedHoldings = _.sortBy(formattedHoldings,this.state.sortedBy)
+      }
       if(this.props.portfolios.find(portfolio=>portfolio.id === parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
-        this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
+        this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:formattedHoldings})
       }else{
-        this.setState({loggedInUsersPortfolio:false,currentPortfolioValue:data.total_value,holdings:data.holdings_with_changes})
+        this.setState({loggedInUsersPortfolio:false,currentPortfolioValue:data.total_value,holdings:formattedHoldings})
       }
     }),3000)
 
@@ -28,32 +33,31 @@ class PortfolioShow extends Component{
   }
 
   handleClick = (e)=>{
-    console.log(this.state.holdings);
     let sortedArray = this.state.holdings;
     switch (e.id) {
       case "name":
         sortedArray = _.sortBy(this.state.holdings,"name")
-        this.setState({holdings:sortedArray})
+        this.setState({holdings:sortedArray,sortedBy:"name"})
         break;
       case "symbol":
         sortedArray = _.sortBy(this.state.holdings,"ticker")
-        this.setState({holdings:sortedArray})
+        this.setState({holdings:sortedArray,sortedBy:"ticker"})
         break;
       case "numshares":
         sortedArray = _.sortBy(this.state.holdings,"num_shares")
-        this.setState({holdings:sortedArray})
+        this.setState({holdings:sortedArray,sortedBy:"num_shares"})
         break;
       case "pricebought":
         sortedArray = _.sortBy(this.state.holdings,"price_bought")
-        this.setState({holdings:sortedArray})
+        this.setState({holdings:sortedArray,sortedBy:"price_bought"})
         break;
       case "gainloss":
         sortedArray = _.sortBy(this.state.holdings,"changes")
-        this.setState({holdings:sortedArray})
+        this.setState({holdings:sortedArray,sortedBy:"changes"})
         break;
       case "totalvalue":
         sortedArray = _.sortBy(this.state.holdings,"value")
-        this.setState({holdings:sortedArray})
+        this.setState({holdings:sortedArray,sortedBy:"value"})
         break;
     }
   }
