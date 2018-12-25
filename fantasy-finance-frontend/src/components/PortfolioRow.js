@@ -27,4 +27,3 @@ const PortfolioRow= ({portfolios,history,number,id,name,user,value,change})=>{
    }
  }
 export default withRouter(connect(mapStateToProps)(PortfolioRow))
-// {!!portfolios.find(portfolio=>portfolio.id===id) ? warning : null}
