@@ -5,6 +5,7 @@ import {Loader, Table} from "semantic-ui-react"
 import PortfolioRow from './PortfolioRow'
 import _ from "lodash"
 
+
 class LeagueShow extends Component{
   state = {
     league: null,
@@ -51,7 +52,7 @@ class LeagueShow extends Component{
                 <Table.HeaderCell id="username">Username</Table.HeaderCell>
                 <Table.HeaderCell id="value">Value</Table.HeaderCell>
                 <Table.HeaderCell id="gainloss">Gain/Loss (%)</Table.HeaderCell>
-                <Table.HeaderCell id="gainloss">Details</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Details</Table.HeaderCell>
               </Table.Row>
            </Table.Header>
             <Table.Body>
