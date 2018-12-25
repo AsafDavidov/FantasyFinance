@@ -9,7 +9,7 @@
 .ui.search > .results.visible {
   position: absolute;
   margin-left: 43%;
-  z-index: 1;
+  z-index: 2;
 }
 
 .navbar {
@@ -61,7 +61,7 @@
     margin-right: .75em;
 }
 .react-stockchart svg{
-  margin-left: 20%;
+  position: relative;
 }
 .ui.form .field>label {
   color:white;

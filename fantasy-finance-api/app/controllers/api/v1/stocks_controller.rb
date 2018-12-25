@@ -20,14 +20,13 @@ class Api::V1::StocksController < ApplicationController
     render json: formatted, status: :ok
   end
   def chart
-    new_url = "#{@url}stock/#{params[:id]}/chart/5y?filter=date,close"
+    new_url = "#{@url}stock/#{params[:id]}/chart/5y?filter=date,close,volume,open"
     results = JSON.parse(RestClient.get(new_url))
     render json: results, status: :ok
   end
   def price
     new_url = "#{@url}stock/#{params[:id]}/price"
     result = RestClient.get(new_url)
-
     new_url2 = "#{@url}stock/#{params[:id]}/quote?filter=open"
     result2 = JSON.parse(RestClient.get(new_url2))
     render json: {"price":result, "start":result2["open"]}, status: :ok

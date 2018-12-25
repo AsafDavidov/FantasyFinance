@@ -3,7 +3,7 @@ import StockAdapter from "../store/adapters/stockAdapter"
 import { scaleTime } from "d3-scale";
 import { curveMonotoneX } from "d3-shape";
 import { ChartCanvas, Chart } from "react-stockcharts";
-import { AreaSeries } from "react-stockcharts/lib/series";
+import { AreaSeries, BarSeries } from "react-stockcharts/lib/series";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 import { createVerticalLinearGradient, hexToRGBA } from "react-stockcharts/lib/utils";
 import { timeParse,timeFormat } from "d3-time-format";
@@ -28,7 +28,7 @@ class StockChart extends Component{
     .then(data=>{
       let newD = data.map(obj=>{
         let dateparsed = parseDate(obj.date).getTime()
-        return {date:new Date(dateparsed),close:obj.close}
+        return {date:new Date(dateparsed),close:obj.close,volume:obj.volume,open:obj.open}
       })
       this.setState({data:newD})
     })
@@ -43,7 +43,7 @@ class StockChart extends Component{
         margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
         seriesName={this.props.stock}
         data={this.state.data}
-        type="svg"
+        type="hybrid"
         xAccessor={d =>{
           return d.date
         }}
@@ -57,8 +57,8 @@ class StockChart extends Component{
               <stop offset="100%"  stopColor="#4286f4" stopOpacity={0.8} />
             </linearGradient>
           </defs>
-          <XAxis axisAt="bottom" orient="bottom" ticks={6}/>
-          <YAxis axisAt="left" orient="left" />
+          <XAxis axisAt="bottom" orient="bottom" displayFormat={timeFormat("%Y-%m-%d")}/>
+          <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".2f")}/>
           <AreaSeries
             yAccessor={d => d.close}
             fill="url(#MyGradient)"
@@ -72,11 +72,28 @@ class StockChart extends Component{
 						displayFormat={timeFormat("%Y-%m-%d")}
 					/>
 					<MouseCoordinateY
-						at="left"
-						orient="left"
+						at="right"
+						orient="right"
 						displayFormat={format(".4s")}
 					/>
         </Chart>
+				<Chart
+					id={2}
+					yExtents={d => d.volume}
+					height={150}
+					origin={(w, h) => [0, h - 150]}
+				>
+					<YAxis axisAt="left" orient="left" ticks={5} tickFormat={format(".2s")}/>
+					<MouseCoordinateY
+						at="left"
+						orient="left"
+						displayFormat={format(".4s")} />
+					<BarSeries yAccessor={d => d.volume}
+						widthRatio={0.95}
+						opacity={0.3}
+						fill={d => d.close > d.open ? "#6BA583" : "#FF0000"}
+					/>
+				</Chart>
         <CrossHairCursor />
       </ChartCanvas>)
     }else{
