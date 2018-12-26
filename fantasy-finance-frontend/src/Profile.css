@@ -6,10 +6,16 @@
   margin-right: auto;
 }
 
-.ui.search > .results.visible {
+.stock-chosen > .ui.search > .results.transition.visible{
   position: absolute;
-  margin-left: 43%;
   z-index: 2;
+  margin-left: 35%;
+}
+
+.ui.search > .results.transition.visible {
+  position: absolute;
+  z-index: 2;
+  margin-left: 42%;
 }
 
 .navbar {
@@ -65,4 +71,7 @@
 }
 .ui.form .field>label {
   color:white;
+}
+.stock-chosen{
+  margin-left: 50%;
 }

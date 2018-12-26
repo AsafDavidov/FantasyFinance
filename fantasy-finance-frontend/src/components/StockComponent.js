@@ -5,7 +5,7 @@ import Purchase from "./Purchase.js"
 const StockComponent = (props)=> {
    return(
      <div style={{marginTop:"20px"}}>
-          <div style={{float:"left", marginRight:"10%"}}>
+          <div style={{float:"left", marginLeft:"1%",marginRight:"9%"}}>
             <StockChart key = {props.stock} stock={props.stock}/>
           </div>
           <div style={{float:"right",marginRight:"14%"}}>
@@ -16,5 +16,3 @@ const StockComponent = (props)=> {
  }
 
 export default StockComponent
-//<div style={{float:"left", width:"60%"}}>
-// <div style={{float:"right",marginRight:"18%"}}>
