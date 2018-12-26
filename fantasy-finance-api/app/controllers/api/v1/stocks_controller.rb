@@ -9,6 +9,7 @@ class Api::V1::StocksController < ApplicationController
     index_url = "#{@url}stock/market/batch?symbols=DIA,SPY,IWM&types=quote&filter=changePercent"
     sector_results = JSON.parse(RestClient.get(sector_url))
     index_results = JSON.parse(RestClient.get(index_url))
+    sector_results = sector_results.sort_by{|obj| obj['performance']}.reverse!
     render json: {sector: sector_results,index: index_results}, status: :ok
   end
   def tickers
