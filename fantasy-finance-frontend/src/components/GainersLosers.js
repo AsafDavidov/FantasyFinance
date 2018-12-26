@@ -8,13 +8,15 @@ class GainersLosers extends Component{
     losers: []
   }
   componentDidMount(){
-    this.fetchGainersLosers()
-    .then(data=>{
-      this.setState({gainers:data.gainers,losers:data.losers})
-    })
+    this.gainerLoserTimer = setInterval(()=>{
+      this.fetchGainersLosers()
+      .then(data=>{
+        this.setState({gainers:data.gainers,losers:data.losers})
+      })
+    },3000)
   }
   componentWillUnmount(){
-    //clearInterval(this.performanceTimer)
+    clearInterval(this.gainerLoserTimer)
   }
   fetchGainersLosers = ()=>{
     return StockAdapter.getGainersLosers()
@@ -22,7 +24,7 @@ class GainersLosers extends Component{
   render(){
     if (this.state.gainers.length>0 && this.state.losers.length>0){
       return(
-        <div>
+        <div style={{marginLeft:"20%",marginTop:"40px",width:"60%"}}>
           <div className="gainer-table">
             <Table basic='very' celled collapsing>
               <Table.Header>
@@ -43,10 +45,9 @@ class GainersLosers extends Component{
                               </Header.Content>
                             </Header>
                          </Table.Cell>
-                         <Table.Cell>{gainer.change}</Table.Cell>
+                         <Table.Cell positive>{"+"+gainer.change+"%"}</Table.Cell>
                          <Table.Cell>{gainer.price}</Table.Cell>
                          </Table.Row>)
-
                 })}
               </Table.Body>
             </Table>
@@ -71,10 +72,9 @@ class GainersLosers extends Component{
                               </Header.Content>
                             </Header>
                          </Table.Cell>
-                         <Table.Cell>{loser.change}</Table.Cell>
+                         <Table.Cell negative>{"-"+loser.change+"%"}</Table.Cell>
                          <Table.Cell>{loser.price}</Table.Cell>
                          </Table.Row>)
-
                 })}
               </Table.Body>
             </Table>
@@ -82,7 +82,7 @@ class GainersLosers extends Component{
         </div>
       )
     }else{
-      return <div>LOADING</div>
+      return <Loader active size="large">Loading Gainers and Losers</Loader>
     }
   }
  }

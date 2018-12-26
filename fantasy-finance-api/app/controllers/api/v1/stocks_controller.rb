@@ -18,8 +18,8 @@ class Api::V1::StocksController < ApplicationController
     loser_url= "#{@url}stock/market/list/losers"
     gainer_result = JSON.parse(RestClient.get(gainer_url))
     loser_result = JSON.parse(RestClient.get(loser_url))
-    gainer_formatted = gainer_result.map{|gainer| {symbol: gainer['symbol'], name: gainer['companyName'], change: gainer['changePercent'].to_f.round(2), price: gainer['latestPrice'].to_f.round(2)}}.sort_by{|gainer| gainer[:change]}.reverse!
-    loser_formatted = loser_result.map{|loser| {symbol: loser['symbol'], name: loser['companyName'], change: loser['changePercent'].to_f.round(2), price: loser['latestPrice'].to_f.round(2)}}.sort_by{|loser| loser[:change]}
+    gainer_formatted = gainer_result.map{|gainer| {symbol: gainer['symbol'], name: gainer['companyName'], change: (gainer['changePercent']*100).to_f.round(2), price: gainer['latestPrice'].to_f.round(2)}}.sort_by{|gainer| gainer[:change]}.reverse!
+    loser_formatted = loser_result.map{|loser| {symbol: loser['symbol'], name: loser['companyName'], change: (loser['changePercent']*100).to_f.round(2), price: loser['latestPrice'].to_f.round(2)}}.sort_by{|loser| loser[:change]}
     render json: {gainers: gainer_formatted, losers:loser_formatted}, status: :ok
   end
 

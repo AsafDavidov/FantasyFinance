@@ -135,3 +135,14 @@
   border-radius: 4px;
 }
 /* End Home Screen */
+/* Gainer/Loser Tables */
+.gainer-table{
+  float:left;
+  font-size: 20px;
+}
+.loser-table{
+  float:right;
+  margin-right: 10%;
+  font-size: 20px;
+}
+/* End Gainer/Loser Tables */
