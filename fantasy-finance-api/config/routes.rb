@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get '/users/leagues', to: 'users#leagues'
       get '/users/profile', to: 'users#profile'
       get '/stocks/sectors', to: 'stocks#sector_performance'
+      get '/stocks/gainers-losers', to: 'stocks#gainers_losers'
       get '/stocks/tickers', to: 'stocks#tickers'
       get '/stocks/chart/:id', to: 'stocks#chart'
       get '/stocks/price/:id', to: 'stocks#price'
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
       resources :leagues, only: [:index,:create,:show]
       resources :holdings, only: [:create, :destroy]
       resources :auth, only: [:create]
-      
+
 
     end
   end

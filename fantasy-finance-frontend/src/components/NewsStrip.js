@@ -1,5 +1,5 @@
+// Still UNUSED
 import React from 'react';
-import NewsBlock from "./NewsBlock";
 const NewStrip = (props)=>{
    return(
      <div>

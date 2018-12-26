@@ -12,6 +12,17 @@ class Api::V1::StocksController < ApplicationController
     sector_results = sector_results.sort_by{|obj| obj['performance']}.reverse!
     render json: {sector: sector_results,index: index_results}, status: :ok
   end
+
+  def gainers_losers
+    gainer_url= "#{@url}stock/market/list/gainers"
+    loser_url= "#{@url}stock/market/list/losers"
+    gainer_result = JSON.parse(RestClient.get(gainer_url))
+    loser_result = JSON.parse(RestClient.get(loser_url))
+    gainer_formatted = gainer_result.map{|gainer| {symbol: gainer['symbol'], name: gainer['companyName'], change: gainer['changePercent'].to_f.round(2), price: gainer['latestPrice'].to_f.round(2)}}
+    loser_formatted = loser_result.map{|loser| {symbol: loser['symbol'], name: loser['companyName'], change: loser['changePercent'].to_f.round(2), price: loser['latestPrice'].to_f.round(2)}}
+    render json: {gainers: gainer_formatted, losers:loser_formatted}, status: :ok
+  end
+
   def tickers
     new_url = "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
     results = JSON.parse(RestClient.get(new_url))
@@ -20,11 +31,13 @@ class Api::V1::StocksController < ApplicationController
     end
     render json: formatted, status: :ok
   end
+
   def chart
     new_url = "#{@url}stock/#{params[:id]}/chart/5y?filter=date,close,volume,open"
     results = JSON.parse(RestClient.get(new_url))
     render json: results, status: :ok
   end
+
   def price
     new_url = "#{@url}stock/#{params[:id]}/price"
     result = RestClient.get(new_url)
@@ -32,9 +45,11 @@ class Api::V1::StocksController < ApplicationController
     result2 = JSON.parse(RestClient.get(new_url2))
     render json: {"price":result, "start":result2["open"]}, status: :ok
   end
+
   def logo
     new_url = "#{@url}stock/#{params[:id]}/logo"
     result = JSON.parse(RestClient.get(new_url))
     render json: result, status: :ok
   end
+
 end

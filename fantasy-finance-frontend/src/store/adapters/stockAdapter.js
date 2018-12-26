@@ -10,6 +10,16 @@ export default class StockAdapter {
       .then(res => res.json())
 
   }
+  static getGainersLosers() {
+    return fetch(`${STOCK_URL}gainers-losers`,{
+    method: "GET",
+    headers:{
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    }
+    })
+      .then(res => res.json())
+
+  }
   static getSearchTickers() {
     return fetch(`${STOCK_URL}tickers`,{
     method: "GET",

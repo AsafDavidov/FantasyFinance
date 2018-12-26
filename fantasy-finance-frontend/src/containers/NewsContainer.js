@@ -10,13 +10,18 @@ class NewsContainer extends Component{
     indexes: []
   }
   componentDidMount(){
-    this.fetchRecentNews()
-    .then(data=>{
-      let indexArray = Object.keys(data.index).map(k=>({symbol: k, percentChange:data.index[k].quote.changePercent}))
-      this.setState({sectorPerformance:data.sector,indexes:indexArray})
-    })
+    this.performanceTimer = setInterval(()=>{
+      this.fetchSectorPerformance()
+      .then(data=>{
+        let indexArray = Object.keys(data.index).map(k=>({symbol: k, percentChange:data.index[k].quote.changePercent}))
+        this.setState({sectorPerformance:data.sector,indexes:indexArray})
+      })
+    },3000)
   }
-  fetchRecentNews = () =>{
+  componentWillUnmount(){
+    clearInterval(this.performanceTimer)
+  }
+  fetchSectorPerformance = () =>{
     return StockAdapter.getSectorPerformance()
   }
  render(){

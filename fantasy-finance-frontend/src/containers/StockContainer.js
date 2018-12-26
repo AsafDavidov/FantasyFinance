@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StockAdapter from "../store/adapters/stockAdapter"
 import SearchComponent from "../components/SearchComponent"
 import StockComponent from "../components/StockComponent"
+import GainersLosers from "../components/GainersLosers"
 import PropTypes from 'prop-types'
 import {Switch, Route, Redirect} from "react-router-dom"
 import { Label } from 'semantic-ui-react'
@@ -35,7 +36,7 @@ class StockContainer extends Component{
         </Switch>
       )
     }else{
-      return null
+      return <GainersLosers />
     }
   }
  render(){
