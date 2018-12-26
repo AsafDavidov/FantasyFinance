@@ -20,6 +20,8 @@
 .stock-chosen{
   margin-left: 50%;
 }
+/* End Stock search */
+
 /*Navigation Bar  */
 .navbar {
   margin-bottom: 15px;
@@ -50,11 +52,13 @@
 .navlinks .active {
   background-color: #158db8;
 }
+/* End Navigation Bar  */
 /* StockChart */
 .react-stockchart svg{
   margin-right: 10%;
   position: relative;
 }
+/* End StockChart */
 /* Profile Tabs */
 .profile-nav-bar{
   margin-top: 13px;
@@ -75,6 +79,7 @@
 .ui.form .field>label {
   color:white;
 }
+/* End Profile Tabs */
 /* Home Screen */
 .home-grid img{
   width:100%;
@@ -129,3 +134,4 @@
   border: black;
   border-radius: 4px;
 }
+/* End Home Screen */
