@@ -24,10 +24,10 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def tickers
-    new_url = "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
+    new_url = "#{@url}ref-data/symbols?filter=symbol,name"
     results = JSON.parse(RestClient.get(new_url))
     formatted = results.each_with_index.map do |result,index|
-      {key:index,"title":result["Name"], "sector":result["Sector"], "symbol":result["Symbol"]}
+      {key:index,"title":result["name"], "symbol":result["symbol"]}
     end
     render json: formatted, status: :ok
   end
