@@ -11,13 +11,15 @@ class PortfolioShow extends Component{
     currentPortfolioValue: null,
     holdings: [],
     loggedInUsersPortfolio:false,
-    sortedBy:""
+    sortedBy:"",
+    reversed:false
   }
   componentDidMount(){
     this.timer = setInterval(()=>portfolioAdapter.getPortfolioValue(parseInt(this.props.location.pathname.split("/").slice(-1)[0]))
     .then(data=> {
       let formattedHoldings = data.holdings_with_changes
       if (this.state.sortedBy !== "") formattedHoldings = _.sortBy(formattedHoldings,this.state.sortedBy)
+      if (this.state.reversed) formattedHoldings = formattedHoldings.reverse()
       if(this.props.portfolios.find(portfolio=>portfolio.id === parseInt(this.props.location.pathname.split("/").slice(-1)[0]))){
         this.setState({loggedInUsersPortfolio:true,currentPortfolioValue:data.total_value,holdings:formattedHoldings})
       }else{
@@ -31,33 +33,14 @@ class PortfolioShow extends Component{
   }
 
   handleClick = (e)=>{
-    let sortedArray = this.state.holdings;
-    switch (e.id) {
-      case "name":
-        sortedArray = _.sortBy(this.state.holdings,"name")
-        this.setState({holdings:sortedArray,sortedBy:"name"})
-        break;
-      case "symbol":
-        sortedArray = _.sortBy(this.state.holdings,"ticker")
-        this.setState({holdings:sortedArray,sortedBy:"ticker"})
-        break;
-      case "numshares":
-        sortedArray = _.sortBy(this.state.holdings,"num_shares")
-        this.setState({holdings:sortedArray,sortedBy:"num_shares"})
-        break;
-      case "pricebought":
-        sortedArray = _.sortBy(this.state.holdings,"price_bought")
-        this.setState({holdings:sortedArray,sortedBy:"price_bought"})
-        break;
-      case "gainloss":
-        sortedArray = _.sortBy(this.state.holdings,"changes")
-        this.setState({holdings:sortedArray,sortedBy:"changes"})
-        break;
-      case "totalvalue":
-        sortedArray = _.sortBy(this.state.holdings,"value")
-        this.setState({holdings:sortedArray,sortedBy:"value"})
-        break;
-    }
+    let sortedArray = sortedArray = _.sortBy(this.state.holdings,e.id)
+    let reverse=false
+    if (this.state.sortedBy===e.id){
+         sortedArray.reverse()
+         reverse=true
+     }
+    this.setState({holdings:sortedArray,sortedBy:e.id,reversed:reverse})
+
   }
    render(){
      if (!!this.state.currentPortfolioValue && this.state.holdings.length===0){
@@ -73,11 +56,11 @@ class PortfolioShow extends Component{
               <Table.Header>
                 <Table.Row onClick={(event)=>this.handleClick(event.target)}>
                   <Table.HeaderCell id="name">Company Name</Table.HeaderCell>
-                  <Table.HeaderCell id="symbol">Symbol</Table.HeaderCell>
-                  <Table.HeaderCell id="numshares">Number of Shares</Table.HeaderCell>
-                  <Table.HeaderCell id="pricebought">Price Bought</Table.HeaderCell>
-                  <Table.HeaderCell id="gainloss">Gain/Loss (%)</Table.HeaderCell>
-                  <Table.HeaderCell id="totalvalue">Total Value</Table.HeaderCell>
+                  <Table.HeaderCell id="ticker">Symbol</Table.HeaderCell>
+                  <Table.HeaderCell id="num_shares">Number of Shares</Table.HeaderCell>
+                  <Table.HeaderCell id="price_bought">Price Bought</Table.HeaderCell>
+                  <Table.HeaderCell id="changes">Gain/Loss (%)</Table.HeaderCell>
+                  <Table.HeaderCell id="value">Total Value</Table.HeaderCell>
                   {this.state.loggedInUsersPortfolio ? <Table.HeaderCell>Sell Holding</Table.HeaderCell> : null}
                 </Table.Row>
              </Table.Header>
