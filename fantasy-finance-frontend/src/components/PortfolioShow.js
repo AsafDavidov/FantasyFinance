@@ -69,7 +69,7 @@ class PortfolioShow extends Component{
      }else if (!!this.state.currentPortfolioValue && this.state.holdings.length>0){
        return(
          <div>
-            <Table celled>
+            <Table celled sortable>
               <Table.Header>
                 <Table.Row onClick={(event)=>this.handleClick(event.target)}>
                   <Table.HeaderCell id="name">Company Name</Table.HeaderCell>

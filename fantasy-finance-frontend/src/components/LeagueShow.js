@@ -16,7 +16,7 @@ class LeagueShow extends Component{
   componentDidMount(){
     this.timer = setInterval(()=>this.fetchLeagueInfo()
     .then(data=>{
-      let sortedPortfolios = _.sortBy(data.portfolios,'value')
+      let sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
       if (this.state.sortedBy !== "") sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
       let leagueEndDate = new Date(data.league.end_date)
       let today = new Date()
@@ -56,7 +56,7 @@ class LeagueShow extends Component{
         this.setState({holdings:sortedArray,sortedBy:"username"})
         break;
       case "value":
-        sortedArray = _.sortBy(this.state.holdings,"value")
+        sortedArray = _.sortBy(this.state.holdings,"value").reverse()
         this.setState({holdings:sortedArray,sortedBy:"value"})
         break;
       case "gainloss":
@@ -71,7 +71,7 @@ class LeagueShow extends Component{
         <div>
         <h1>{this.state.league.name}</h1>
         {this.state.league.finished ? <h2>This League has ended</h2> : <h2>Days left to invest: {this.calculateDaysLeft()}</h2>}
-          <Table celled>
+          <Table celled sortable>
             <Table.Header>
               <Table.Row onClick={(event)=>this.handleClick(event.target)}>
                 <Table.HeaderCell id="ranking">Rank</Table.HeaderCell>

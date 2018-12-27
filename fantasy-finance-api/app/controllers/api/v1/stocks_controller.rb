@@ -29,6 +29,7 @@ class Api::V1::StocksController < ApplicationController
     formatted = results.each_with_index.map do |result,index|
       {key:index,"title":result["name"], "symbol":result["symbol"]}
     end
+
     render json: formatted, status: :ok
   end
 
