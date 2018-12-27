@@ -4,6 +4,7 @@ import ProfileContainer from "./ProfileContainer"
 import StockContainer from "./StockContainer"
 import LeaguesContainer from "./LeaguesContainer"
 import LeagueShow from "../components/LeagueShow"
+import StockComponent from "../components/StockComponent"
 import PortfolioShow from "../components/PortfolioShow"
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'
@@ -18,7 +19,8 @@ class MainContainer extends Component{
           <Switch>
             <Route path="/home" component={NewsContainer}/>
             <Route path="/profile" component={ProfileContainer}/>
-            <Route path="/stocks" component={StockContainer}/>
+            <Route exact path="/stocks" component={StockContainer}/>
+            <Route path="/stocks/:id" render = {(routerProps)=><StockComponent stock={routerProps.match.params.id}/>}/>
             <Route exact path="/leagues" component={LeaguesContainer}/>
             <Route path="/league/:id" component={LeagueShow}/>
             <Route path="/portfolios/:id" component={PortfolioShow}/>
