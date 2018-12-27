@@ -27,29 +27,20 @@ class StockContainer extends Component{
     .then(data=>this.setState({stocks:data}))
   }
   handleChosenStock = (result) =>{
-    this.setState({chosenStock:result.symbol})
-  }
-  wasStockChosen = () => {
-    if(this.state.chosenStock){
+    this.setState({chosenStock:result.symbol},this.props.history.push(`/stocks/${result.symbol}`));
 
-      return(
-        <Switch>
-          <Route exact path={`/stocks/:id`} render = {()=><StockComponent stock={this.state.chosenStock}/>}/>
-          <Redirect to={`stocks/${this.state.chosenStock}`} />
-        </Switch>
-      )
-    }else{
-      return <GainersLosers />
-    }
   }
  render(){
    return(
      <div>
-        <div className={!!this.state.chosenStock ? "stock-chosen": null}>
+        <div className={this.props.match.params.id ? "stock-chosen": null}>
           <SearchComponent handleChosenStock={this.handleChosenStock} resultRenderer={resultRenderer} stocks={this.state.stocks}/>
         </div>
         <div>
-        {this.wasStockChosen()}
+          <Switch>
+            <Route path={`/stocks/:id`} render={()=><StockComponent key={this.state.chosenStock} stock={this.state.chosenStock}/>}/>
+            <Route exact path="/stocks" component={GainersLosers}/>
+          </Switch>
         </div>
      </div>
    )
