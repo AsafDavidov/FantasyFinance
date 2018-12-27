@@ -71,25 +71,32 @@ class Purchase extends Component{
   }
 
   render(){
-    return (
-      <div>
-        <div><Image alt="" src={this.state.imgSource} size='small' centered /></div>
-        <div>{this.state.currentPrice ? <h1 style={{color:this.state.color}}>Current Price:{this.state.currentPrice} </h1> : <Loader active size="large">Getting Price Data...</Loader>}</div>
-        <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
-        {this.handlePredictedCashLeft()}
-        {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
-        {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
-        <Form size={"small"} onSubmit={this.buyStocks}>
-        <Form.Field >
-          <label>Number of Shares to Purchase:</label>
-          <Input value={this.state.numShares ? this.state.numShares : ""} style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
-          <label>Choose a portfolio:</label>
-          <Select value={this.state.chosenPortfolio ? this.state.chosenPortfolio.name : null} style={{width:"400px"}} onChange={this.changePortfolio} options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
-        </Form.Field>
-        <Button type='submit'>Buy Shares</Button>
-        </Form>
+    if (this.state.currentPrice) {
+      return(<div>
+        <div>
+          <Image alt="" src={this.state.imgSource} size='small' centered />
+        </div>
+          <div>
+            <h1 style={{fontSize:"32px",color:"black"}}>Price:{this.state.currentPrice}<span style={this.state.currentPrice>this.state.startPrice ? {fontSize:"20px",color:"green"}: {fontSize:"20px",color:"red"}}>{parseFloat(this.state.currentPrice-this.state.startPrice).toFixed(2)} ({parseFloat(((this.state.currentPrice-this.state.startPrice)/this.state.startPrice)*100).toFixed(2)}%) </span></h1>
+          </div>
+          <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
+          {this.handlePredictedCashLeft()}
+          {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
+          {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
+          <Form size={"small"} onSubmit={this.buyStocks}>
+            <Form.Field >
+              <label>Number of Shares to Purchase:</label>
+              <Input value={this.state.numShares ? this.state.numShares : ""} style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
+              <label>Choose a portfolio:</label>
+              <Select value={this.state.chosenPortfolio ? this.state.chosenPortfolio.name : null} style={{width:"400px"}} onChange={this.changePortfolio} options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
+            </Form.Field>
+            <Button type='submit'>Buy Shares</Button>
+          </Form>
       </div>
     )
+    }else {
+       return <Loader active size="large">Getting Price Data...</Loader>
+    }
   }
 };
 

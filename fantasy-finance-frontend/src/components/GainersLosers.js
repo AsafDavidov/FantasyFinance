@@ -22,10 +22,11 @@ class GainersLosers extends Component{
     return StockAdapter.getGainersLosers()
   }
   render(){
-    if (this.state.gainers.length>0 && this.state.losers.length>0){
+    if (this.state.gainers.length>0 || this.state.losers.length>0){
       return(
         <div style={{marginLeft:"20%",marginTop:"40px",width:"60%"}}>
           <div className="gainer-table">
+            <h1 style={{color:"black"}}>Gainers</h1>
             <Table basic='very' celled collapsing>
               <Table.Header>
                 <Table.Row>
@@ -53,6 +54,7 @@ class GainersLosers extends Component{
             </Table>
           </div>
           <div className="loser-table">
+           <h1 style={{color:"black"}}>Losers</h1>
             <Table basic='very' celled collapsing>
               <Table.Header>
                 <Table.Row>
