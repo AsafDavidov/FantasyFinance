@@ -10,12 +10,14 @@ class LeagueShow extends Component{
   state = {
     league: null,
     portfolios: [],
-    finished: null
+    finished: null,
+    sortedBy:""
   }
   componentDidMount(){
     this.timer = setInterval(()=>this.fetchLeagueInfo()
     .then(data=>{
       let sortedPortfolios = _.sortBy(data.portfolios,'value')
+      if (this.state.sortedBy !== "") sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
       let leagueEndDate = new Date(data.league.end_date)
       let today = new Date()
       if (today>leagueEndDate){
@@ -37,6 +39,31 @@ class LeagueShow extends Component{
     const diffTime = leagueEndDate.getTime() - today.getTime()
     const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24))
     return diffDays
+  }
+  handleClick = (e)=>{
+    let sortedArray = this.state.holdings;
+    switch (e.id) {
+      case "name":
+        sortedArray = _.sortBy(this.state.holdings,"name")
+        this.setState({holdings:sortedArray,sortedBy:"name"})
+        break;
+      case "ranking":
+        sortedArray = _.sortBy(this.state.holdings,"value")
+        this.setState({holdings:sortedArray,sortedBy:"value"})
+        break;
+      case "username":
+        sortedArray = _.sortBy(this.state.holdings,"username")
+        this.setState({holdings:sortedArray,sortedBy:"username"})
+        break;
+      case "value":
+        sortedArray = _.sortBy(this.state.holdings,"value")
+        this.setState({holdings:sortedArray,sortedBy:"value"})
+        break;
+      case "gainloss":
+        sortedArray = _.sortBy(this.state.holdings,"changes")
+        this.setState({holdings:sortedArray,sortedBy:"changes"})
+        break;
+    }
   }
   render(){
     if (!!this.state.league){

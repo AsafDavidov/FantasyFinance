@@ -16,7 +16,6 @@ class Portfolio < ApplicationRecord
       {name: result["companyName"], ticker: holding.ticker, price: result["latestPrice"]}
     end.uniq{|holding| holding[:ticker]}
     portfolio_value = self.current_balance
-    total_portfolio_change = 0
     holdings_with_changes = self.holdings.map do |holding|
       #for total portfolio value
       holding_current_price = tickers_and_current_prices.find{|t_and_c| t_and_c[:ticker] == holding.ticker}[:price]
@@ -25,9 +24,9 @@ class Portfolio < ApplicationRecord
       portfolio_value = (portfolio_value + holding_current_value).round(2)
       #for change in portfolio
       holding_percentage_change = (((holding_current_price-holding.price_bought)/holding.price_bought) * 100).round(2)
-      total_portfolio_change = total_portfolio_change + holding_percentage_change
       {"id"=>holding.id,"name" =>holding_current_name, "ticker" => holding.ticker, "num_shares" =>holding.num_shares, "changes"=> holding_percentage_change, "value" => holding_current_value.round(2), "price_bought" =>holding.price_bought}
     end
+    total_portfolio_change = (((portfolio_value-self.league.start_balance)/self.league.start_balance)*100).round(2)
     {"holdings_with_changes" =>holdings_with_changes, "total_value" =>portfolio_value, "total_change" => total_portfolio_change}
   end
 

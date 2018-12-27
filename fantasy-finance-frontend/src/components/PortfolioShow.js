@@ -90,7 +90,7 @@ class PortfolioShow extends Component{
          </div>
         )
       }else{
-        return <Loader active size="large"/>
+        return <Loader active size="large">Loading Portfolio</Loader>
       }
 
   }
