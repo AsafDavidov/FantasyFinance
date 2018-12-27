@@ -6,6 +6,7 @@ import * as actions from "../store/actions/holding"
 
 class Purchase extends Component{
   state = {
+    companyName:null,
     currentPrice: null,
     currentBalance:null,
     numShares:null,
@@ -40,7 +41,7 @@ class Purchase extends Component{
   fetchLogo = ()=>{
     StockAdapter.getLogo(this.props.stock)
     .then(data=>{
-      this.setState({imgSource:data.url})
+      this.setState({imgSource:data.url,companyName:data.companyName})
     })
   }
   buyStocks = ()=>{
@@ -76,8 +77,9 @@ class Purchase extends Component{
         <div>
           <Image alt="" src={this.state.imgSource} size='small' centered />
         </div>
+          <h1 style={{fontSize:"36px",color:"black"}}>{this.state.companyName}</h1>
           <div>
-            <h1 style={{fontSize:"32px",color:"black"}}>Price:{this.state.currentPrice}<span style={this.state.currentPrice>this.state.startPrice ? {fontSize:"20px",color:"green"}: {fontSize:"20px",color:"red"}}>{parseFloat(this.state.currentPrice-this.state.startPrice).toFixed(2)} ({parseFloat(((this.state.currentPrice-this.state.startPrice)/this.state.startPrice)*100).toFixed(2)}%) </span></h1>
+            <h1 style={{fontSize:"32px",color:"black"}}>Price:{this.state.currentPrice}  <span style={this.state.currentPrice>this.state.startPrice ? {fontSize:"20px",color:"green"}: {fontSize:"20px",color:"red"}}>{parseFloat(this.state.currentPrice-this.state.startPrice).toFixed(2)} ({parseFloat(((this.state.currentPrice-this.state.startPrice)/this.state.startPrice)*100).toFixed(2)}%) </span></h1>
           </div>
           <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
           {this.handlePredictedCashLeft()}

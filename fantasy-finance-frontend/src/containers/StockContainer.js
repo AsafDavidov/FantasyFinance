@@ -4,8 +4,9 @@ import SearchComponent from "../components/SearchComponent"
 import StockComponent from "../components/StockComponent"
 import GainersLosers from "../components/GainersLosers"
 import PropTypes from 'prop-types'
-import {Switch, Route, Redirect} from "react-router-dom"
-import { Label } from 'semantic-ui-react'
+import {withRouter,Switch, Route, Redirect} from "react-router-dom"
+import {Label} from 'semantic-ui-react'
+
 
 const resultRenderer = ({ id, title }) => <Label content={title} />
 resultRenderer.propTypes = {
@@ -19,6 +20,7 @@ class StockContainer extends Component{
   }
   componentDidMount(){
     this.fetchTickers()
+    if(this.props.match.params.id) this.setState({chosenStock:this.props.match.params.id})
   }
   fetchTickers = () =>{
     StockAdapter.getSearchTickers()
@@ -29,10 +31,11 @@ class StockContainer extends Component{
   }
   wasStockChosen = () => {
     if(this.state.chosenStock){
+
       return(
         <Switch>
-          <Route exact path={`${this.props.match.path}/${this.state.chosenStock}`} render = {()=><StockComponent stock={this.state.chosenStock}/>}/>
-          <Redirect to={`${this.props.match.path}/${this.state.chosenStock}`}/>
+          <Route exact path={`/stocks/:id`} render = {()=><StockComponent stock={this.state.chosenStock}/>}/>
+          <Redirect to={`stocks/${this.state.chosenStock}`} />
         </Switch>
       )
     }else{
@@ -53,4 +56,4 @@ class StockContainer extends Component{
  }
 }
 
-export default StockContainer
+export default withRouter(StockContainer)

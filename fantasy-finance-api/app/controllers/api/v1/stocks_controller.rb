@@ -49,8 +49,10 @@ class Api::V1::StocksController < ApplicationController
 
   def logo
     new_url = "#{@url}stock/#{params[:id]}/logo"
+    new_url2 = "#{@url}stock/#{params[:id]}/quote?filter=companyName"
     result = JSON.parse(RestClient.get(new_url))
-    render json: result, status: :ok
+    result2 = JSON.parse(RestClient.get(new_url2))
+    render json: {url: result['url'], companyName: result2['companyName']}, status: :ok
   end
 
 end

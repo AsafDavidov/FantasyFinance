@@ -24,7 +24,7 @@ class GainersLosers extends Component{
   render(){
     if (this.state.gainers.length>0 || this.state.losers.length>0){
       return(
-        <div style={{marginLeft:"20%",marginTop:"40px",width:"60%"}}>
+        <div style={{marginLeft:"25%",marginTop:"40px",width:"60%"}}>
           <div className="gainer-table">
             <h1 style={{color:"black"}}>Gainers</h1>
             <Table basic='very' celled collapsing>

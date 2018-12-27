@@ -139,10 +139,11 @@
 .gainer-table{
   float:left;
   font-size: 20px;
+  margin-right:5%;
 }
 .loser-table{
   float:right;
-  margin-right: 10%;
+  margin-right: 5%;
   font-size: 20px;
 }
 /* End Gainer/Loser Tables */

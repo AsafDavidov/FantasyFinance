@@ -33,7 +33,7 @@ class PortfolioShow extends Component{
   }
 
   handleClick = (e)=>{
-    let sortedArray = sortedArray = _.sortBy(this.state.holdings,e.id)
+    let sortedArray = _.sortBy(this.state.holdings,e.id)
     let reverse=false
     if (this.state.sortedBy===e.id){
          sortedArray.reverse()
