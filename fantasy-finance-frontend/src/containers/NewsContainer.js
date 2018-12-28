@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PerformanceBlock from "../components/PerformanceBlock"
 import NewsStrip from "../components/NewsStrip"
 import StockAdapter from "../store/adapters/stockAdapter"
-import {Loader, Grid} from "semantic-ui-react"
+import {Loader, Grid,Divider} from "semantic-ui-react"
 import "../Profile.css"
 
 class NewsContainer extends Component{
@@ -37,7 +37,8 @@ class NewsContainer extends Component{
    if (this.state.sectorPerformance.length>0&&this.state.indexes.length>0){
      return(
        <div style={{width:"80%", marginLeft:"10%"}}>
-        <h1 style={{fontWeight:"200",fontSize:"40px", fontFamily:"Alike Angular"}}>Sector Performance</h1>
+        <h1 style={{textAlign:"left",fontWeight:"200",fontSize:"40px", fontFamily:"Alike Angular"}}>Sector Performance</h1>
+        <Divider />
         <div className="home-grid">
           <Grid columns='equal'>
             <Grid.Row>
