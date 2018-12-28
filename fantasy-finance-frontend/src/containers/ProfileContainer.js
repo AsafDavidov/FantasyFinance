@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import Leagues from "../components/Leagues"
 import Breakdown from "../components/Breakdown"
+import UserAdapter from "../store/adapters/userAdapter"
 import {Route, Switch, Redirect } from "react-router-dom"
 import { NavTab } from 'react-router-tabs';
 import {connect} from 'react-redux'
 import '../Profile.css'
 
 class ProfileContainer extends Component{
+  state = {
+    rival:null
+  }
+  componentDidMount(){
+    this.fetchUserInformation()
+    .then(data=>console.log(data))
+  }
+  fetchUserInformation = ()=>{
+    return UserAdapter.getUserProfileInformation()
+  }
 
   render(){
   return (

@@ -7,5 +7,24 @@ class User < ApplicationRecord
   ## RELATIONSHIPS
   has_many :portfolios
   has_many :leagues, through: :portfolios
-  
+
+
+  def biggest_rival
+    all_rivals = self.leagues.map{|league|league.portfolios-self.portfolios}.flatten.map{|p|p.user_id}
+    rival = User.find(all_rivals.max_by{|u|all_rivals.count(u)})
+    return rival
+  end
+
+  def number_and_percentage_of_wins
+
+  end
+
+  def biggest_value_smallest_value_holdings
+
+  end
+
+
+  def biggest_winner_biggest_loser
+
+  end
 end

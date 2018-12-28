@@ -30,8 +30,4 @@ class Portfolio < ApplicationRecord
     {"holdings_with_changes" =>holdings_with_changes, "total_value" =>portfolio_value, "total_change" => total_portfolio_change}
   end
 
-  def end_game_total_portfolio_value
-    # calculate the portfolios value given the end date
-  end
-
 end

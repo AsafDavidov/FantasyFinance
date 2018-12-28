@@ -19,10 +19,14 @@ class Api::V1::UsersController < ApplicationController
     user_leagues = User.find(@user.id).leagues
     render json: user_leagues, status: :ok
   end
-    private
+  def breakdown
+    rival = @user.biggest_rival
+    render json: {rival:rival}, status: :ok
+  end
+  private
 
-    def user_params
-      params.require(:user).permit(:username, :password, :first_name, :last_name)
-    end
+  def user_params
+    params.require(:user).permit(:username, :password, :first_name, :last_name)
+  end
 
 end

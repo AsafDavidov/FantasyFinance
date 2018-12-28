@@ -1,5 +1,14 @@
 const USER_URL = "http://localhost:4000/api/v1/users"
 export default class UserAdapter {
+  static getUserProfileInformation() {
+    return fetch(`${USER_URL}/breakdown`,{
+      method: "GET",
+      headers: {
+       Authorization: `Bearer ${localStorage.getItem("jwt")}`
+     },
+    })
+      .then(res => res.json())
+  }
   static loginUser(credentials) {
     return fetch(`http://localhost:4000/api/v1/auth`,{
       method: "POST",
