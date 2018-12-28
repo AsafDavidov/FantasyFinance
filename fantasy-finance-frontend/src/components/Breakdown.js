@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 const Breakdown = (props) => {
   return (
     <div>
-      edit your stuff
+      <h1>Your biggest rival: WOOP</h1>
+      <h1>Number portfolios winning/won: WOOP</h1>
+      <h1>Percentage of wins: WOOP</h1>
     </div>
   )
 };
