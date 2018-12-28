@@ -20,6 +20,7 @@ Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
 
 SALT = ENV['SALT']
+NEWS = ENV['NEWS']
 
 module FantasyFinanceApi
   class Application < Rails::Application

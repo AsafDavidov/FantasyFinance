@@ -1,6 +1,7 @@
-// Still UNUSED
+
 import React from 'react';
-const NewStrip = (props)=>{
+
+const NewStrip = ({news})=>{
    return(
      <div>
       newstrip

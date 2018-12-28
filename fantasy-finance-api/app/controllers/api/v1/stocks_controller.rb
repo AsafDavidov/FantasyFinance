@@ -55,4 +55,22 @@ class Api::V1::StocksController < ApplicationController
     render json: {url: result['url'], companyName: result2['companyName']}, status: :ok
   end
 
+  def news
+    uri = URI("https://api.nytimes.com/svc/topstories/v2/business.json")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    uri.query = URI.encode_www_form({
+      "api-key" => ENV['NEWS']
+    })
+    request = Net::HTTP::Get.new(uri.request_uri)
+    result = JSON.parse(http.request(request).body)
+    array_of_articles = result["results"][0,5]
+    formatted_array_of_articles = array_of_articles.map do |article|
+      article_multimedia = article["multimedia"].find{|pic| pic["format"]=="Normal"}
+      img_source = article_multimedia["url"]
+
+      {title: article["title"], url:article["url"], imgSrc:img_source, abstract:article["abstract"]}
+    end
+    render json: {news:formatted_array_of_articles}, status: :ok
+  end
 end

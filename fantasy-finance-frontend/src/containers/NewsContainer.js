@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PerformanceBlock from "../components/PerformanceBlock"
+import NewsStrip from "../components/NewsStrip"
 import StockAdapter from "../store/adapters/stockAdapter"
 import {Loader, Grid} from "semantic-ui-react"
 import "../Profile.css"
@@ -7,7 +8,8 @@ import "../Profile.css"
 class NewsContainer extends Component{
   state = {
     sectorPerformance: [],
-    indexes: []
+    indexes: [],
+    news:[]
   }
   componentDidMount(){
     this.performanceTimer = setInterval(()=>{
@@ -16,13 +18,20 @@ class NewsContainer extends Component{
         let indexArray = Object.keys(data.index).map(k=>({symbol: k, percentChange:data.index[k].quote.changePercent}))
         this.setState({sectorPerformance:data.sector,indexes:indexArray})
       })
-    },3000)
+    },3000);
+    this.fetchNews()
+    .then((data)=>{
+      this.setState({news:data.news})
+    })
   }
   componentWillUnmount(){
     clearInterval(this.performanceTimer)
   }
   fetchSectorPerformance = () =>{
     return StockAdapter.getSectorPerformance()
+  }
+  fetchNews = () =>{
+    return StockAdapter.getNews()
   }
  render(){
    if (this.state.sectorPerformance.length>0&&this.state.indexes.length>0){
@@ -71,7 +80,10 @@ class NewsContainer extends Component{
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          </div>
+        </div>
+        <div>
+          <NewsStrip news={this.state.news}/>
+        </div>
        </div>
      )
 
