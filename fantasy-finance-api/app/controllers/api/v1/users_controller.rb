@@ -20,7 +20,8 @@ class Api::V1::UsersController < ApplicationController
     render json: user_leagues, status: :ok
   end
   def breakdown
-    rival = @user.biggest_rival
+    rival = @user.biggest_rival.username
+    wins_win_percentage = @user.number_and_percentage_of_wins
     render json: {rival:rival}, status: :ok
   end
   private

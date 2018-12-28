@@ -16,7 +16,18 @@ class User < ApplicationRecord
   end
 
   def number_and_percentage_of_wins
+    ##find all users portfolios where that leagues has ended
+    finished_portfolios = self.portfolios.select{|user_portfolio|Date.parse(user_portfolio.league.end_date.to_s)==Date.today}
+    ##find historical value for each portfolio within each league
+    finished_portfolios.map do |finished_portfolio|
+        {total_value: finished_portfolio.historical_total_portfolio_value, id: finished_portfolio.id}
+    end
+    ## find max value portfolio for each league
 
+    ## return percentage of leagues in which the leading portfolio is current users portfolio
+    finished_portfolios
+    binding.pry
+    puts "woop"
   end
 
   def biggest_value_smallest_value_holdings
