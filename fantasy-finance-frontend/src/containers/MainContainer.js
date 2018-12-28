@@ -4,7 +4,6 @@ import ProfileContainer from "./ProfileContainer"
 import StockContainer from "./StockContainer"
 import LeaguesContainer from "./LeaguesContainer"
 import LeagueShow from "../components/LeagueShow"
-import StockComponent from "../components/StockComponent"
 import PortfolioShow from "../components/PortfolioShow"
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StockAdapter from "../store/adapters/stockAdapter"
 import {Loader, Table, Header} from "semantic-ui-react"
 import "../Profile.css"
+import {Link} from "react-router-dom"
 class GainersLosers extends Component{
   state = {
     gainers: [],
@@ -38,13 +39,15 @@ class GainersLosers extends Component{
               <Table.Body>
                 {this.state.gainers.map(gainer=>{
                   return(<Table.Row key={gainer.name}>
-                          <Table.Cell>
+                          <Table.Cell selectable>
+                          <Link to={`stocks/${gainer.symbol}`}>
                             <Header as='h4' >
                               <Header.Content>
                                 {gainer.symbol}
-                                <Header.Subheader>{gainer.name}</Header.Subheader>
+                                <Header.Subheader>{gainer.name.length > 40 ? `${gainer.name.slice(0,39)}...`:gainer.name}</Header.Subheader>
                               </Header.Content>
                             </Header>
+                          </Link>
                          </Table.Cell>
                          <Table.Cell positive>{"+"+gainer.change+"%"}</Table.Cell>
                          <Table.Cell>{gainer.price}</Table.Cell>
@@ -66,13 +69,15 @@ class GainersLosers extends Component{
               <Table.Body>
                 {this.state.losers.map(loser=>{
                   return(<Table.Row key={loser.name}>
-                          <Table.Cell>
-                            <Header as='h4' >
-                              <Header.Content>
-                                {loser.symbol}
-                                <Header.Subheader>{loser.name}</Header.Subheader>
-                              </Header.Content>
-                            </Header>
+                          <Table.Cell selectable>
+                          <Link to={`stocks/${loser.symbol}`}>
+                              <Header as='h4' >
+                                <Header.Content>
+                                  {loser.symbol}
+                                  <Header.Subheader>{loser.name.length > 40 ? `${loser.name.slice(0,39)}...`:loser.name}</Header.Subheader>
+                                </Header.Content>
+                              </Header>
+                          </Link>
                          </Table.Cell>
                          <Table.Cell negative>{"-"+loser.change+"%"}</Table.Cell>
                          <Table.Cell>{loser.price}</Table.Cell>

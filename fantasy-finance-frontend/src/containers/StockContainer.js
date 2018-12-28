@@ -4,7 +4,7 @@ import SearchComponent from "../components/SearchComponent"
 import StockComponent from "../components/StockComponent"
 import GainersLosers from "../components/GainersLosers"
 import PropTypes from 'prop-types'
-import {withRouter,Switch, Route, Redirect} from "react-router-dom"
+import {withRouter,Switch, Route} from "react-router-dom"
 import {Label} from 'semantic-ui-react'
 
 
@@ -22,13 +22,17 @@ class StockContainer extends Component{
     this.fetchTickers()
     if(this.props.match.params.id) this.setState({chosenStock:this.props.match.params.id})
   }
+  componentDidUpdate(prevProps,prevState){
+    if(this.props.match.params.id && this.state.chosenStock !== this.props.match.params.id){
+      this.setState({chosenStock:this.props.match.params.id})
+    }
+  }
   fetchTickers = () =>{
     StockAdapter.getSearchTickers()
     .then(data=>this.setState({stocks:data}))
   }
   handleChosenStock = (result) =>{
     this.setState({chosenStock:result.symbol},this.props.history.push(`/stocks/${result.symbol}`));
-
   }
  render(){
    return(
