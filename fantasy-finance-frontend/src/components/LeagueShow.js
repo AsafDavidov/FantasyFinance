@@ -27,7 +27,7 @@ class LeagueShow extends Component{
       }else{
         this.setState({league:data.league, portfolios:sortedPortfolios,finished:false})
       }
-    }),1000)
+    }),3000)
   }
   componentWillUnmount(){
     clearInterval(this.timer)
@@ -60,7 +60,6 @@ class LeagueShow extends Component{
           <Table celled sortable>
             <Table.Header>
               <Table.Row onClick={(event)=>this.handleClick(event.target)}>
-                <Table.HeaderCell id="value">Rank</Table.HeaderCell>
                 <Table.HeaderCell id="name">Name</Table.HeaderCell>
                 <Table.HeaderCell id="username">Username</Table.HeaderCell>
                 <Table.HeaderCell id="value">Value</Table.HeaderCell>
@@ -69,7 +68,7 @@ class LeagueShow extends Component{
               </Table.Row>
            </Table.Header>
             <Table.Body>
-              {this.state.portfolios.map((p,index)=><PortfolioRow key={p.name} id={p.id} number={index} name={p.name} user={p.username} value={p.value} change={p.total_change}/>)}
+              {this.state.portfolios.map(p=><PortfolioRow key={p.name} id={p.id} name={p.name} user={p.username} value={p.value} change={p.total_change}/>)}
             </Table.Body>
             </Table>
         </div>

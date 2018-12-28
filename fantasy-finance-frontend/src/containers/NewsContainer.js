@@ -5,6 +5,7 @@ import StockAdapter from "../store/adapters/stockAdapter"
 import {Loader, Grid,Divider} from "semantic-ui-react"
 import "../Profile.css"
 
+// COMMENT OUT indexes if not being used!
 class NewsContainer extends Component{
   state = {
     sectorPerformance: [],

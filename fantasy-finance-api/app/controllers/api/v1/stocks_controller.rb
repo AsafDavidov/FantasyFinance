@@ -4,6 +4,7 @@ class Api::V1::StocksController < ApplicationController
     @url="https://api.iextrading.com/1.0/"
   end
 
+  # COMMENT OUT INDEX IF NOT BEING USED
   def sector_performance
     sector_url = "#{@url}stock/market/sector-performance"
     index_url = "#{@url}stock/market/batch?symbols=DIA,SPY,IWM&types=quote&filter=changePercent"

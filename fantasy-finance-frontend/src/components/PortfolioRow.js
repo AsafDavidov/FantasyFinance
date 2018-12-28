@@ -3,7 +3,7 @@ import {Button,Table} from "semantic-ui-react"
 import {withRouter} from "react-router-dom"
 import {connect} from "react-redux"
 
-const PortfolioRow= ({portfolios,history,number,id,name,user,value,change})=>{
+const PortfolioRow= ({portfolios,history,id,name,user,value,change})=>{
   const handleViewPortfolio=()=>{
     history.push(`/portfolios/${id}`)
   }
@@ -12,7 +12,6 @@ const PortfolioRow= ({portfolios,history,number,id,name,user,value,change})=>{
   }
  return(
         <Table.Row warning={handleUserPortfolio()}>
-            <Table.Cell>{number+1}</Table.Cell>
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{user}</Table.Cell>
             <Table.Cell>{value}</Table.Cell>
