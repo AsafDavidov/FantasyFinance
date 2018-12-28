@@ -1,6 +1,6 @@
 # Fantasy Finance
 
-A React application using a Ruby on Rails backend to create a web application that mimics a fantasy sports functionality expect that users purchase and sell stock holdings. Currently only the stocks within the S&P 500 are available.
+A React application using a Ruby on Rails backend to create a web application that mimics a fantasy sports functionality expect that users purchase and sell stock holdings.
 
 ## Setup instructions
 
