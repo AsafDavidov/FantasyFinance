@@ -1,4 +1,5 @@
 class Api::V1::HoldingsController < ApplicationController
+
   def create
     holding = Holding.new(holding_params)
     total_value = holding.price_bought * holding.num_shares

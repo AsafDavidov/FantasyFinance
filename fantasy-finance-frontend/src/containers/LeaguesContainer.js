@@ -19,7 +19,7 @@ class LeaguesContainer extends Component{
     .then(data=>this.setState({leagues:data}))
   }
   handleNewLeague=()=>{
-    let data = {league:{name:this.state.leagueName, start_balance:this.state.leagueBalance, end_date:this.state.date},portfolio:{expired:false,name:this.state.portfolioName}}
+    let data = {league:{name:this.state.leagueName, start_balance:this.state.leagueBalance, end_date:this.state.date},portfolio:{name:this.state.portfolioName}}
     this.props.attemptPostLeague(data)
     this.setState({...this.state, selectLeague:null,leagueName:null,leagueBalance:null, date:""})
   }

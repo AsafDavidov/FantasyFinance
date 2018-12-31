@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_163244) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "expired", default: false, null: false
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -39,7 +40,6 @@ ActiveRecord::Schema.define(version: 2018_12_31_163244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.boolean "expired"
   end
 
   create_table "users", force: :cascade do |t|

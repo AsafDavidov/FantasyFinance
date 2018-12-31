@@ -9,33 +9,38 @@ class User < ApplicationRecord
   has_many :leagues, through: :portfolios
 
 
+  def configure_leagues
+    
+    binding.pry
+    puts 'woop'
+  end
   def biggest_rival
     all_rivals = self.leagues.map{|league|league.portfolios-self.portfolios}.flatten.map{|p|p.user_id}
     rival = User.find(all_rivals.max_by{|u|all_rivals.count(u)})
     return rival
   end
 
-  def number_and_percentage_of_wins
-    ##find all users portfolios where that leagues has ended
-    finished_portfolios = self.portfolios.select{|user_portfolio|Date.parse(user_portfolio.league.end_date.to_s)==Date.today}
-    ##find historical value for each portfolio within each league
-    finished_portfolios.map do |finished_portfolio|
-        {total_value: finished_portfolio.historical_total_portfolio_value, id: finished_portfolio.id}
-    end
-    ## find max value portfolio for each league
-
-    ## return percentage of leagues in which the leading portfolio is current users portfolio
-    finished_portfolios
-    binding.pry
-    puts "woop"
-  end
-
-  def biggest_value_smallest_value_holdings
-
-  end
-
-
-  def biggest_winner_biggest_loser
-
-  end
+  # def number_and_percentage_of_wins
+  #   ##find all users portfolios where that leagues has ended
+  #   finished_portfolios = self.portfolios.select{|user_portfolio|Date.parse(user_portfolio.league.end_date.to_s)==Date.today}
+  #   ##find historical value for each portfolio within each league
+  #   finished_portfolios.map do |finished_portfolio|
+  #       {total_value: finished_portfolio.historical_total_portfolio_value, id: finished_portfolio.id}
+  #   end
+  #   ## find max value portfolio for each league
+  #
+  #   ## return percentage of leagues in which the leading portfolio is current users portfolio
+  #   finished_portfolios
+  #   binding.pry
+  #   puts "woop"
+  # end
+  #
+  # def biggest_value_smallest_value_holdings
+  #
+  # end
+  #
+  #
+  # def biggest_winner_biggest_loser
+  #
+  # end
 end

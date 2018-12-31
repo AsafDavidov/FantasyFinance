@@ -8,7 +8,7 @@ User.create(first_name:"Warren",last_name:"Buffet",username:"wbuf", password:"pa
 
 puts "Seeding Leagues"
 l = League.create(name:"League of Champions", start_balance: 100000, end_date: DateTime.strptime('01/14/2019 8:00', "%m/%d/%Y %H:%M"))
-l2 = League.create(name:"Just Asaf", start_balance: 50000, end_date: DateTime.strptime('01/14/2019 8:00', "%m/%d/%Y %H:%M"))
+l2 = League.create(name:"Just Asaf", start_balance: 50000, end_date: DateTime.strptime('01/01/2019 8:00', "%m/%d/%Y %H:%M"))
 
 puts "Seeding Portfolios"
 

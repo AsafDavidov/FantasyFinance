@@ -25,6 +25,6 @@ class Api::V1::PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name, :league_id, :current_balance, :expired)
+    params.require(:portfolio).permit(:name, :league_id, :current_balance)
   end
 end
