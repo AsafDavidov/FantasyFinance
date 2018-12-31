@@ -10,7 +10,8 @@ class User < ApplicationRecord
 
 
   def configure_leagues
-    
+    # leagues = League.select{|league| !league.expired}
+
     binding.pry
     puts 'woop'
   end

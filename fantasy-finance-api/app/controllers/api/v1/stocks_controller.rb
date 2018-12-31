@@ -7,11 +7,12 @@ class Api::V1::StocksController < ApplicationController
   # COMMENT OUT INDEX IF NOT BEING USED
   def sector_performance
     sector_url = "#{@url}stock/market/sector-performance"
-    index_url = "#{@url}stock/market/batch?symbols=DIA,SPY,IWM&types=quote&filter=changePercent"
+    # index_url = "#{@url}stock/market/batch?symbols=DIA,SPY,IWM&types=quote&filter=changePercent"
     sector_results = JSON.parse(RestClient.get(sector_url))
-    index_results = JSON.parse(RestClient.get(index_url))
+    # index_results = JSON.parse(RestClient.get(index_url))
     sector_results = sector_results.sort_by{|obj| obj['performance']}.reverse!
-    render json: {sector: sector_results,index: index_results}, status: :ok
+    render json: {sector: sector_results}, status: :ok
+    # render json: {sector: sector_results,index: index_results}, status: :ok
   end
 
   def gainers_losers
@@ -66,12 +67,17 @@ class Api::V1::StocksController < ApplicationController
     request = Net::HTTP::Get.new(uri.request_uri)
     result = JSON.parse(http.request(request).body)
     array_of_articles = result["results"][0,5]
-    formatted_array_of_articles = array_of_articles.map do |article|
-      article_multimedia = article["multimedia"].find{|pic| pic["format"]=="Normal"}
-      img_source = article_multimedia["url"]
 
+    formatted_array_of_articles = array_of_articles.map do |article|
+      if article["multimedia"].size > 0
+        article_multimedia = article["multimedia"].find{|pic| pic["format"]=="Normal"}
+        img_source = article_multimedia["url"]
+      else
+        img_source = "http://miznerparkartscenter.com/mizner_site/wp-content/uploads/2016/08/NYT-logo.jpg"
+      end
       {title: article["title"], url:article["url"], imgSrc:img_source, abstract:article["abstract"]}
     end
+
     render json: {news:formatted_array_of_articles}, status: :ok
   end
 end

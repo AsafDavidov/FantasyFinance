@@ -22,7 +22,7 @@ class LeagueShow extends Component{
       if (this.state.reversed) sortedPortfolios = sortedPortfolios.reverse()
       let leagueEndDate = new Date(data.league.end_date)
       let today = new Date()
-      if (today>leagueEndDate){
+      if (data.league.expired){
         this.setState({league:data.league, portfolios:sortedPortfolios,finished:true})
       }else{
         this.setState({league:data.league, portfolios:sortedPortfolios,finished:false})
@@ -56,7 +56,7 @@ class LeagueShow extends Component{
       return(
         <div style={{width:"90%", marginLeft:"5%"}}>
         <h1>{this.state.league.name}</h1>
-        {this.state.league.finished ? <h2>This League has ended</h2> : <h2>Days left to invest: {this.calculateDaysLeft()}</h2>}
+        {this.state.finished ? <h2>This League has ended</h2> : <h2>Days left to invest: {this.calculateDaysLeft()}</h2>}
           <Table celled sortable>
             <Table.Header>
               <Table.Row onClick={(event)=>this.handleClick(event.target)}>

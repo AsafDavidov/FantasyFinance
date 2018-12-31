@@ -5,7 +5,7 @@ import StockAdapter from "../store/adapters/stockAdapter"
 import {Loader, Grid,Divider} from "semantic-ui-react"
 import "../Profile.css"
 
-// COMMENT OUT indexes if not being used!
+// COMMENT OUT indexes if not being used yet!
 class NewsContainer extends Component{
   state = {
     sectorPerformance: [],
@@ -16,8 +16,9 @@ class NewsContainer extends Component{
     this.performanceTimer = setInterval(()=>{
       this.fetchSectorPerformance()
       .then(data=>{
-        let indexArray = Object.keys(data.index).map(k=>({symbol: k, percentChange:data.index[k].quote.changePercent}))
-        this.setState({sectorPerformance:data.sector,indexes:indexArray})
+        //let indexArray = Object.keys(data.index).map(k=>({symbol: k, percentChange:data.index[k].quote.changePercent}))
+        // this.setState({sectorPerformance:data.sector,indexes:indexArray})
+        this.setState({sectorPerformance:data.sector})
       })
     },3000);
     this.fetchNews()
@@ -35,7 +36,9 @@ class NewsContainer extends Component{
     return StockAdapter.getNews()
   }
  render(){
-   if (this.state.sectorPerformance.length>0&&this.state.indexes.length>0){
+   //if (this.state.sectorPerformance.length>0&&this.state.indexes.length>0){
+   if (this.state.sectorPerformance.length>0){
+     console.log(this.state.news);
      return(
        <div style={{width:"80%", marginLeft:"10%"}}>
         <h1 style={{textAlign:"left",fontWeight:"200",fontSize:"40px", fontFamily:"Alike Angular"}}>Sector Performance</h1>
