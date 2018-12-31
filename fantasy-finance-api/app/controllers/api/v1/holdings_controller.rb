@@ -4,8 +4,7 @@ class Api::V1::HoldingsController < ApplicationController
     holding = Holding.new(holding_params)
     total_value = holding.price_bought * holding.num_shares
     found_portfolio = Portfolio.find(holding.portfolio_id)
-    binding.pry
-    if (holding.valid? && found_portfolio.current_balance > total_value)
+    if (holding.valid? && found_portfolio.current_balance > total_value && !found_portfolio.league.expired)
       found_portfolio.current_balance = found_portfolio.current_balance - total_value
       found_portfolio.save
       holding.save
@@ -15,6 +14,8 @@ class Api::V1::HoldingsController < ApplicationController
         render json: { message: 'Invalid Parameters' }, status: :not_acceptable
       elsif(!(found_portfolio.current_balance > total_value))
         render json: { message: 'Insufficient Funds' }, status: :not_acceptable
+      elsif(found_portfolio.league.expired)
+        render json: { message: 'League of this portfolio has expired' }, status: :not_acceptable
       else
         render json: { message: 'Incorrect' }, status: :not_acceptable
       end
