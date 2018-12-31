@@ -10,11 +10,17 @@ class User < ApplicationRecord
 
 
   def configure_leagues
-    # leagues = League.select{|league| !league.expired}
+    unexpired_leagues = League.select{|league| !league.expired}
 
-    binding.pry
-    puts 'woop'
+    # real check to test that a league has expired
+    #leagues_that_expired = unexpired_leagues.select{|league|league.end_date < Date.today()}
+
+    leagues_that_expired = unexpired_leagues.select{|league|league.id == 2}
+    leagues_that_expired.each do |league|
+      league.expire_league
+    end
   end
+
   def biggest_rival
     all_rivals = self.leagues.map{|league|league.portfolios-self.portfolios}.flatten.map{|p|p.user_id}
     rival = User.find(all_rivals.max_by{|u|all_rivals.count(u)})

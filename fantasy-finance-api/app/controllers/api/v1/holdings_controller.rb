@@ -4,7 +4,7 @@ class Api::V1::HoldingsController < ApplicationController
     holding = Holding.new(holding_params)
     total_value = holding.price_bought * holding.num_shares
     found_portfolio = Portfolio.find(holding.portfolio_id)
-    ##Real time grab of portfolio current balance
+    binding.pry
     if (holding.valid? && found_portfolio.current_balance > total_value)
       found_portfolio.current_balance = found_portfolio.current_balance - total_value
       found_portfolio.save

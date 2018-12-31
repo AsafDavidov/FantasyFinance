@@ -16,4 +16,10 @@ class League < ApplicationRecord
     end
   end
 
+  def expire_league
+    p = self.portfolios.each do |league_portfolio|
+      league_portfolio.expire_portfolio
+    end
+    self.update(expired: true)
+  end
 end
