@@ -3,7 +3,7 @@ class League < ApplicationRecord
   validates :name, presence:true
   validates :end_date, presence:true
   validates :start_balance, numericality: {greater_than: 5000}
-  #validate :end_date_cannot_be_in_the_past
+  validate :end_date_cannot_be_in_the_past
 
 
   ##RELATIONSHIPS

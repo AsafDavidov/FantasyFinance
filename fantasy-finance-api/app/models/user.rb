@@ -13,9 +13,7 @@ class User < ApplicationRecord
     unexpired_leagues = League.select{|league| !league.expired}
 
     # real check to test that a league has expired
-    #leagues_that_expired = unexpired_leagues.select{|league|league.end_date < Date.today()}
-
-    leagues_that_expired = unexpired_leagues.select{|league|league.id == 2}
+    leagues_that_expired = unexpired_leagues.select{|league|league.end_date < Date.today()}
     leagues_that_expired.each do |league|
       league.expire_league
     end
