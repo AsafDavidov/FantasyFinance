@@ -30,25 +30,25 @@ class Portfolio < ApplicationRecord
     {"holdings_with_changes" =>holdings_with_changes, "total_value" =>portfolio_value, "total_change" => total_portfolio_change}
   end
 
-  def historical_total_portfolio_value
-    date = Date.parse(self.league.end_date.to_s)
-
-    if date<1.year.ago
-      chart_data_string = "1y"
-    elsif date>=1.year.ago && date<2.year.ago
-      chart_data_string = "2y"
-    else
-      chart_data_string = "5y"
-    end
-    tickers_and_current_prices = self.holdings.map do |holding|
-      url =  "https://api.iextrading.com/1.0/stock/#{holding.ticker}/chart/#{chart_data_string}?filter=date,close"
-      result = JSON.parse(RestClient.get(url))
-      binding.pry
-      {name: result["companyName"], ticker: holding.ticker, price: result["latestPrice"]}
-    end.uniq{|holding| holding[:ticker]}
-
-    puts "woop"
-  end
+  # def historical_total_portfolio_value
+  #   date = Date.parse(self.league.end_date.to_s)
+  #
+  #   if date<1.year.ago
+  #     chart_data_string = "1y"
+  #   elsif date>=1.year.ago && date<2.year.ago
+  #     chart_data_string = "2y"
+  #   else
+  #     chart_data_string = "5y"
+  #   end
+  #   tickers_and_current_prices = self.holdings.map do |holding|
+  #     url =  "https://api.iextrading.com/1.0/stock/#{holding.ticker}/chart/#{chart_data_string}?filter=date,close"
+  #     result = JSON.parse(RestClient.get(url))
+  #     binding.pry
+  #     {name: result["companyName"], ticker: holding.ticker, price: result["latestPrice"]}
+  #   end.uniq{|holding| holding[:ticker]}
+  #
+  #   puts "woop"
+  # end
     #create array with the portfolio's holding and the most up to date pricing
   #   portfolio_value = self.current_balance
   #   holdings_with_changes = self.holdings.map do |holding|

@@ -83,7 +83,7 @@ class NewsContainer extends Component{
             </Grid.Row>
           </Grid>
         </div>
-        <div>
+        <div id="news-section">
           <NewsStrip news={this.state.news}/>
         </div>
        </div>

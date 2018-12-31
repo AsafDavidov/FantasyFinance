@@ -134,6 +134,9 @@
   border: black;
   border-radius: 4px;
 }
+#news-section .ui.image img{
+  height:130px;
+}
 /* End Home Screen */
 /* Gainer/Loser Tables */
 .gainer-table{

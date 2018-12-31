@@ -11,7 +11,7 @@ class League extends Component{
     modalOpen:false
   }
   handleJoin=()=>{
-    let data = {portfolio: {league_id:this.props.id,name:this.state.portfolioNameJoin,current_balance:this.props.balance}}
+    let data = {portfolio: {league_id:this.props.id,name:this.state.portfolioNameJoin,current_balance:this.props.balance,expired:false}}
     this.props.attemptJoinLeague(data)
   }
 

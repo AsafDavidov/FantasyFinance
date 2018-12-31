@@ -1,5 +1,7 @@
 import React from 'react';
 import {Image,Divider} from "semantic-ui-react"
+import "../Profile.css"
+
 const NewsBlock = ({title,abstract,img,url})=>{
    return(
      <div>
