@@ -26,6 +26,7 @@ class Api::V1::LeaguesController < ApplicationController
 
   def show
     league = League.find(params[:id])
+    league.expire_league
     formatted_portfolios = league.portfolios.map do |portfolio|
       portfolio_value_and_changes = portfolio.total_portfolio_value_and_changes
       {id:portfolio.id,name: portfolio.name, username: portfolio.user.username, value: portfolio_value_and_changes["total_value"], total_change: portfolio_value_and_changes["total_change"]}

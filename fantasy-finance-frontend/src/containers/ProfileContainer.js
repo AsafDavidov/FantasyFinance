@@ -9,11 +9,13 @@ import '../Profile.css'
 
 class ProfileContainer extends Component{
   state = {
-    rival:null
+    rival:null,
+    totalCompletedGames:null,
+    totalWonGames:null
   }
   componentDidMount(){
     this.fetchUserInformation()
-    .then(data=>this.setState({rival:data.rival}))
+    .then(data=>this.setState({rival:data.rival,totalWonGames:data.wins_stats.wins,totalCompletedGames:data.wins_stats.total_leagues}))
   }
   fetchUserInformation = ()=>{
     return UserAdapter.getUserProfileInformation()
@@ -28,7 +30,7 @@ class ProfileContainer extends Component{
       <Switch>
         <Route exact path={`${this.props.match.path}`} render={() => <Redirect replace to={`${this.props.match.path}/leagues`} />} />
         <Route path={`${this.props.match.path}/leagues`} render={() => <Leagues leagues={this.props.leagues}/>}/>
-        <Route path={`${this.props.match.path}/breakdown`} render={()=><Breakdown rival={this.state.rival}/>} />
+        <Route path={`${this.props.match.path}/breakdown`} render={()=><Breakdown totalGames={this.state.totalCompletedGames}wins={this.state.totalWonGames} rival={this.state.rival}/>} />
       </Switch>
     </div>
   );

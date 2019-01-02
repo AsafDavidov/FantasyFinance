@@ -86,7 +86,7 @@
 }
 .performance-tag{
   position: absolute;
-  margin-left: 70%;
+  margin-left: 75%;
   margin-bottom: 11px;
   padding: 6px;
   bottom: 0;
@@ -100,7 +100,7 @@
   padding: 6px;
   position: absolute;
   bottom: 0;
-  margin-bottom: 44%;
+  margin-bottom: 34%;
   margin-left: 3%;
   color: white;
   font-weight: 900;
@@ -111,7 +111,7 @@
 }
 .large-performance-tag{
   position: absolute;
-  margin-left: 76%;
+  margin-left: 80%;
   margin-bottom: 11px;
   padding: 6px;
   bottom: 0;
@@ -125,8 +125,8 @@
   padding: 6px;
   position: absolute;
   bottom: 0;
-  margin-bottom: 35%;
-  margin-left: 1%;
+  margin-bottom: 24%;
+  margin-left: 3%;
   color: white;
   font-weight: 900;
   font-size: 18px;
@@ -146,7 +146,7 @@
 }
 .loser-table{
   float:right;
-  margin-right: 5%;
+  margin-right: 10%;
   font-size: 20px;
 }
 /* End Gainer/Loser Tables */

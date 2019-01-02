@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
       @user = User.create(user_params)
       if @user.valid?
         @token = encode_token(user_id: @user.id)
-        @user.configure_leagues
+        # @user.configure_leagues
         render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
       else
         render json: { message: 'Username already taken' }, status: :not_acceptable
@@ -20,11 +20,13 @@ class Api::V1::UsersController < ApplicationController
     user_leagues = User.find(@user.id).leagues
     render json: user_leagues, status: :ok
   end
+
   def breakdown
     rival = @user.biggest_rival.username
     wins_win_percentage = @user.number_and_percentage_of_wins
-    render json: {rival:rival}, status: :ok
+    render json: {rival:rival, wins_stats: wins_win_percentage}, status: :ok
   end
+
   private
 
   def user_params

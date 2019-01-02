@@ -47,7 +47,7 @@ import "../Profile.css"
     return(
       <div style={{marginLeft:"10%",marginTop:"5%",width:"80%"}}>
         <h1 style={{textAlign:'center'}}>Welcome to FantasyTrader</h1>
-        <Segment placeholder>
+        <Segment padded placeholder>
           <Grid columns={2} relaxed='very' stackable>
             <Grid.Column>
               <Header style={{textAlign:"center"}} as="h1">Login</Header>

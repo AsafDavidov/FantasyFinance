@@ -38,7 +38,6 @@ class NewsContainer extends Component{
  render(){
    //if (this.state.sectorPerformance.length>0&&this.state.indexes.length>0){
    if (this.state.sectorPerformance.length>0){
-     console.log(this.state.news);
      return(
        <div style={{width:"80%", marginLeft:"10%"}}>
         <h1 style={{textAlign:"left",fontWeight:"200",fontSize:"40px", fontFamily:"Alike Angular"}}>Sector Performance</h1>

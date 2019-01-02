@@ -17,8 +17,12 @@ class LeagueShow extends Component{
   componentDidMount(){
     this.timer = setInterval(()=>this.fetchLeagueInfo()
     .then(data=>{
-      let sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
-      if (this.state.sortedBy !== "") sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
+      let sortedPortfolios;
+      if (this.state.sortedBy !== ""){
+          sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
+      }else{
+        sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
+      }
       if (this.state.reversed) sortedPortfolios = sortedPortfolios.reverse()
       let leagueEndDate = new Date(data.league.end_date)
       let today = new Date()

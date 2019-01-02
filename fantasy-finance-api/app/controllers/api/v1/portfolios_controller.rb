@@ -1,4 +1,5 @@
 class Api::V1::PortfoliosController < ApplicationController
+
   def create
     portfolio = Portfolio.new(portfolio_params)
     portfolio.user_id = @user.id
@@ -9,11 +10,17 @@ class Api::V1::PortfoliosController < ApplicationController
         unqiue_name=false
       end
     end
-    if unqiue_name
+    if (unqiue_name && !found_league.expired)
       portfolio.save
       render json:{portfolios:@user.portfolios,leagues:@user.leagues}, status: :ok
     else
-      render json: { message: 'This portfolio name has been taken in this League' }, status: :not_acceptable
+      if !unqiue_name
+        render json: { message: 'This portfolio name has been taken in this League' }, status: :not_acceptable
+      elsif found_league.expired
+        render json: { message: 'This League has ended' }, status: :not_acceptable
+      else
+        render json: { message: 'Server Error' }, status: :not_acceptable
+      end
     end
 
   end
