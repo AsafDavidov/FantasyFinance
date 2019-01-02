@@ -2,9 +2,7 @@ class Api::V1::LeaguesController < ApplicationController
 
   def index
     leagues = League.all - @user.leagues
-    valid_leagues = leagues.select do |league|
-      league.end_date > Date.today()
-    end
+    valid_leagues = leagues.select{|league|!league.expired}.each{|league|league.expire_league}
     render json: valid_leagues, status: :ok
   end
 

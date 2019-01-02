@@ -24,8 +24,6 @@ class LeagueShow extends Component{
         sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
       }
       if (this.state.reversed) sortedPortfolios = sortedPortfolios.reverse()
-      let leagueEndDate = new Date(data.league.end_date)
-      let today = new Date()
       if (data.league.expired){
         this.setState({league:data.league, portfolios:sortedPortfolios,finished:true})
       }else{
