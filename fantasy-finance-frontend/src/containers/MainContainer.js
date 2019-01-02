@@ -5,6 +5,8 @@ import StockContainer from "./StockContainer"
 import LeaguesContainer from "./LeaguesContainer"
 import LeagueShow from "../components/LeagueShow"
 import PortfolioShow from "../components/PortfolioShow"
+import AboutPage from "../components/AboutPage"
+
 import '../App.css';
 import { Router, Route, Switch, withRouter} from 'react-router-dom'
 import {history} from "../index"
@@ -21,6 +23,7 @@ class MainContainer extends Component{
             <Route exact path="/stocks" component={StockContainer}/>
             <Route path="/stocks/:id" component={StockContainer}/>
             <Route exact path="/leagues" component={LeaguesContainer}/>
+            <Route exact path="/about" component={AboutPage}/>
             <Route path="/league/:id" component={LeagueShow}/>
             <Route path="/portfolios/:id" component={PortfolioShow}/>
           </Switch>

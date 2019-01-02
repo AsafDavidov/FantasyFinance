@@ -17,6 +17,7 @@ class App extends Component {
         <Route path="/stocks" component={Home}/>
         <Route path="/leagues" component={Home}/>
         <Route path="/league" component={Home}/>
+        <Route path="/about" component={Home}/>
         <Route path="/portfolios" component={Home}/>
         <Route component={PageNotFound} />
       </Switch>

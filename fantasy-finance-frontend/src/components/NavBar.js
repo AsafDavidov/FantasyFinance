@@ -12,8 +12,9 @@ const NavBar = (props) => {
       <ul className="navlinks">
         <li><NavLink to={"/home"} exact activeClassName="active">Home</NavLink></li>
         <li><NavLink to={"/profile"} activeClassName="active">Profile</NavLink></li>
-        <li><NavLink to={"/leagues"} activeClassName="active">Explore Leagues</NavLink></li>
+        <li><NavLink to={"/leagues"} activeClassName="active">Explore New Leagues</NavLink></li>
         <li><NavLink to={"/stocks"} activeClassName="active">Search Stocks</NavLink></li>
+        <li><NavLink to={"/about"} activeClassName="active">About</NavLink></li>
         <li style={{float:"right"}}><NavLink onClick={()=>props.logoutUser()}to={"/login"} exact activeClassName="active">Logout</NavLink></li>
         <li style={{float:"right"}}><Link to={"/profile"}>Hi, {props.username}!</Link></li>
       </ul>
