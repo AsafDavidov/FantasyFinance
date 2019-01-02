@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { Card, Message, Form,Modal,Input,Button } from 'semantic-ui-react'
 import {withRouter} from "react-router-dom"
 import {connect} from 'react-redux'
@@ -48,10 +48,17 @@ class League extends Component{
       return null
     }
   }
+  handlePortfolioClick = (id)=>{
+    this.props.history.push(`/portfolios/${id}`)
+  }
   handleBalance = () => {
     let foundPortfolio = this.props.portfolios.find((portfolio)=>{return portfolio.league_id===this.props.id})
     if(foundPortfolio){
-      return <Card.Header>Your Cash Left: {foundPortfolio.current_balance}</Card.Header>
+      return (
+        <Fragment>
+          <Card.Header>Your Cash Left: {foundPortfolio.current_balance}</Card.Header>
+          <Button onClick={()=>this.handlePortfolioClick(foundPortfolio.id)}>View this Portfolio</Button>
+        </Fragment>)
     }else{
       return <Button onClick={this.triggerModal}>Sign Up</Button>
     }
@@ -61,7 +68,6 @@ class League extends Component{
       <Card.Content>
         {this.renderModal()}
         <Card.Header>League Name: {this.props.name}</Card.Header>
-        <br></br>
         <Card.Header>League Start Balance: {this.props.balance}</Card.Header>
         <br></br>
         {this.handleBalance()}

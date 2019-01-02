@@ -88,7 +88,7 @@ class Purchase extends Component{
           <Modal open={this.state.modalOpen} onClose={this.handleClose}>
             <Modal.Header>Are you sure?</Modal.Header>
               <Modal.Content>
-                  <p>Are you sure you want to purchase {this.state.numShares} of {this.state.companyName} for total value of {parseFloat(this.state.numShares*this.state.currentPrice).toFixed(2)}</p>
+                  <p style={{color:"black", fontSize:"20px"}}>Are you sure you want to purchase {this.state.numShares} of {this.state.companyName} for total value of {parseFloat(this.state.numShares*this.state.currentPrice).toFixed(2)}?</p>
               </Modal.Content>
               <Modal.Actions>
                 <Button negative onClick={this.handleClose}>No</Button>

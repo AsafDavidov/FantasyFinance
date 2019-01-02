@@ -30,7 +30,7 @@ class ProfileContainer extends Component{
       <h1>{this.state.fullName}'s Profile</h1>
       <div>
         <ul className="profile-nav-links">
-          <li><NavLink activeClassName="active" to="/profile/leagues">Leagues</NavLink></li>
+          <li><NavLink activeClassName="active" to="/profile/leagues">Leagues/Portfolio</NavLink></li>
           <li><NavLink activeClassName="active" to="/profile/breakdown">Breakdown</NavLink></li>
         </ul>
       </div>
