@@ -9,7 +9,6 @@ class Api::V1::UsersController < ApplicationController
       @user = User.create(user_params)
       if @user.valid?
         @token = encode_token(user_id: @user.id)
-        # @user.configure_leagues
         render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
       else
         render json: { message: 'Username already taken' }, status: :not_acceptable

@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink, withRouter} from 'react-router-dom'
+import {NavLink,Link, withRouter} from 'react-router-dom'
 import {connect} from "react-redux"
 import {logoutUser} from '../store/actions/user'
 import '../Profile.css'
@@ -15,13 +15,19 @@ const NavBar = (props) => {
         <li><NavLink to={"/leagues"} activeClassName="active">Explore Leagues</NavLink></li>
         <li><NavLink to={"/stocks"} activeClassName="active">Search Stocks</NavLink></li>
         <li style={{float:"right"}}><NavLink onClick={()=>props.logoutUser()}to={"/login"} exact activeClassName="active">Logout</NavLink></li>
+        <li style={{float:"right"}}><Link to={"/profile"}>Hi, {props.username}!</Link></li>
       </ul>
   </div>
   )
+}
+function mapStateToProps({user}){
+  return {
+    username: user.username
+  }
 }
 function mapDispatchToProps(dispatch){
   return {
     logoutUser: ()=> {dispatch(logoutUser())}
   }
 }
-export default withAuth(withRouter(connect(null,mapDispatchToProps)(NavBar)))
+export default withAuth(withRouter(connect(mapStateToProps,mapDispatchToProps)(NavBar)))

@@ -8,15 +8,6 @@ class User < ApplicationRecord
   has_many :portfolios
   has_many :leagues, through: :portfolios
 
-  #
-  # def configure_leagues
-  #   unexpired_leagues = League.select{|league| !league.expired}
-  #   leagues_that_expired = unexpired_leagues.select{|league|league.end_date < Date.today()}
-  #   leagues_that_expired.each do |league|
-  #     league.expire_league
-  #   end
-  # end
-
   def biggest_rival
     all_rivals = self.leagues.map{|league|league.portfolios-self.portfolios}.flatten.map{|p|p.user_id}
     rival = User.find(all_rivals.max_by{|u|all_rivals.count(u)})
