@@ -13,7 +13,7 @@ const AboutPage = (props) => {
           This website is meant for investors of all levels to compete in a fantasy sports time of environment, with only pride at stake.
           Gather friends and compete in public leagues to determine who is the ultimate investor.
           You can find new leagues in the "Explore New Leagues" tab. Enter a portfolio name and you are good to go buy some stocks!
-          Sector Performance and Finance News can be found on the homepage, while specific stock information information can be found at the "Search Stocks" tab.
+          Sector Performance and Finance News can be found on the homepage, while specific stock information can be found at the "Search Stocks" tab.
           Enjoy and good luck!
       </p>
       <Button color="black" size="large" onClick={()=>console.log("hi")}>Return to the Homepage</Button>

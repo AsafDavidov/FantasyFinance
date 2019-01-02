@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Loader, Image,Message,Form, Input, Button, Select } from 'semantic-ui-react'
+import { Loader, Image,Message,Form, Input, Button, Dropdown } from 'semantic-ui-react'
 import {connect} from "react-redux"
 import StockAdapter from "../store/adapters/stockAdapter"
 import * as actions from "../store/actions/holding"
@@ -85,12 +85,12 @@ class Purchase extends Component{
           {this.handlePredictedCashLeft()}
           {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
           {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
-          <Form size={"small"} onSubmit={this.buyStocks}>
-            <Form.Field>
+          <Form size={"medium"} onSubmit={this.buyStocks}>
+            <Form.Field style={{marginLeft:"20%",width:"60%"}}>
              <label style={{color:"black",fontSize:"22px"}}>Choose a portfolio:</label>
-             <Select value={this.state.chosenPortfolio ? this.state.chosenPortfolio.name : null} style={{width:"400px"}} onChange={this.changePortfolio} options={this.formatPortfoliosForDropdown()} placeholder='Portfolio' />
+             <Dropdown onChange={this.changePortfolio} value={this.state.chosenPortfolio ? this.state.chosenPortfolio.name : null} placeholder='Select A Portfolio' fluid search selection options={this.formatPortfoliosForDropdown()} />
               <label style={{marginTop:"50px", color:"black",fontSize:"22px"}}>Number of Shares to Purchase:</label>
-              <Input value={this.state.numShares ? this.state.numShares : ""} style={{width:"400px"}}name={"numShares"} onChange={this.changeNumShares} type='number' />
+              <Input value={this.state.numShares ? this.state.numShares : ""} name={"numShares"} onChange={this.changeNumShares} type='number' />
             </Form.Field>
             <Button inverted size="large" color="green" type='submit'>Buy Shares</Button>
           </Form>
