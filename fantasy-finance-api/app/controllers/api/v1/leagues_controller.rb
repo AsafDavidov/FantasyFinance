@@ -24,18 +24,22 @@ class Api::V1::LeaguesController < ApplicationController
 
   def show
     league = League.find(params[:id])
-    league.expire_league
-    if league.expired
-      formatted_portfolios = league.portfolios.map do |portfolio|
-        {id:portfolio.id,name: portfolio.name, username: portfolio.user.username, value: portfolio.current_balance}
+    if !!league
+      league.expire_league
+      if league.expired
+        formatted_portfolios = league.portfolios.map do |portfolio|
+          {id:portfolio.id,name: portfolio.name, username: portfolio.user.username, value: portfolio.current_balance}
+        end
+        render json: {league:league, portfolios:formatted_portfolios}, status: :ok
+      else
+        formatted_portfolios = league.portfolios.map do |portfolio|
+          portfolio_value_and_changes = portfolio.total_portfolio_value_and_changes
+          {id:portfolio.id,name: portfolio.name, username: portfolio.user.username, value: portfolio_value_and_changes["total_value"], total_change: portfolio_value_and_changes["total_change"]}
+        end
+        render json: {league:league, portfolios:formatted_portfolios}, status: :ok
       end
-      render json: {league:league, portfolios:formatted_portfolios}, status: :ok
     else
-      formatted_portfolios = league.portfolios.map do |portfolio|
-        portfolio_value_and_changes = portfolio.total_portfolio_value_and_changes
-        {id:portfolio.id,name: portfolio.name, username: portfolio.user.username, value: portfolio_value_and_changes["total_value"], total_change: portfolio_value_and_changes["total_change"]}
-      end
-      render json: {league:league, portfolios:formatted_portfolios}, status: :ok
+      render :status => 404
     end
   end
   private

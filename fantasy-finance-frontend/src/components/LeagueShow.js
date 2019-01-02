@@ -17,19 +17,23 @@ class LeagueShow extends Component{
   componentDidMount(){
     this.timer = setInterval(()=>this.fetchLeagueInfo()
     .then(data=>{
-      let sortedPortfolios;
-      if (this.state.sortedBy !== ""){
-          sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
+      if (data.status){
+        this.props.history.push("/")
       }else{
-        sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
+          let sortedPortfolios;
+          if (this.state.sortedBy !== ""){
+            sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
+          }else{
+            sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
+          }
+          if (this.state.reversed) sortedPortfolios = sortedPortfolios.reverse()
+          if (data.league.expired){
+            this.setState({league:data.league, portfolios:sortedPortfolios,finished:true})
+          }else{
+            this.setState({league:data.league, portfolios:sortedPortfolios,finished:false})
+          }
       }
-      if (this.state.reversed) sortedPortfolios = sortedPortfolios.reverse()
-      if (data.league.expired){
-        this.setState({league:data.league, portfolios:sortedPortfolios,finished:true})
-      }else{
-        this.setState({league:data.league, portfolios:sortedPortfolios,finished:false})
-      }
-    }),3000)
+        }),3000)
   }
   componentWillUnmount(){
     clearInterval(this.timer)
