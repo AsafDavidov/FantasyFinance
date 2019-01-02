@@ -3,7 +3,7 @@ import Leagues from "../components/Leagues"
 import Breakdown from "../components/Breakdown"
 import UserAdapter from "../store/adapters/userAdapter"
 import {Route, Switch, Redirect } from "react-router-dom"
-import { NavTab } from 'react-router-tabs';
+import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux'
 import '../Profile.css'
 
@@ -11,11 +11,14 @@ class ProfileContainer extends Component{
   state = {
     rival:null,
     totalCompletedGames:null,
-    totalWonGames:null
+    totalWonGames:null,
+    fullName:null
   }
   componentDidMount(){
     this.fetchUserInformation()
-    .then(data=>this.setState({rival:data.rival,totalWonGames:data.wins_stats.wins,totalCompletedGames:data.wins_stats.total_leagues}))
+    .then(data=>{
+      this.setState({fullName:data.fullName,rival:data.rival,totalWonGames:data.wins_stats.wins,totalCompletedGames:data.wins_stats.total_leagues})
+    })
   }
   fetchUserInformation = ()=>{
     return UserAdapter.getUserProfileInformation()
@@ -24,9 +27,14 @@ class ProfileContainer extends Component{
   render(){
   return (
     <div style={{marginTop:"10px"}}>
-      <NavTab className="profile-nav-tabs" to="/profile/leagues">Leagues</NavTab>
-      <NavTab className="profile-nav-tabs" to="/profile/breakdown">Breakdown</NavTab>
-
+      <h1>{this.state.fullName}'s Profile</h1>
+      <div>
+        <ul className="profile-nav-links">
+          <li><NavLink activeClassName="active" to="/profile/leagues">Leagues</NavLink></li>
+          <li><NavLink activeClassName="active" to="/profile/breakdown">Breakdown</NavLink></li>
+        </ul>
+      </div>
+      <br></br>
       <Switch>
         <Route exact path={`${this.props.match.path}`} render={() => <Redirect replace to={`${this.props.match.path}/leagues`} />} />
         <Route path={`${this.props.match.path}/leagues`} render={() => <Leagues leagues={this.props.leagues}/>}/>

@@ -13,7 +13,9 @@ class User < ApplicationRecord
     rival = User.find(all_rivals.max_by{|u|all_rivals.count(u)})
     return rival
   end
-
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
   def number_and_percentage_of_wins
     #all of the users completed leagues
     finished_user_leagues = self.leagues.select{|user_league| user_league.expired }

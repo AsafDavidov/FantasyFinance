@@ -60,16 +60,35 @@
 }
 /* End StockChart */
 /* Profile Tabs */
-.profile-nav-bar{
-  margin-top: 13px;
-  padding-top: 5px;
-}
-.profile-nav-tabs{
+
+.profile-nav-links{
   font-family: "Alike Angular";
 	font-size:1.65em;
 	font-weight:300;
-  transition:.2s;
-  margin-left: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display:table;
+  margin:0 auto;
+  background-color: white;
+}
+.profile-nav-links li{
+  float: left;
+  font-size: 18px;
+}
+.profile-nav-links li a{
+  display: block;
+  color: blue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.profile-nav-links .active{
+  color:white;
+  background-color: blue;
+
 }
 .ui.five.cards>.card {
     width: calc(15% - 1.5em);

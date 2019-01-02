@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import {Button} from "semantic-ui-react"
 import {Link} from "react-router-dom"
+
 const Breakdown = ({totalGames,wins,rival}) => {
   const handleRender = ()=>{
     if (totalGames<1){
