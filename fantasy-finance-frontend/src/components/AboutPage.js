@@ -16,7 +16,7 @@ const AboutPage = (props) => {
           Sector Performance and Finance News can be found on the homepage, while specific stock information can be found at the "Search Stocks" tab.
           Enjoy and good luck!
       </p>
-      <Button color="black" size="large" onClick={()=>console.log("hi")}>Return to the Homepage</Button>
+      <Button color="black" size="large" onClick={()=>props.history.push("/")}>Return to the Homepage</Button>
     </div>
   )
 };
