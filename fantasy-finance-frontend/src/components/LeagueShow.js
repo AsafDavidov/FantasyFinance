@@ -74,7 +74,7 @@ class LeagueShow extends Component{
               </Table.Row>
            </Table.Header>
             <Table.Body>
-              {this.state.portfolios.map(p=><PortfolioRow expired={this.state.finished} key={p.name} id={p.id} name={p.name} user={p.username} value={p.value} change={p.total_change}/>)}
+              {this.state.portfolios.map(p=><PortfolioRow startBalance={this.state.league.start_balance}expired={this.state.finished} key={p.name} id={p.id} name={p.name} user={p.username} value={p.value} change={p.total_change}/>)}
             </Table.Body>
             </Table>
         </div>
