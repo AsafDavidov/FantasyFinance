@@ -73,7 +73,7 @@ class Purchase extends Component{
     this.setState({numShares:event.target.value})
   }
   triggerModal=()=>{
-    if (this.state.numShares && this.state.chosenPortfolio!=""){
+    if (this.state.numShares && this.state.chosenPortfolio!==""){
       this.setState({ modalOpen: true })
     }else{
 
@@ -114,7 +114,7 @@ class Purchase extends Component{
                 <label style={{marginTop:"50px", color:"black",fontSize:"22px"}}>Number of Shares to Purchase:</label>
                 <Input value={this.state.numShares ? this.state.numShares : ""} name={"numShares"} onChange={this.changeNumShares} type='number' />
               </Form.Field>
-              <Button  disabled={(this.state.chosenPortfolio == "" || !this.state.numShares) ? true : false} active={(this.state.chosenPortfolio != "" && this.state.numShares) ? true : false} inverted size="large" color="green" type='submit'>Buy Shares</Button>
+              <Button  disabled={(this.state.chosenPortfolio === "" || !this.state.numShares) ? true : false} active={(this.state.chosenPortfolio !== "" && this.state.numShares) ? true : false} inverted size="large" color="green" type='submit'>Buy Shares</Button>
             </Form>
       </div>
     )

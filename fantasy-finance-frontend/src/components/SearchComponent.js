@@ -19,7 +19,7 @@ class SearchComponent extends Component {
       setTimeout(() => {
         if (this.state.value.length < 1) return this.resetComponent()
         const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-        const isMatch = result => re.test(result.title) || re.test(result.symbol)
+        const isMatch = result => re.test(result.symbol) || re.test(result.title)
         this.setState({
           isLoading: false,
           results: _.filter(this.props.stocks, isMatch),

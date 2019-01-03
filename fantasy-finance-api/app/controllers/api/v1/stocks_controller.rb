@@ -29,7 +29,7 @@ class Api::V1::StocksController < ApplicationController
     new_url = "#{@url}ref-data/symbols?filter=symbol,name"
     results = JSON.parse(RestClient.get(new_url))
     formatted = results.each_with_index.map do |result,index|
-      {key:index,"title":result["name"], "symbol":result["symbol"]}
+      {key:index,"title":"#{result["name"]} - #{result["symbol"]}", "symbol":result["symbol"]}
     end
 
     render json: formatted, status: :ok
