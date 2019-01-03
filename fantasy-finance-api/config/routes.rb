@@ -9,9 +9,9 @@ Rails.application.routes.draw do
       get '/stocks/news', to: 'stocks#news'
       get '/stocks/gainers-losers', to: 'stocks#gainers_losers'
       get '/stocks/tickers', to: 'stocks#tickers'
-      get '/stocks/chart/:id', to: 'stocks#chart'
-      get '/stocks/price/:id', to: 'stocks#price'
-      get '/stocks/logo/:id', to: 'stocks#logo'
+      get '/stocks/chart/:id', to: 'stocks#chart', constraints: { id: /[^\/]+/}
+      get '/stocks/price/:id', to: 'stocks#price', constraints: { id: /[^\/]+/}
+      get '/stocks/logo/:id', to: 'stocks#logo', constraints: { id: /[^\/]+/}
       get '/portfolios/value/:id', to: 'portfolios#value'
       resources :users, only: [:create]
       resources :portfolios, only: [:create]

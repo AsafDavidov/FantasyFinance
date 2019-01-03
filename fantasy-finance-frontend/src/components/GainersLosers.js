@@ -79,7 +79,7 @@ class GainersLosers extends Component{
                               </Header>
                           </Link>
                          </Table.Cell>
-                         <Table.Cell negative>{"-"+loser.change+"%"}</Table.Cell>
+                         <Table.Cell negative>{+loser.change+"%"}</Table.Cell>
                          <Table.Cell>{loser.price}</Table.Cell>
                          </Table.Row>)
                 })}

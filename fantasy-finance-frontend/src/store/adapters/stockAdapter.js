@@ -40,6 +40,7 @@ export default class StockAdapter {
 
   }
   static getChartData(symbol) {
+
     return fetch(`${STOCK_URL}chart/${symbol}`,{
     method: "GET",
     headers:{
@@ -50,6 +51,7 @@ export default class StockAdapter {
 
   }
   static getPricing(symbol) {
+
     return fetch(`${STOCK_URL}price/${symbol}`,{
     method: "GET",
     headers:{
@@ -60,6 +62,7 @@ export default class StockAdapter {
 
   }
   static getLogo(symbol) {
+    
     return fetch(`${STOCK_URL}logo/${symbol}`,{
     method: "GET",
     headers:{
