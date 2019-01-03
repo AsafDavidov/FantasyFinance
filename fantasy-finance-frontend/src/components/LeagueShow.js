@@ -22,7 +22,7 @@ class LeagueShow extends Component{
       }else{
           let sortedPortfolios;
           if (this.state.sortedBy !== ""){
-            sortedPortfolios = _.sortBy(sortedPortfolios,this.state.sortedBy)
+            sortedPortfolios = _.sortBy(data.portfolios,this.state.sortedBy)
           }else{
             sortedPortfolios = _.sortBy(data.portfolios,'value').reverse()
           }

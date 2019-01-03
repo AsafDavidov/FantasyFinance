@@ -52,7 +52,7 @@ class Purchase extends Component{
   }
   handlePredictedCashLeft = () => {
     if(!!this.state.chosenPortfolio && this.state.currentPrice && this.state.numShares && this.state.numShares>0){
-      return <h1>Cash Left After Purchase: {(this.state.chosenPortfolio.current_balance - this.state.currentPrice*this.state.numShares).toFixed(2)}</h1>
+      return <h1>Cash Left After Purchase: {parseFloat((this.state.chosenPortfolio.current_balance - this.state.currentPrice*this.state.numShares).toFixed(2)).toLocaleString()}</h1>
     }else{
       return null
     }
@@ -60,7 +60,8 @@ class Purchase extends Component{
   }
   formatPortfoliosForDropdown = () =>{
     return this.props.portfolios.map(portfolio=>{
-      return {key: portfolio.name, text:portfolio.name, value:portfolio.name}
+      let associatedLeague = this.props.leagues.find(league=>portfolio.league_id===league.id)
+      return {key: portfolio.name, text:`${portfolio.name} - ${associatedLeague.name}`, value:portfolio.name}
     })
   }
   changePortfolio = (event, {value})=>{
@@ -102,7 +103,7 @@ class Purchase extends Component{
             <div>
               <h1 style={{fontSize:"32px",color:this.state.color}}>Price:  {this.state.currentPrice}  <span style={this.state.currentPrice>this.state.startPrice ? {fontSize:"20px",color:"green"}: {fontSize:"20px",color:"red"}}>{parseFloat(this.state.currentPrice-this.state.startPrice).toFixed(2)} ({parseFloat(((this.state.currentPrice-this.state.startPrice)/this.state.startPrice)*100).toFixed(2)}%) </span></h1>
             </div>
-            <h1>Current Cash Left: {this.state.chosenPortfolio ? this.state.chosenPortfolio.current_balance : "Select a portfolio"}</h1>
+            <h1>Current Cash Left: {this.state.chosenPortfolio ? parseFloat(this.state.chosenPortfolio.current_balance.toFixed(2)).toLocaleString() : "Select a portfolio"}</h1>
             {this.handlePredictedCashLeft()}
             {this.props.failedPurchase ? <Message error header={this.props.message}/> : null}
             {this.props.successfulPurchase ? <Message positive header={this.props.message}/> : null}
@@ -123,12 +124,13 @@ class Purchase extends Component{
   }
 };
 
-function mapStateToProps({portfolio}) {
+function mapStateToProps({portfolio,league}) {
   return {
     failedPurchase: portfolio.failedPurchase,
     successfulPurchase: portfolio.successfulPurchase,
     message: portfolio.message,
-    portfolios: portfolio.portfolios
+    portfolios: portfolio.portfolios,
+    leagues: league.leagues
   }
 }
 export default connect(mapStateToProps,actions)(Purchase)

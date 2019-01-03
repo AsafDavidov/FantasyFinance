@@ -96,7 +96,7 @@
     margin-right: .75em;
 }
 .ui.form .field>label {
-  color:white;
+  font-size: 18px;
 }
 /* End Profile Tabs */
 /* Home Screen */

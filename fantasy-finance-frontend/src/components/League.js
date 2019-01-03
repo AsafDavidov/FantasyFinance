@@ -56,7 +56,7 @@ class League extends Component{
     if(foundPortfolio){
       return (
         <Fragment>
-          <Card.Header>Your Cash Left: {foundPortfolio.current_balance}</Card.Header>
+          <Card.Header>Your Cash Left: {parseFloat(foundPortfolio.current_balance.toFixed(2)).toLocaleString()}</Card.Header>
           <Button onClick={()=>this.handlePortfolioClick(foundPortfolio.id)}>View this Portfolio</Button>
         </Fragment>)
     }else{
