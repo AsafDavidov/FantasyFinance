@@ -21,4 +21,4 @@ const AboutPage = (props) => {
   )
 };
 
-export default AboutPage
+export default withRouter(AboutPage)

@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { Card, Message, Form,Modal,Input,Button } from 'semantic-ui-react'
+import { Card, Message, Form,Modal,Input,Button,Divider } from 'semantic-ui-react'
 import {withRouter} from "react-router-dom"
 import {connect} from 'react-redux'
 import * as actions from "../store/actions/league"
@@ -56,6 +56,7 @@ class League extends Component{
     if(foundPortfolio){
       return (
         <Fragment>
+          <Card.Header>Your Portfolio Name: {foundPortfolio.name}</Card.Header>
           <Card.Header>Your Cash Left: {parseFloat(foundPortfolio.current_balance.toFixed(2)).toLocaleString()}</Card.Header>
           <Button onClick={()=>this.handlePortfolioClick(foundPortfolio.id)}>View this Portfolio</Button>
         </Fragment>)
@@ -69,7 +70,7 @@ class League extends Component{
         {this.renderModal()}
         <Card.Header>League Name: {this.props.name}</Card.Header>
         <Card.Header>League Start Balance: {this.props.balance}</Card.Header>
-        <br></br>
+        <Divider />
         {this.handleBalance()}
         <Button onClick={this.handleViewLeague}>View League</Button>
       </Card.Content>
