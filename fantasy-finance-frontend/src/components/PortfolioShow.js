@@ -64,6 +64,7 @@ class PortfolioShow extends Component{
                   <Table.HeaderCell id="ticker">Symbol</Table.HeaderCell>
                   <Table.HeaderCell id="num_shares">Number of Shares</Table.HeaderCell>
                   <Table.HeaderCell id="price_bought">Price Bought</Table.HeaderCell>
+                  <Table.HeaderCell id="price_bought">Percentage of Portfolio (%)</Table.HeaderCell>
                   <Table.HeaderCell id="changes">Gain/Loss (%)</Table.HeaderCell>
                   <Table.HeaderCell id="value">Total Value</Table.HeaderCell>
                   {this.state.loggedInUsersPortfolio ? <Table.HeaderCell>Sell Holding</Table.HeaderCell> : null}
@@ -71,7 +72,7 @@ class PortfolioShow extends Component{
              </Table.Header>
               <Table.Body>
               {this.state.holdings.map(holding=>{
-                return <Holding key={holding.id} loggedInUser={this.state.loggedInUsersPortfolio} value={holding.value} ticker={holding.ticker} priceBought={holding.price_bought}numShares={holding.num_shares} name={holding.name} id={holding.id} changes={holding.changes}/>
+                return <Holding key={holding.id} portfolioPercentage={parseFloat(((holding.value/this.state.currentPortfolioValue)*100).toFixed(2)).toLocaleString()} loggedInUser={this.state.loggedInUsersPortfolio} value={holding.value} ticker={holding.ticker} priceBought={holding.price_bought}numShares={holding.num_shares} name={holding.name} id={holding.id} changes={holding.changes}/>
               })}
               </Table.Body>
             </Table>
