@@ -4,15 +4,13 @@ class Api::V1::StocksController < ApplicationController
     @url="https://api.iextrading.com/1.0/"
   end
 
-  # COMMENT OUT INDEX IF NOT BEING USED
+
   def sector_performance
     sector_url = "#{@url}stock/market/sector-performance"
-    # index_url = "#{@url}stock/market/batch?symbols=DIA,SPY,IWM&types=quote&filter=changePercent"
     sector_results = JSON.parse(RestClient.get(sector_url))
-    # index_results = JSON.parse(RestClient.get(index_url))
     sector_results = sector_results.sort_by{|obj| obj['performance']}.reverse!
     render json: {sector: sector_results}, status: :ok
-    # render json: {sector: sector_results,index: index_results}, status: :ok
+
   end
 
   def gainers_losers
@@ -36,9 +34,16 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def chart
-    new_url = "#{@url}stock/#{params[:id]}/chart/5y?filter=date,close,volume,open"
-    results = JSON.parse(RestClient.get(new_url))
-    render json: results, status: :ok
+
+    crypto_url = "#{@url}stock/market/crypto?filter=symbol"
+    crypto_results = JSON.parse(RestClient.get(crypto_url))
+    if !!crypto_results.find{|crypto|crypto["symbol"] == params[:id]}
+      render json: { message: 'Stock is Crypto' }, status: :not_acceptable
+    else
+      new_url = "#{@url}stock/#{params[:id]}/chart/5y?filter=date,close,volume,open"
+      results = JSON.parse(RestClient.get(new_url))
+      render json: results, status: :ok
+    end
   end
 
   def price

@@ -47,7 +47,13 @@ export default class StockAdapter {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok){
+          return res.json()
+        }else{
+          throw res
+        }
+      })
 
   }
   static getPricing(symbol) {
@@ -62,7 +68,7 @@ export default class StockAdapter {
 
   }
   static getLogo(symbol) {
-    
+
     return fetch(`${STOCK_URL}logo/${symbol}`,{
     method: "GET",
     headers:{

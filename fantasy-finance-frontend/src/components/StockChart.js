@@ -21,7 +21,8 @@ let parseDate = timeParse("%Y-%m-%d");
 
 class StockChart extends Component{
 	state={
-	  data:null
+	  data:null,
+		isCrypto:false
 	}
   componentDidMount(){
     this.fetchChartData()
@@ -32,6 +33,7 @@ class StockChart extends Component{
       })
       this.setState({data:newD})
     })
+		.catch(badresp=>this.setState({isCrypto:true}))
 
   }
   fetchChartData = ()=>{
@@ -96,7 +98,12 @@ class StockChart extends Component{
 				</Chart>
         <CrossHairCursor />
       </ChartCanvas>)
-    }else{
+    }else if (this.state.isCrypto) {
+    	return (<div>
+				<h1>Crypto Historical Data not currently availible. </h1> 
+				</div>)
+    }
+		else{
       return null
     }
   }
