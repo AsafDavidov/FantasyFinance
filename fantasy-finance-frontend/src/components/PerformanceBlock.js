@@ -28,7 +28,7 @@ const imgArray = [
   },
   {
     name: "Financials",
-    imgSrc: "http://img.chuansong.me/mmbiz_jpg/FHjVtRcMB7kjECCAtqueefF9ibyLMUkEYrbINMeJA2C1tm8FVqfSIQkkHmTiaXQ3TDOTDqPtSicic6DKjDTBdMicvKg/"
+    imgSrc: "https://www.schwab.com/resource-center/insights/sites/g/files/eyrktu156/files/styles/article_hero/public/2017/03_-_March_2017/financials-wall-street-sign_1187x528.jpg?itok=GikZkz0K"
   },
   {
     name: "Materials",
