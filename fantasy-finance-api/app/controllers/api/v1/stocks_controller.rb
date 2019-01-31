@@ -63,6 +63,7 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def news
+
     uri = URI("https://api.nytimes.com/svc/topstories/v2/business.json")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -72,7 +73,6 @@ class Api::V1::StocksController < ApplicationController
     request = Net::HTTP::Get.new(uri.request_uri)
     result = JSON.parse(http.request(request).body)
     array_of_articles = result["results"][0,5]
-
     formatted_array_of_articles = array_of_articles.map do |article|
       if article["multimedia"].size > 0
         article_multimedia = article["multimedia"].find{|pic| pic["format"]=="Normal"}
@@ -82,7 +82,7 @@ class Api::V1::StocksController < ApplicationController
       end
       {title: article["title"], url:article["url"], imgSrc:img_source, abstract:article["abstract"]}
     end
-
+    byebug
     render json: {news:formatted_array_of_articles}, status: :ok
   end
 end
