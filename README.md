@@ -1,6 +1,6 @@
 # Fantasy Finance
 
-A React application using a Ruby on Rails backend to create a web application that mimics a fantasy sports functionality expect that users purchase and sell stock holdings.
+A React application using a Ruby on Rails backend to create a web application that mimics a fantasy sports within the financial markets. New York Times API was used to fetch news articles while IEX API 1.0 was used for all market data. Public leagues give a user a certain amount of starter money. Then each user can buy/sell holdings to increase total portfolio value. Highest portfolio value at the end of the time period wins.
 
 ## Setup instructions
 
