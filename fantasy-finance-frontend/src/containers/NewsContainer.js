@@ -96,5 +96,3 @@ class NewsContainer extends Component{
 }
 
 export default NewsContainer
-// <Label size="medium" attached='top left'>{this.state.sectorPerformance[0].name}</Label>
-// <Label size="medium" attached='bottom right'>{this.state.sectorPerformance[0].performance}</Label>

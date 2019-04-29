@@ -33,4 +33,3 @@ class MainContainer extends Component{
  }
 }
 export default withAuth(withRouter(MainContainer))
-//render = {(routerProps)=><StockComponent stock={routerProps.match.params.id}/>}
