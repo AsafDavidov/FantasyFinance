@@ -8,7 +8,6 @@ const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
       if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchUser()
-
     }
 
     render() {
