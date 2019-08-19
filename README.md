@@ -15,4 +15,4 @@ A React application using a Ruby on Rails backend to create a web application th
 * to setup the database run "rails db:create && rails db:migrate"
 * lastly to start the server run "rails s -p 4000" as the frontend point to the server at port 4000
 
-## Enjoy!
+## Enjoy!!
